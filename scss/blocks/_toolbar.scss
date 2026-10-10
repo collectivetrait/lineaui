@@ -1,0 +1,67 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'toolbar') {
+  @layer blocks {
+    @include b.block('toolbar') {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--s2);
+      padding-block: var(--s2);
+
+      @include b.element('start') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+      }
+
+      @include b.element('end') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+      }
+
+      @include b.element('group') {
+        display: flex;
+        align-items: center;
+        gap: var(--s1);
+      }
+
+      @include b.element('search') {
+        max-width: 240px;
+      }
+
+      @include b.element('count') {
+        font: var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+        color: var(--c-muted);
+        white-space: nowrap;
+      }
+
+      @include b.element('divider') {
+        width: 0;
+        height: 24px;
+        border-left: var(--bd1) solid var(--border);
+        margin-inline: var(--s1);
+      }
+
+      @include b.modifier('bulk') {
+        background-color: var(--primary-subtle);
+        padding: var(--s2) var(--s3);
+        border-radius: var(--r-md);
+      }
+
+      @include b.modifier('sticky') {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--surface);
+      }
+
+      @include b.modifier('compact') {
+        padding-block: var(--s1);
+      }
+    }
+  }
+}

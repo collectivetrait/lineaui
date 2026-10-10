@@ -1,0 +1,232 @@
+@use '../tools/rhythm' as r;
+@use '../settings' as s;
+@use 'sass:map';
+
+@layer base {
+  :root {
+    font: 1rem var(--f-ui);
+    color: var(--text);
+    background-color: var(--canvas);
+  }
+
+  // Focus ring
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+
+  // Selection
+  ::selection {
+    background-color: var(--selection);
+  }
+
+  // ---------------------------------------------------------------
+  // Headings — each occupies whole rhythm lines; margins above > below
+  // ---------------------------------------------------------------
+
+  h1 {
+    font: 400 var(--t-h1-s)/var(--t-h1-lh) var(--f-prose);
+    letter-spacing: -0.01em;
+    margin-bottom: r.lines(1);
+  }
+
+  h2 {
+    font: 400 var(--t-h2-s)/var(--t-h2-lh) var(--f-prose);
+    letter-spacing: -0.005em;
+    margin-bottom: r.lines(1);
+  }
+
+  h3 {
+    font: 400 var(--t-h3-s)/var(--t-h3-lh) var(--f-prose);
+    margin-bottom: r.lines(1);
+  }
+
+  h4 {
+    font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+    margin-bottom: r.lines(1);
+  }
+
+  h5 {
+    font: 600 var(--t-h5-s)/var(--t-h5-lh) var(--f-ui);
+    margin-bottom: r.step(1);
+  }
+
+  // h6 box: 16px line-height + 8px margin-bottom = 24px (1 line).
+  // Body text returns to the 24px grid after h6 without JS.
+  h6 {
+    font: 500 var(--t-h6-s)/var(--t-h6-lh) var(--f-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--c-muted);
+    margin-bottom: r.step(1); // 8px — total box = 24px
+  }
+  // Last child of any block container must not add trailing space
+  :is(h1, h2, h3, h4, h5, h6, p, blockquote, dl, ul, ol):last-child {
+    margin-bottom: 0;
+  }
+
+  // ---------------------------------------------------------------
+  // Responsive heading step-down (below md)
+  // display-1 and display-2 step-down handled by consumers via type tokens
+  // ---------------------------------------------------------------
+
+  @media (max-width: map.get(s.$breakpoints, md)) {
+    h1 {
+      font-size: 2.25rem; // 36px — stays larger than h2 (32px)
+      line-height: 3rem;
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // Body text
+  // ---------------------------------------------------------------
+
+  p {
+    line-height: 1.5rem;
+    margin-bottom: r.lines(1);
+  }
+
+  .lead {
+    font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
+  }
+
+  // ---------------------------------------------------------------
+  // Links
+  // ---------------------------------------------------------------
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 2px;
+  }
+
+  // ---------------------------------------------------------------
+  // Inline elements
+  // ---------------------------------------------------------------
+
+  strong,
+  b {
+    font-weight: 600;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  // line-height: 0 prevents sub/sup from stretching the containing line box
+  sub,
+  sup {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub { bottom: -0.25em; }
+  sup { top: -0.5em; }
+
+  small {
+    font-size: var(--t-body-xs-s);
+    line-height: var(--t-body-xs-lh);
+  }
+
+  mark {
+    background-color: var(--selection);
+    color: inherit;
+    padding-inline: 0.1em;
+  }
+
+  abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+
+  cite {
+    font-style: italic;
+  }
+
+  s,
+  del {
+    text-decoration: line-through;
+    color: var(--c-muted);
+  }
+
+  ins {
+    text-decoration: underline;
+    color: var(--success-text);
+  }
+
+  address {
+    font-style: normal;
+    line-height: 1.5rem;
+  }
+
+  // ---------------------------------------------------------------
+  // Blockquote
+  // border-inline-start / padding-inline-start kept logical — they flip in RTL.
+  // margin-block replaced with physical margin-top / margin-bottom.
+  // ---------------------------------------------------------------
+
+  blockquote {
+    font-family: var(--f-prose);
+    // Border compensation keeps text on the grid
+    border-inline-start: var(--bd3) solid var(--primary);
+    padding-inline-start: calc(var(--s3) - var(--bd3));
+    margin: r.lines(1) 0;
+    color: var(--c-muted);
+  }
+
+  // ---------------------------------------------------------------
+  // Horizontal rule — occupies exactly one rhythm line
+  // ---------------------------------------------------------------
+
+  hr {
+    border: none;
+    height: 1.5rem; // one line
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(50% - 0.5px),
+      var(--border) calc(50% - 0.5px),
+      var(--border) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // Lists
+  // padding-inline-start kept logical — list indent should flip in RTL.
+  // ---------------------------------------------------------------
+
+  ul,
+  ol {
+    padding-inline-start: var(--s4); // 32px
+    margin-bottom: r.lines(1);
+  }
+
+  li {
+    line-height: 1.5rem;
+  }
+
+  ol {
+    font-variant-numeric: tabular-nums;
+  }
+
+  dl {
+    margin: 0 0 r.lines(1);
+  }
+
+  dt {
+    font-weight: 600;
+  }
+
+  dd {
+    margin-inline-start: var(--s4); // logical — indent flips in RTL
+    color: var(--c-muted);
+  }
+}

@@ -1,0 +1,168 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'tabs') {
+  @layer blocks {
+    @include b.block('tabs') {
+      --_fill: var(--primary);
+      --_border-color: var(--border);
+      --_indicator-size: 2px;
+
+      @include b.element('list') {
+        display: flex;
+        gap: 1.5rem;
+        border-bottom: var(--bd1) solid var(--_border-color);
+        overflow-x: auto;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      @include b.element('tab') {
+        height: calc(2.5rem - var(--bd1));
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font: 500 0.9375rem/1.5rem var(--f-ui);
+        color: var(--c-muted);
+        white-space: nowrap;
+        text-decoration: none;
+        border-radius: 0;
+        position: relative;
+        transition: color var(--dur-fast) var(--e-standard);
+
+        &:hover {
+          color: var(--text);
+        }
+
+        &[aria-selected="true"] {
+          color: var(--text);
+          box-shadow: inset 0 -2px 0 var(--primary-text);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--focus);
+          outline-offset: -2px;
+          border-radius: var(--r-sm);
+        }
+      }
+
+      @include b.element('icon') {
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+      }
+
+      @include b.element('badge') {
+        font: var(--t-meta-s)/1 var(--f-mono);
+        padding: 2px 6px;
+        border-radius: var(--r-pill);
+        background: var(--surface-raised);
+        font-weight: 600;
+      }
+
+      @include b.element('panel') {
+        padding-top: 1.5rem;
+
+        &[hidden] {
+          display: none;
+        }
+      }
+
+      @include b.modifier('pills') {
+        .#{s.$prefix}tabs__list {
+          border-bottom: 0;
+          gap: var(--s-h);
+        }
+
+        .#{s.$prefix}tabs__tab {
+          height: auto;
+          border-radius: var(--r-pill);
+          min-height: 32px;
+          padding: var(--s-h) var(--s2);
+
+          &[aria-selected="true"] {
+            background-color: var(--_fill);
+            color: var(--on-primary);
+            box-shadow: none;
+          }
+        }
+      }
+
+      @include b.modifier('boxed') {
+        .#{s.$prefix}tabs__list {
+          outline: var(--bd1) solid var(--_border-color);
+          outline-offset: -1px;
+          border-bottom: none;
+          background: var(--surface-sunken);
+          gap: 0;
+        }
+
+        .#{s.$prefix}tabs__tab {
+          height: 2.5rem;
+          padding: 0 var(--s3);
+
+          &[aria-selected="true"] {
+            background: var(--surface);
+            color: var(--text);
+            box-shadow: none;
+            outline: var(--bd1) solid var(--_border-color);
+            outline-offset: -1px;
+          }
+        }
+      }
+
+      @include b.modifier('vertical') {
+        display: flex;
+        gap: var(--s3);
+
+        .#{s.$prefix}tabs__list {
+          flex-direction: column;
+          border-bottom: 0;
+          border-right: var(--bd1) solid var(--_border-color);
+          min-width: 160px;
+          overflow-x: visible;
+        }
+
+        .#{s.$prefix}tabs__tab[aria-selected="true"]::after {
+          top: 0;
+          bottom: 0;
+          left: auto;
+          right: 0;
+          width: var(--_indicator-size);
+          height: auto;
+          border-radius: var(--_indicator-size) 0 0 var(--_indicator-size);
+        }
+
+        .#{s.$prefix}tabs__panel {
+          flex: 1;
+          padding-top: 0;
+        }
+      }
+
+      @include b.modifier('fill') {
+        .#{s.$prefix}tabs__tab {
+          flex: 1;
+          justify-content: center;
+        }
+      }
+
+      @include b.modifier('sm') {
+        .#{s.$prefix}tabs__tab {
+          min-height: 32px;
+          padding: var(--s-h) var(--s2);
+          font-size: var(--t-meta-s);
+          line-height: var(--t-meta-lh);
+        }
+      }
+
+      @include role.role-modifiers;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'spinner') {
+  @layer blocks {
+    @include b.block('spinner') {
+      --_fill: currentColor;
+      --_size: 24px;
+
+      display: inline-block;
+      width: var(--_size);
+      height: var(--_size);
+      border: 2px solid transparent;
+      border-top-color: var(--_fill);
+      border-left-color: var(--_fill);
+      border-radius: var(--r-circle);
+      animation: #{s.$prefix}spin 1s linear infinite;
+
+      @include b.element('label') {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @include b.modifier('sm') { --_size: 16px; }
+      @include b.modifier('md') { --_size: 24px; }
+      @include b.modifier('lg') { --_size: 32px; }
+
+      @include role.role-modifiers;
+    }
+
+    @keyframes #{s.$prefix}spin {
+      to { transform: rotate(360deg); }
+    }
+  }
+}

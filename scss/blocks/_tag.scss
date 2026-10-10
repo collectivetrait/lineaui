@@ -1,0 +1,72 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'tag') {
+  @layer blocks {
+    @include b.block('tag') {
+      --_fill: var(--surface-raised);
+      --_on: var(--text);
+      --_text: var(--text);
+      --_subtle: var(--surface-raised);
+
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      height: 2rem;
+      padding-inline: 0.75rem;
+      border-radius: var(--r-xs);
+      font: 500 0.875rem / 1.25rem var(--f-ui);
+      background: var(--_fill);
+      color: var(--_on);
+      border: 0;
+
+      @include b.element('icon') {
+        width: 1em;
+        height: 1em;
+        flex: none;
+      }
+
+      @include b.element('label') {
+        flex: 1;
+      }
+
+      @include b.element('remove') {
+        display: inline-grid;
+        place-items: center;
+        width: 1.25rem;
+        height: 1.25rem;
+        border: 0;
+        border-radius: var(--r-sm);
+        background: transparent;
+        color: currentColor;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 0.125rem;
+        margin-top: -0.05rem;
+        line-height: 0;
+
+        &:hover {
+          background: color-mix(in srgb, currentColor 12%, transparent);
+          color: var(--text);
+        }
+      }
+
+      @include b.modifier('selectable') {
+        padding-inline: 0.75rem;
+        cursor: pointer;
+        border: 0;
+
+        &[aria-pressed="true"] {
+          background: var(--primary-subtle);
+          color: var(--primary-text);
+          border: var(--bd1) solid var(--primary-text);
+        }
+      }
+
+      // Role modifiers
+      @include role.role-modifiers;
+    }
+  }
+}

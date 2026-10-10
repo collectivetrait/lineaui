@@ -1,0 +1,90 @@
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    // Canvas / surface
+    --canvas:          light-dark(#FAFAFA, #09090B);
+    --surface:         light-dark(#FFFFFF, #18181B);
+    --surface-raised:  light-dark(#F4F4F5, #2C2C31);
+    --surface-sunken:  light-dark(#F4F4F5, #040405);
+    --surface-inverse: light-dark(#18181B, #FAFAFA);
+    --overlay:         light-dark(rgba(24,24,27,0.4), rgba(0,0,0,0.6));
+
+    // Text
+    --text:          light-dark(#09090B, #FAFAFA);
+    --c-muted:    light-dark(#52525B, #A1A1AA);
+    --c-subtle:   light-dark(#71717A, #828289);
+    --c-disabled: light-dark(#A1A1AA, #3F3F46);
+    --c-inverse:  light-dark(#FAFAFA, #09090B);
+
+    // Border
+    --border:         light-dark(#E4E4E7, #3F3F46);
+    --border-control: light-dark(#E4E4E7, #3F3F46);
+    --border-strong:  light-dark(#52525B, #71717A);
+
+    // Primary (violet)
+    --primary:         light-dark(#7C3AED, #8B5CF6);
+    --primary-text:    light-dark(#7C3AED, #8B5CF6);
+    --on-primary:      #FFFFFF;
+    --primary-subtle:  color-mix(in srgb, var(--primary) 16%, var(--canvas));
+    --primary-hover:   color-mix(in srgb, var(--primary) 88%, var(--canvas));
+    --primary-border:  color-mix(in srgb, var(--primary) 40%, var(--canvas));
+
+    // Secondary (teal)
+    --secondary:         #0D9488;
+    --secondary-text:    light-dark(#115E59, #2DD4BF);
+    --on-secondary:      #FFFFFF;
+    --secondary-subtle:  color-mix(in srgb, var(--secondary) 12%, var(--canvas));
+    --secondary-hover:   color-mix(in srgb, var(--secondary) 88%, var(--canvas));
+    --secondary-border:  color-mix(in srgb, var(--secondary) 40%, var(--canvas));
+
+    // Success (green)
+    --success:         #16A34A;
+    --success-text:    light-dark(#15803D, #4ADE80);
+    --on-success:      #FFFFFF;
+    --success-subtle:  color-mix(in srgb, var(--success) 12%, var(--canvas));
+    --success-hover:   color-mix(in srgb, var(--success) 88%, var(--canvas));
+    --success-border:  color-mix(in srgb, var(--success) 40%, var(--canvas));
+
+    // Warning (amber)
+    --warning:         light-dark(#D97706, #FBBF24);
+    --warning-text:    light-dark(#92400E, #FBBF24);
+    --on-warning:      #FFFFFF;
+    --warning-subtle:  color-mix(in srgb, var(--warning) 12%, var(--canvas));
+    --warning-hover:   color-mix(in srgb, var(--warning) 88%, var(--canvas));
+    --warning-border:  color-mix(in srgb, var(--warning) 40%, var(--canvas));
+
+    // Danger (red)
+    --danger:         #DC2626;
+    --danger-text:    light-dark(#DC2626, #F87171);
+    --on-danger:      #FFFFFF;
+    --danger-subtle:  color-mix(in srgb, var(--danger) 12%, var(--canvas));
+    --danger-hover:   color-mix(in srgb, var(--danger) 88%, var(--canvas));
+    --danger-border:  color-mix(in srgb, var(--danger) 40%, var(--canvas));
+
+    // Info (blue)
+    --info:         #2563EB;
+    --info-text:    light-dark(#2563EB, #60A5FA);
+    --on-info:      #FFFFFF;
+    --info-subtle:  color-mix(in srgb, var(--info) 12%, var(--canvas));
+    --info-hover:   color-mix(in srgb, var(--info) 88%, var(--canvas));
+    --info-border:  color-mix(in srgb, var(--info) 40%, var(--canvas));
+
+    // Neutral (surface-based)
+    --neutral:        var(--surface-raised);
+    --neutral-text:   var(--text);
+    --on-neutral:     var(--text);
+    --neutral-subtle: var(--surface-sunken);
+    --neutral-border: light-dark(#E4E4E7, #3F3F46);
+
+    // Link, focus, selection
+    --link:       var(--primary-text);
+    --link-hover: color-mix(in srgb, var(--primary-text) 80%, var(--canvas));
+    --focus:      var(--primary);
+    --selection:  color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+
+  // Force theme for a subtree
+  [data-theme="light"] { color-scheme: light; }
+  [data-theme="dark"]  { color-scheme: dark; }
+}

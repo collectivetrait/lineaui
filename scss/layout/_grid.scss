@@ -1,0 +1,90 @@
+@use 'sass:map';
+@use '../tools/bem' as b;
+@use '../settings' as s;
+
+@layer layout {
+  @include b.block('grid') {
+    display: grid;
+    gap: var(--_gap, var(--s3));
+
+    @for $i from 1 through 6 {
+      @include b.modifier('cols-#{$i}') {
+        grid-template-columns: repeat(#{$i}, 1fr);
+      }
+    }
+
+    @include b.modifier('cols-12') {
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    @include b.modifier('auto') {
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--grid-min, 15rem), 100%), 1fr));
+    }
+
+    @include b.modifier('gap-0')  { --_gap: 0; }
+    @include b.modifier('gap-xs') { --_gap: var(--s1); }
+    @include b.modifier('gap-sm') { --_gap: var(--s2); }
+    @include b.modifier('gap-md') { --_gap: var(--s3); }
+    @include b.modifier('gap-lg') { --_gap: var(--s4); }
+
+    // Responsive column modifiers
+    @each $bp, $val in s.$breakpoints {
+      @media (min-width: #{$val}) {
+        @for $i from 1 through 6 {
+          &--cols-#{$i}\@#{$bp} {
+            grid-template-columns: repeat(#{$i}, 1fr);
+          }
+        }
+
+        &--cols-12\@#{$bp} {
+          grid-template-columns: repeat(12, 1fr);
+        }
+      }
+    }
+
+    @include b.element('item') {
+      @for $n from 1 through 12 {
+        @include b.modifier('span-#{$n}') {
+          grid-column: span #{$n};
+        }
+      }
+
+      @include b.modifier('span-full') {
+        grid-column: 1 / -1;
+      }
+
+      @for $n from 1 through 12 {
+        @include b.modifier('start-#{$n}') {
+          grid-column-start: #{$n};
+        }
+      }
+
+      @include b.modifier('subgrid') {
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span var(--rows, 3);
+      }
+
+      // Responsive span modifiers
+      @each $bp, $val in s.$breakpoints {
+        @media (min-width: #{$val}) {
+          @for $n from 1 through 12 {
+            &--span-#{$n}\@#{$bp} {
+              grid-column: span #{$n};
+            }
+          }
+
+          &--span-full\@#{$bp} {
+            grid-column: 1 / -1;
+          }
+
+          @for $n from 1 through 12 {
+            &--start-#{$n}\@#{$bp} {
+              grid-column-start: #{$n};
+            }
+          }
+        }
+      }
+    }
+  }
+}

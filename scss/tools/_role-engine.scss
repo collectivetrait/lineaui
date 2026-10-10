@@ -1,0 +1,16 @@
+@use '../settings' as s;
+
+$roles: (primary, secondary, success, warning, danger, info);
+
+@mixin role-modifiers {
+  @each $role in $roles {
+    &--#{$role} {
+      --_fill: var(--#{$role});
+      --_on: var(--on-#{$role});
+      --_subtle: var(--#{$role}-subtle);
+      --_text: var(--#{$role}-text);
+      --_border-color: var(--#{$role}-border);
+      --_hover: var(--#{$role}-hover);
+    }
+  }
+}

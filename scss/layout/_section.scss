@@ -1,0 +1,78 @@
+@use 'sass:map';
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+@use '../settings' as s;
+
+@layer layout {
+  @include b.block('section') {
+    padding-block: var(--s4);
+    position: relative;
+
+    @include b.element('inner') {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    @include b.modifier('narrow') {
+      .#{s.$prefix}section__inner { max-width: var(--measure); }
+    }
+
+    @include b.modifier('wide') {
+      .#{s.$prefix}section__inner { max-width: var(--container-wide); }
+    }
+
+    @include b.modifier('space-lg')  { padding-block: r.lines(2); }
+    @include b.modifier('space-xl')  { padding-block: r.lines(3); }
+    @include b.modifier('space-2xl') { padding-block: r.lines(4); }
+    @include b.modifier('space-3xl') { padding-block: r.lines(6); }
+
+    @media (max-width: map.get(s.$breakpoints, md)) {
+      &--space-xl  { padding-block: r.lines(2); }
+      &--space-2xl { padding-block: r.lines(2); }
+      &--space-3xl { padding-block: r.lines(3); }
+    }
+
+    @include b.modifier('surface-sunken') {
+      background: var(--surface-sunken);
+    }
+
+    @include b.modifier('surface-raised') {
+      background: var(--surface);
+    }
+
+    @include b.modifier('surface-inverse') {
+      background: var(--surface-inverse);
+      color: var(--c-inverse);
+    }
+
+
+    @include b.modifier('center') {
+      text-align: center;
+    }
+
+    @include b.element('header') {
+      margin-bottom: var(--s4);
+    }
+
+    @include b.element('eyebrow') {
+      font: 500 var(--t-meta-s)/var(--t-meta-lh) var(--f-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--c-muted);
+      margin-bottom: var(--s1);
+    }
+
+    @include b.element('title') {
+      font: 400 var(--t-h2-s)/var(--t-h2-lh) var(--f-prose);
+      letter-spacing: -0.005em;
+      text-wrap: balance;
+    }
+
+    @include b.element('lead') {
+      font-size: var(--t-lead-s);
+      line-height: var(--t-lead-lh);
+      color: var(--c-muted);
+    }
+  }
+}

@@ -1,0 +1,73 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'button-group') {
+  @layer blocks {
+    @include b.block('button-group') {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: var(--s1);
+
+      @include b.modifier('attached') {
+        gap: 0;
+
+        .#{s.$prefix}button {
+          border-radius: 0;
+
+          &:not(:first-child) {
+            margin-left: -1px;
+          }
+
+          &:first-child {
+            border-start-start-radius: var(--r-md);
+            border-end-start-radius: var(--r-md);
+          }
+
+          &:last-child {
+            border-start-end-radius: var(--r-md);
+            border-end-end-radius: var(--r-md);
+          }
+        }
+      }
+
+      @include b.modifier('vertical') {
+        flex-direction: column;
+
+        &.#{s.$prefix}button-group--attached {
+          .#{s.$prefix}button {
+            border-radius: 0;
+
+            &:not(:first-child) {
+              margin-left: 0;
+              border-top: 0;
+            }
+
+            &:first-child {
+              border-start-start-radius: var(--r-md);
+              border-start-end-radius: var(--r-md);
+            }
+
+            &:last-child {
+              border-end-start-radius: var(--r-md);
+              border-end-end-radius: var(--r-md);
+            }
+          }
+        }
+      }
+
+      @include b.modifier('fill') {
+        width: 100%;
+
+        .#{s.$prefix}button {
+          flex: 1 1;
+          min-width: 0;
+        }
+
+        &.#{s.$prefix}button-group--vertical .#{s.$prefix}button {
+          flex: auto;
+        }
+      }
+    }
+  }
+}

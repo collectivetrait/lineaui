@@ -1,0 +1,146 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'toast') {
+  @layer blocks {
+    @include b.block('toast') {
+      --_fill: var(--primary);
+      --_on: var(--on-primary);
+      --_subtle: var(--primary-subtle);
+      --_text: var(--primary-text);
+
+      display: flex;
+      align-items: flex-start;
+      gap: var(--s2);
+      min-width: 300px;
+      max-width: 420px;
+      padding: var(--s2);
+      background-color: var(--surface);
+      border-radius: var(--r-xs);
+      position: relative;
+      overflow: hidden;
+
+      &[hidden] {
+        display: none;
+      }
+
+      @include b.element('icon') {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+        margin-top: 0;
+        color: var(--_fill);
+      }
+
+      @include b.element('content') {
+        flex: 1;
+        min-width: 0;
+      }
+
+      @include b.element('title') {
+        font: 600 var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+        color: var(--text);
+      }
+
+      @include b.element('body') {
+        font-size: var(--t-body-sm-s);
+        line-height: var(--t-body-sm-lh);
+        color: var(--c-muted);
+        margin-top: 0;
+      }
+
+      @include b.element('action') {
+        margin-top: var(--s2);
+      }
+
+      @include b.element('close') {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        padding: 0;
+        border: none;
+        background: none;
+        color: var(--c-muted);
+        cursor: pointer;
+        border-radius: var(--r-sm);
+        flex-shrink: 0;
+
+        &:hover {
+          color: var(--text);
+          background-color: var(--surface-raised);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--focus);
+          outline-offset: -2px;
+        }
+      }
+
+      @include b.element('timer') {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        background-color: var(--_fill);
+        transition: width linear;
+      }
+
+      @include b.modifier('solid') {
+        background-color: var(--_fill);
+        color: var(--_on);
+
+        .#{s.$prefix}toast__icon,
+        .#{s.$prefix}toast__title {
+          color: var(--_on);
+        }
+
+        .#{s.$prefix}toast__body {
+          color: color-mix(in srgb, var(--_on) 80%, transparent);
+        }
+
+        .#{s.$prefix}toast__close {
+          color: var(--_on);
+
+          &:hover {
+            background-color: color-mix(in srgb, var(--_on) 15%, transparent);
+          }
+        }
+
+        .#{s.$prefix}toast__timer {
+          background-color: var(--_on);
+          opacity: 0.3;
+        }
+      }
+
+      @include role.role-modifiers;
+    }
+
+    @include b.block('toast-region') {
+      position: fixed;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      gap: var(--s2);
+      padding: var(--s3);
+      pointer-events: none;
+
+      > * {
+        pointer-events: auto;
+      }
+
+      @include b.modifier('top-start') { top: 0; left: 0; align-items: flex-start; }
+      @include b.modifier('top-center') { top: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+      @include b.modifier('top-end') { top: 0; right: 0; align-items: flex-end; }
+      @include b.modifier('bottom-start') { bottom: 0; left: 0; align-items: flex-start; }
+      @include b.modifier('bottom-center') { bottom: 0; left: 50%; transform: translateX(-50%); align-items: center; }
+      @include b.modifier('bottom-end') { bottom: 0; right: 0; align-items: flex-end; }
+    }
+  }
+}

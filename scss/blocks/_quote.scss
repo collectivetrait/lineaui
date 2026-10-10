@@ -1,0 +1,71 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'quote') {
+  @layer blocks {
+    @include b.block('quote') {
+      --_edge: var(--_border-color, var(--primary));
+
+      font-family: var(--f-prose);
+      margin-bottom: r.lines(1);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @include b.element('text') {
+        font-size: var(--t-body-lg-s);
+        line-height: var(--t-body-lg-lh);
+        font-style: italic;
+      }
+
+      @include b.element('footer') {
+        margin-top: var(--s1);
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+      }
+
+      @include b.element('cite') {
+        font-style: normal;
+        font-size: var(--t-body-sm-s);
+        line-height: var(--t-body-sm-lh);
+        color: var(--c-muted);
+      }
+
+      @include b.element('avatar') {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      @include b.modifier('pull') {
+        font: italic 400 1.25rem/1.5rem var(--f-prose);
+        color: var(--text);
+        text-wrap: balance;
+        padding: 0 0 0 2rem;
+        border-left: 3px solid var(--primary-text);
+      }
+
+      @include b.modifier('card') {
+        background: var(--surface);
+        padding: calc(var(--s3) - var(--bd1));
+        border-radius: var(--r-lg);
+        border: var(--bd1) solid var(--border);
+      }
+
+      @include b.modifier('bordered') {
+        border: var(--bd1) solid var(--border);
+        padding: calc(var(--s3) - var(--bd1));
+        border-radius: var(--r-md);
+      }
+
+      @include role.role-modifiers;
+    }
+  }
+}

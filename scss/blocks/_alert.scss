@@ -1,0 +1,101 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'alert') {
+  @layer blocks {
+    @include b.block('alert') {
+      --_text: var(--info-text);
+      --_subtle: var(--info-subtle);
+      --_fill: var(--info);
+      --_on: var(--on-info);
+      --_border-color: var(--info-border);
+      --border: var(--_border-color);
+
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem;
+
+      &[hidden] {
+        display: none;
+      }
+      background: var(--_subtle);
+      color: var(--text);
+
+      @include b.element('icon') {
+        line-height: 1.5rem;
+        color: var(--_text);
+      }
+
+      @include b.element('content') {
+        flex: 1;
+        min-width: 0;
+      }
+
+      @include b.element('title') {
+        font: 600 1rem / 1.5rem var(--f-ui);
+        margin-bottom: 0.25rem;
+      }
+
+      @include b.element('body') {
+        font: 400 1rem / 1.5rem var(--f-ui);
+        color: var(--c-muted);
+      }
+
+      @include b.element('actions') {
+        display: flex;
+        gap: var(--s1);
+        margin-top: var(--s2);
+      }
+
+      @include b.element('dismiss') {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        flex-shrink: 0;
+        padding: 0;
+        border: none;
+        background: none;
+        color: var(--c-muted);
+        cursor: pointer;
+        border-radius: var(--r-sm);
+
+        &:hover {
+          color: var(--text);
+          background-color: color-mix(in srgb, currentColor 10%, transparent);
+        }
+      }
+
+      // Style variants
+      @include b.modifier('solid') {
+        background: var(--_fill);
+        color: var(--_on);
+
+        .#{s.$prefix}alert__icon,
+        .#{s.$prefix}alert__body {
+          color: var(--_on);
+        }
+      }
+
+      @include b.modifier('accent') {
+        border-left: var(--bd3) solid var(--_text);
+        border-radius: 0 var(--r-xs) var(--r-xs) 0;
+      }
+
+      @include b.modifier('banner') {
+        border-radius: 0;
+        padding-inline: var(--s4);
+      }
+
+      @include b.modifier('compact') {
+        padding: var(--s2);
+      }
+
+      // Role modifiers
+      @include role.role-modifiers;
+    }
+  }
+}

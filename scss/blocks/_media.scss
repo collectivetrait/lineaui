@@ -1,0 +1,105 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'media') {
+  @layer blocks {
+    @include b.block('media') {
+      position: relative;
+      margin-bottom: r.lines(1);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @include b.element('frame') {
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--surface-sunken);
+        outline: var(--bd1) solid var(--border);
+        outline-offset: calc(-1 * var(--bd1));
+        margin-bottom: 0.5rem;
+      }
+
+      @include b.element('img') {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: var(--_fit, cover);
+      }
+
+      @include b.element('caption') {
+        font: 400 0.875rem/1.5rem var(--f-ui);
+        color: var(--c-muted);
+        display: flex;
+        gap: 0.5rem;
+
+        b {
+          font: 500 0.75rem/1.5rem var(--f-mono);
+          letter-spacing: 0.04em;
+          color: var(--c-subtle);
+          text-transform: uppercase;
+        }
+      }
+
+      @include b.element('credit') {
+        font: var(--t-meta-s)/var(--t-meta-lh) var(--f-mono);
+        color: var(--c-subtle);
+      }
+
+      // Ratio modifiers
+      @include b.modifier('ratio-1x1')  { .#{s.$prefix}media__frame { aspect-ratio: 1 / 1; } }
+      @include b.modifier('ratio-4x3')  { .#{s.$prefix}media__frame { aspect-ratio: 4 / 3; } }
+      @include b.modifier('ratio-3x2')  { .#{s.$prefix}media__frame { aspect-ratio: 3 / 2; } }
+      @include b.modifier('ratio-16x9') { .#{s.$prefix}media__frame { aspect-ratio: 16 / 9; } }
+      @include b.modifier('ratio-21x9') { .#{s.$prefix}media__frame { aspect-ratio: 21 / 9; } }
+
+      // Fit modifiers
+      @include b.modifier('cover')   { --_fit: cover; }
+      @include b.modifier('contain') { --_fit: contain; }
+
+      // Layout modifiers
+      @include b.modifier('wide') {
+        max-width: var(--container-wide);
+        margin-inline: auto;
+      }
+
+      @include b.modifier('float-start') {
+        float: left;
+        margin-right: var(--s3);
+        margin-bottom: var(--s1);
+        max-width: 50%;
+      }
+
+      @include b.modifier('float-end') {
+        float: right;
+        margin-left: var(--s3);
+        margin-bottom: var(--s1);
+        max-width: 50%;
+      }
+
+      @include b.modifier('rounded') {
+        .#{s.$prefix}media__frame {
+          border-radius: var(--r-lg);
+        }
+      }
+
+      @include b.modifier('bordered') {
+        .#{s.$prefix}media__frame {
+          outline: var(--bd1) solid var(--border);
+          outline-offset: calc(-1 * var(--bd1));
+        }
+      }
+
+      @include b.modifier('bleed') {
+        max-width: none;
+        margin-inline: calc(-1 * var(--gutter, 0px));
+
+        .#{s.$prefix}media__frame {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}

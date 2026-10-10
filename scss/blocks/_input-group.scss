@@ -1,0 +1,95 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'input-group') {
+  @layer blocks {
+    @include b.block('input-group') {
+      display: flex;
+      border-radius: var(--r-xs);
+      outline: var(--bd1) solid var(--border-control);
+      outline-offset: calc(-1 * var(--bd1));
+      background: var(--surface);
+
+      &:focus-within {
+        outline-color: var(--focus);
+        outline-width: 2px;
+        outline-offset: -2px;
+      }
+
+      @include b.element('addon') {
+        height: 2.5rem;
+        padding-inline: 0.75rem;
+        font: 400 0.875rem/2.5rem var(--f-mono);
+        color: var(--c-muted);
+        border-right: var(--bd1) solid var(--border);
+      }
+
+      @include b.element('control') {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        background: transparent;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          color: var(--c-subtle);
+        }
+      }
+
+      // Button inside group
+      & .#{s.$prefix}button {
+        border-radius: 0 var(--r-xs) var(--r-xs) 0;
+      }
+
+      @include b.element('button') {
+        flex-shrink: 0;
+      }
+
+      @include b.element('icon') {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 100%;
+        color: var(--c-muted);
+        pointer-events: none;
+      }
+
+      // Size modifiers
+      @include b.modifier('sm') {
+        .#{s.$prefix}input-group__control {
+          height: 2rem;
+        }
+
+        .#{s.$prefix}input-group__addon {
+          height: 2rem;
+          line-height: 2rem;
+        }
+
+        .#{s.$prefix}input-group__icon {
+          width: 2rem;
+        }
+      }
+
+      @include b.modifier('lg') {
+        .#{s.$prefix}input-group__control {
+          height: 3rem;
+        }
+
+        .#{s.$prefix}input-group__addon {
+          height: 3rem;
+          line-height: 3rem;
+        }
+
+        .#{s.$prefix}input-group__icon {
+          width: 3rem;
+        }
+      }
+    }
+  }
+}

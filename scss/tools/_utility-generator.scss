@@ -1,0 +1,74 @@
+@use 'sass:map';
+@use 'sass:list';
+@use '../settings' as s;
+
+@mixin _emit-family($config, $suffix: '') {
+  $class: map.get($config, class);
+
+  @if map.has-key($config, property) {
+    $property: map.get($config, property);
+    $values:   map.get($config, values);
+
+    @each $key, $val in $values {
+      @if $key == '' {
+        .#{$class}#{$suffix} { #{$property}: #{$val}; }
+      } @else {
+        .#{$class}-#{$key}#{$suffix} { #{$property}: #{$val}; }
+      }
+    }
+  } @else if map.has-key($config, properties) {
+    $properties: map.get($config, properties);
+    $values:     map.get($config, values);
+
+    @each $key, $val in $values {
+      @if $key == '' {
+        .#{$class}#{$suffix} {
+          @each $prop in $properties { #{$prop}: #{$val}; }
+        }
+      } @else {
+        .#{$class}-#{$key}#{$suffix} {
+          @each $prop in $properties { #{$prop}: #{$val}; }
+        }
+      }
+    }
+  } @else if map.has-key($config, declarations) {
+    $declarations: map.get($config, declarations);
+
+    @each $key, $decl-map in $declarations {
+      @if $key == '' {
+        .#{$class}#{$suffix} {
+          @each $prop, $val in $decl-map { #{$prop}: #{$val}; }
+        }
+      } @else {
+        .#{$class}-#{$key}#{$suffix} {
+          @each $prop, $val in $decl-map { #{$prop}: #{$val}; }
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-utilities($utilities, $breakpoints) {
+  @each $family, $config in $utilities {
+    @if list.length(s.$utilities) == 0 or list.index(s.$utilities, $family) {
+      @include _emit-family($config);
+    }
+  }
+
+  @each $bp, $bp-val in $breakpoints {
+    @media (min-width: #{$bp-val}) {
+      @each $family, $config in $utilities {
+        @if list.length(s.$utilities) == 0 or list.index(s.$utilities, $family) {
+          $responsive: map.get($config, responsive);
+          $emit: $responsive == true;
+          @if s.$responsive-utilities != null {
+            $emit: list.index(s.$responsive-utilities, $family) != null;
+          }
+          @if $emit {
+            @include _emit-family($config, '\\@#{$bp}');
+          }
+        }
+      }
+    }
+  }
+}

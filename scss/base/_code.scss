@@ -1,0 +1,50 @@
+@use '../tools/rhythm' as r;
+
+@layer base {
+  :is(code, kbd, samp, var) {
+    // Relative to parent so it scales in prose.
+    font: 0.875em var(--f-mono);
+  }
+
+  // Inline code
+  :not(pre) > code {
+    background-color: var(--surface-sunken);
+    border-radius: var(--r-sm);
+    padding-inline: var(--s-h);
+    font-size: var(--t-code-s);
+    line-height: 1rem;
+  }
+
+  kbd {
+    background-color: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 0.1em var(--s-h);
+    box-shadow: 0 1px 0 var(--border);
+    font-size: var(--t-body-sm-s);
+  }
+
+  pre {
+    font: var(--t-code-s)/var(--t-code-lh) var(--f-mono);
+    background-color: var(--surface-sunken);
+    border-radius: var(--r-xs);
+    overflow-x: auto;
+    tab-size: 2;
+    margin-bottom: r.lines(1);
+
+    // Padding lives on code, not pre.
+    // This keeps highlighted code (where .hljs is on <code>) and plain
+    // specimen code visually identical.
+    code {
+      display: block;
+      padding: var(--s3);
+      font: inherit;
+      background: none;
+      border-radius: 0;
+    }
+  }
+
+  pre:last-child {
+    margin-bottom: 0;
+  }
+}

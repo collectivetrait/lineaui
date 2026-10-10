@@ -1,0 +1,22 @@
+@use '../settings' as s;
+
+// Use at the top of every block file to emit the prefixed root class.
+@mixin block($name) {
+  .#{s.$prefix}#{$name} {
+    @content;
+  }
+}
+
+// Use inside a block mixin for BEM elements.
+@mixin element($name) {
+  &__#{$name} {
+    @content;
+  }
+}
+
+// Use inside a block mixin for BEM modifiers.
+@mixin modifier($name) {
+  &--#{$name} {
+    @content;
+  }
+}

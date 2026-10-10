@@ -1,0 +1,88 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'price') {
+  @layer blocks {
+    @include b.block('price') {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s1);
+      font-family: var(--f-ui);
+      font-variant-numeric: tabular-nums;
+
+      @include b.element('current') {
+        font-size: var(--t-h4-s);
+        line-height: var(--t-h4-lh);
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      @include b.element('original') {
+        font-size: var(--t-body-sm-s);
+        line-height: var(--t-body-sm-lh);
+        color: var(--c-muted);
+        text-decoration: line-through;
+      }
+
+      @include b.element('discount') {
+        font-size: var(--t-body-sm-s);
+        line-height: var(--t-body-sm-lh);
+        font-weight: 600;
+        color: var(--danger-text);
+      }
+
+      @include b.element('currency') {
+        font-size: var(--t-body-sm-s);
+        line-height: var(--t-body-sm-lh);
+        font-weight: 500;
+      }
+
+      @include b.element('period') {
+        font-size: var(--t-meta-s);
+        line-height: var(--t-meta-lh);
+        color: var(--c-muted);
+        font-weight: 400;
+      }
+
+      @include b.modifier('sale') {}
+
+      @include b.modifier('range') {
+        &::before {
+          content: 'From';
+          font-size: var(--t-meta-s);
+          line-height: var(--t-meta-lh);
+          color: var(--c-muted);
+          font-weight: 400;
+        }
+      }
+
+      @include b.modifier('stacked') {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      @include b.modifier('sm') {
+        .#{s.$prefix}price__current {
+          font-size: var(--t-body-s);
+          line-height: var(--t-body-lh);
+        }
+      }
+
+      @include b.modifier('lg') {
+        .#{s.$prefix}price__current {
+          font-size: var(--t-h3-s);
+          line-height: var(--t-h3-lh);
+        }
+      }
+
+      @include b.modifier('xl') {
+        .#{s.$prefix}price__current {
+          font-size: var(--t-h2-s);
+          line-height: var(--t-h2-lh);
+        }
+      }
+    }
+  }
+}

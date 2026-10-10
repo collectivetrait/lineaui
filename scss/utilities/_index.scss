@@ -1,0 +1,8 @@
+@use '../settings' as s;
+@use '../tools/utility-generator' as gen;
+@use 'map' as u;
+@forward 'map';
+
+@layer utilities {
+  @include gen.generate-utilities(u.$utilities, s.$breakpoints);
+}

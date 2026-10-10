@@ -1,0 +1,157 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'code') {
+  @layer blocks {
+    @include b.block('code') {
+      position: relative;
+      background: var(--surface-sunken);
+      border-radius: var(--radius);
+      overflow: hidden;
+
+      outline: var(--bd1) solid var(--border);
+      outline-offset: calc(-1 * var(--bd1));
+
+      @include b.element('header') {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem calc(0.5rem - var(--bd1));
+        background: color-mix(in srgb, var(--surface-sunken) 80%, var(--surface));
+        border-bottom: var(--bd1) solid var(--border);
+        font: 500 0.75rem/1rem var(--f-mono);
+        color: var(--c-muted);
+        letter-spacing: .02em;
+
+        > i {
+          font-size: 0.875rem;
+          flex: none;
+          color: var(--c-subtle);
+        }
+      }
+
+      @include b.element('lang') {
+        margin-left: auto;
+        font: 400 0.6875rem/1rem var(--f-mono);
+        color: var(--c-subtle);
+        text-transform: uppercase;
+        letter-spacing: .06em;
+      }
+
+      @include b.element('body') {
+        margin: 0;
+        padding: 0;
+        overflow-x: auto;
+        font: 400 0.8125rem/1.5rem var(--f-mono);
+        color: var(--text);
+        tab-size: 2;
+        counter-reset: line;
+
+        code {
+          display: block;
+        }
+      }
+
+      @include b.element('line') {
+        display: block;
+        padding: 0 1rem 0 3.5rem;
+        position: relative;
+        min-height: 1.5rem;
+
+        &::before {
+          content: counter(line);
+          counter-increment: line;
+          position: absolute;
+          left: 0;
+          width: 2.5rem;
+          text-align: right;
+          color: var(--c-disabled);
+          font-variant-numeric: tabular-nums;
+          user-select: none;
+          pointer-events: none;
+        }
+
+        @include b.modifier('highlight') {
+          background: color-mix(in srgb, var(--primary) 10%, transparent);
+          border-left: 3px solid var(--primary-text);
+        }
+      }
+
+      @include b.modifier('wrap') {
+        .#{s.$prefix}code__body {
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+      }
+
+      @include b.modifier('flush') {
+        border-radius: 0;
+        margin-bottom: 0;
+      }
+
+      // Highlight.js token mappings
+      & .hljs-keyword, & .hljs-selector-tag, & .hljs-built_in,
+      & .hljs-type, & .hljs-meta .hljs-keyword {
+        color: var(--syntax-keyword);
+      }
+
+      & .hljs-string, & .hljs-regexp, & .hljs-addition,
+      & .hljs-template-variable {
+        color: var(--syntax-string);
+      }
+
+      & .hljs-comment, & .hljs-doctag, & .hljs-quote {
+        color: var(--syntax-comment);
+        font-style: italic;
+      }
+
+      & .hljs-title, & .hljs-title\.function_, & .hljs-section {
+        color: var(--syntax-function);
+      }
+
+      & .hljs-number, & .hljs-literal, & .hljs-variable\.constant_,
+      & .hljs-symbol, & .hljs-link {
+        color: var(--syntax-constant);
+      }
+
+      & .hljs-operator, & .hljs-deletion {
+        color: var(--syntax-operator);
+      }
+
+      & .hljs-punctuation {
+        color: var(--syntax-punctuation);
+      }
+
+      & .hljs-tag, & .hljs-name {
+        color: var(--syntax-tag);
+      }
+
+      & .hljs-attr, & .hljs-attribute, & .hljs-property {
+        color: var(--syntax-attribute);
+      }
+
+      & .hljs-variable, & .hljs-params {
+        color: var(--text);
+      }
+
+      & .hljs-meta {
+        color: var(--c-muted);
+      }
+    }
+
+    // Syntax token custom properties
+    :root {
+      --syntax-keyword: var(--primary-text);
+      --syntax-string: var(--success-text);
+      --syntax-comment: var(--c-muted);
+      --syntax-function: var(--info-text);
+      --syntax-constant: var(--warning-text);
+      --syntax-operator: var(--c-muted);
+      --syntax-punctuation: var(--c-subtle);
+      --syntax-tag: var(--danger-text);
+      --syntax-attribute: var(--secondary-text);
+    }
+  }
+}

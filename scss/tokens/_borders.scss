@@ -1,0 +1,16 @@
+@layer tokens {
+  :root {
+    --bd1: 1px;
+    --bd2: 2px;
+    --bd3: 3px;
+
+    --r-none:   0;
+    --r-xs:     2px;
+    --r-sm:     4px;
+    --r-md:     8px;
+    --r-lg:     12px;
+    --r-xl:     16px;
+    --r-pill:   9999px;
+    --r-circle: 50%;
+  }
+}

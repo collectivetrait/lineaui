@@ -1,0 +1,65 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'breadcrumb') {
+  @layer blocks {
+    @include b.block('breadcrumb') {
+
+      @include b.element('list') {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font: 400 0.875rem/1.5rem var(--f-ui);
+        color: var(--c-muted);
+      }
+
+      @include b.element('item') {
+        display: inline-flex;
+        align-items: center;
+
+        & + &::before {
+          content: '/';
+          margin-right: 0.5rem;
+          color: var(--c-subtle);
+        }
+      }
+
+      @include b.element('link') {
+        color: var(--c-muted);
+        text-decoration: none;
+
+        &:hover {
+          color: var(--text);
+          text-decoration: underline;
+        }
+      }
+
+      @include b.element('current') {
+        color: var(--text);
+      }
+
+      @include b.modifier('sm') {
+        .#{s.$prefix}breadcrumb__list {
+          font-size: var(--t-meta-s);
+          line-height: var(--t-meta-lh);
+        }
+      }
+
+      @include b.modifier('truncate') {
+        .#{s.$prefix}breadcrumb__list {
+          flex-wrap: nowrap;
+        }
+
+        .#{s.$prefix}breadcrumb__item {
+          &:not(:first-child):not(:last-child):not(:nth-last-child(2)) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

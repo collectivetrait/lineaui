@@ -1,0 +1,191 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'menu') {
+  @layer blocks {
+    @include b.block('menu') {
+      --_item-height: 40px;
+      --_fill: var(--primary);
+      --_text: var(--text);
+      --_border-color: var(--border);
+
+      font: var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      ul, ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      @include b.element('group') {
+        &:not(:first-child) {
+          margin-top: var(--s2);
+          padding-top: calc(var(--s2) - var(--bd1));
+          border-top: var(--bd1) solid var(--_border-color);
+        }
+      }
+
+      @include b.element('heading') {
+        font-size: var(--t-meta-s);
+        line-height: var(--t-meta-lh);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--c-subtle);
+        padding: var(--s1) var(--s2);
+      }
+
+      @include b.element('item') {
+        list-style: none;
+      }
+
+      @include b.element('link') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        min-height: var(--_item-height);
+        padding: var(--s-h) var(--s2);
+        border-radius: var(--r-md);
+        color: var(--c-muted);
+        text-decoration: none;
+        font-weight: 500;
+        transition: background-color var(--dur-fast) var(--e-standard),
+                    color var(--dur-fast) var(--e-standard);
+
+        &:hover {
+          background-color: var(--surface-raised);
+          color: var(--_text);
+        }
+
+        &[aria-current="page"],
+        &[aria-current="true"] {
+          background-color: var(--primary-subtle);
+          color: var(--_fill);
+          font-weight: 600;
+        }
+
+        &[aria-expanded="true"] {
+          color: var(--_text);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--focus);
+          outline-offset: -2px;
+        }
+      }
+
+      @include b.element('icon') {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+        opacity: 0.7;
+      }
+
+      @include b.element('label') {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      @include b.element('badge') {
+        font: var(--t-meta-s)/1 var(--f-mono);
+        padding: 2px 6px;
+        border-radius: var(--r-pill);
+        background: var(--primary-subtle);
+        color: var(--primary-text);
+        font-weight: 600;
+      }
+
+      @include b.element('shortcut') {
+        font: var(--t-meta-s) var(--f-mono);
+        color: var(--c-subtle);
+        margin-left: auto;
+      }
+
+      @include b.element('submenu') {
+        list-style: none;
+        padding: 0 0 0 var(--s4);
+        margin: 0;
+
+        .#{s.$prefix}menu__link[aria-expanded="false"] + & {
+          display: none;
+        }
+
+        .#{s.$prefix}menu__link[aria-expanded="true"] + & {
+          display: block;
+        }
+      }
+
+      @include b.element('divider') {
+        height: 0;
+        margin: var(--s1) 0;
+        border-top: var(--bd1) solid var(--_border-color);
+      }
+
+      @include b.modifier('compact') {
+        --_item-height: 32px;
+        font-size: var(--t-meta-s);
+        line-height: var(--t-meta-lh);
+      }
+
+      @include b.modifier('rail') {
+        .#{s.$prefix}menu__link {
+          justify-content: center;
+          padding-inline: var(--s1);
+        }
+
+        .#{s.$prefix}menu__label,
+        .#{s.$prefix}menu__badge,
+        .#{s.$prefix}menu__shortcut {
+          display: none;
+        }
+
+        .#{s.$prefix}menu__heading {
+          font-size: 0;
+          padding: var(--s-h);
+          min-height: 0;
+        }
+      }
+
+      @include b.modifier('toc') {
+        font-size: var(--t-meta-s);
+        line-height: var(--t-meta-lh);
+
+        .#{s.$prefix}menu__link {
+          min-height: 32px;
+          border-radius: 0;
+          padding-left: var(--s3);
+          border-left: 2px solid transparent;
+
+          &[aria-current="page"],
+          &[aria-current="true"] {
+            background: none;
+            border-left-color: var(--_fill);
+            color: var(--_fill);
+          }
+        }
+      }
+
+      @include b.modifier('pills') {
+        .#{s.$prefix}menu__link {
+          border-radius: var(--r-pill);
+
+          &[aria-current="page"],
+          &[aria-current="true"] {
+            background-color: var(--_fill);
+            color: var(--on-primary);
+          }
+        }
+      }
+
+      @include role.role-modifiers;
+    }
+  }
+}

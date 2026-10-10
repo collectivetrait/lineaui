@@ -1,0 +1,9 @@
+@layer tokens {
+  :root {
+    --s-h: 0.25rem;  // 4px  — inline internals only
+    --s1:  0.5rem;   // 8px
+    --s2:  1rem;     // 16px
+    --s3:  1.5rem;   // 24px (1 line)
+    --s4:  2rem;     // 32px
+  }
+}

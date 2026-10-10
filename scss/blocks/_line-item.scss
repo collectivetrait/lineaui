@@ -1,0 +1,105 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'line-item') {
+  @layer blocks {
+    @include b.block('line-item') {
+      display: grid;
+      grid-template-columns: 4rem 1fr auto;
+      gap: 1rem;
+      padding: 1rem 0 calc(1rem - var(--bd1));
+      border-bottom: var(--bd1) solid var(--border);
+      align-items: start;
+
+      &:last-child {
+        border-bottom: 0;
+        padding-bottom: 1rem;
+      }
+
+      @include b.element('media') {
+        width: 4rem;
+        height: 4rem;
+        border-radius: var(--r-xs);
+        background: var(--surface-sunken);
+        display: grid;
+        place-items: center;
+        color: var(--c-subtle);
+        border: var(--bd1) solid var(--border);
+        overflow: hidden;
+
+        > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      @include b.element('body') {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      @include b.element('title') {
+        font: 500 1rem/1.5rem var(--f-ui);
+      }
+
+      @include b.element('meta') {
+        font: 400 0.875rem/1.25rem var(--f-ui);
+        color: var(--c-muted);
+      }
+
+      @include b.element('note') {
+        font: 400 0.875rem/1.25rem var(--f-ui);
+        color: var(--c-subtle);
+      }
+
+      @include b.element('side') {
+        text-align: right;
+      }
+
+      @include b.element('price') {
+        font: 600 1rem/1.5rem var(--f-ui);
+        font-variant-numeric: tabular-nums;
+      }
+
+      @include b.element('controls') {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        grid-column: 2 / -1;
+      }
+
+      @include b.element('remove') {
+        border: none;
+        background: none;
+        padding: 0;
+        color: var(--c-muted);
+        cursor: pointer;
+        font: 400 1rem/1 var(--f-ui);
+
+        &:hover {
+          color: var(--danger-text);
+        }
+      }
+
+      @include b.modifier('compact') {
+        gap: 0.75rem;
+        padding-block: 0.75rem;
+
+        .#{s.$prefix}line-item__media {
+          width: 3rem;
+          height: 3rem;
+        }
+      }
+
+      @include b.modifier('readonly') {
+        .#{s.$prefix}line-item__remove,
+        .#{s.$prefix}line-item__controls {
+          display: none;
+        }
+      }
+    }
+  }
+}

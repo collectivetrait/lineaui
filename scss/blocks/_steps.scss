@@ -1,0 +1,147 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'steps') {
+  @layer blocks {
+    @include b.block('steps') {
+      --_fill: var(--primary);
+      --_on: var(--on-primary);
+
+      display: flex;
+      gap: 0.5rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: wrap;
+
+      @include b.element('item') {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        height: 2rem;
+        font: 500 0.875rem/1.25rem var(--f-ui);
+        color: var(--c-subtle);
+
+        &.is-complete {
+          color: var(--c-muted);
+        }
+
+        &.is-complete .#{s.$prefix}steps__marker {
+          background: var(--success-subtle);
+          color: var(--success-text);
+          border: 0;
+        }
+
+        &[aria-current="step"] {
+          color: var(--text);
+        }
+
+        &[aria-current="step"] .#{s.$prefix}steps__marker {
+          background: var(--_fill);
+          color: var(--_on);
+          border: 0;
+        }
+
+        &.is-error .#{s.$prefix}steps__marker {
+          background: var(--danger);
+          color: var(--on-danger);
+          border: 0;
+        }
+      }
+
+      @include b.element('marker') {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font: 500 0.75rem/1rem var(--f-mono);
+        border: var(--bd1) solid var(--border-control);
+        flex-shrink: 0;
+      }
+
+      @include b.element('connector') {
+        width: 1.5rem;
+        height: 1px;
+        background: var(--border-control);
+        flex-shrink: 0;
+      }
+
+      @include b.element('label') {
+        font: 500 0.875rem/1.25rem var(--f-ui);
+      }
+
+      @include b.element('description') {
+        font-size: var(--t-meta-s);
+        line-height: var(--t-meta-lh);
+        color: var(--c-muted);
+      }
+
+      // Vertical layout
+      @include b.modifier('vertical') {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+
+        .#{s.$prefix}steps__item {
+          flex-direction: row;
+          align-items: flex-start;
+          height: auto;
+          padding-bottom: var(--s4);
+          position: relative;
+        }
+
+        .#{s.$prefix}steps__connector {
+          position: absolute;
+          left: 0.6875rem;
+          top: 1.5rem;
+          bottom: 0;
+          width: 0.125rem;
+          height: auto;
+        }
+
+        .#{s.$prefix}steps__label {
+          padding-top: calc((1.5rem - 1.25rem) / 2);
+        }
+      }
+
+      @include b.modifier('dots') {
+        gap: 0.25rem;
+
+        .#{s.$prefix}steps__marker {
+          width: 0.5rem;
+          height: 0.5rem;
+          font-size: 0;
+          background: var(--border-control);
+          border: 0;
+        }
+
+        .#{s.$prefix}steps__item.is-complete .#{s.$prefix}steps__marker {
+          background: var(--success);
+        }
+
+        .#{s.$prefix}steps__item[aria-current="step"] .#{s.$prefix}steps__marker {
+          width: 0.75rem;
+          height: 0.75rem;
+          background: var(--_fill);
+        }
+
+        .#{s.$prefix}steps__label {
+          display: none;
+        }
+      }
+
+      @include b.modifier('compact') {
+        .#{s.$prefix}steps__marker {
+          width: 1.25rem;
+          height: 1.25rem;
+          font-size: 0.625rem;
+        }
+      }
+
+      @include role.role-modifiers;
+    }
+  }
+}

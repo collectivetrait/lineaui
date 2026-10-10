@@ -1,0 +1,28 @@
+@use '../tools/rhythm' as r;
+
+@layer base {
+  img,
+  video {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
+
+  figure {
+    margin: 0 0 r.lines(1);
+
+    > img,
+    > video,
+    > pre {
+      margin: 0 0 0.5rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  figcaption {
+    font: var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+    color: var(--c-muted);
+  }
+}

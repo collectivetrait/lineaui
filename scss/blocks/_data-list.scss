@@ -1,0 +1,92 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'data-list') {
+  @layer blocks {
+    @include b.block('data-list') {
+      display: flex;
+      flex-direction: column;
+      font: var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+
+      @include b.element('item') {
+        display: flex;
+        flex-direction: column;
+        gap: var(--s-h);
+        padding-block: var(--s2);
+      }
+
+      @include b.element('term') {
+        font-weight: 500;
+        color: var(--c-muted);
+        font-size: var(--t-meta-s);
+        line-height: var(--t-meta-lh);
+      }
+
+      @include b.element('value') {
+        color: var(--text);
+      }
+
+      @include b.element('action') {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      @include b.modifier('horizontal') {
+        .#{s.$prefix}data-list__item {
+          flex-direction: row;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: var(--s3);
+        }
+
+        .#{s.$prefix}data-list__term {
+          flex-shrink: 0;
+          min-width: 120px;
+        }
+
+        .#{s.$prefix}data-list__value {
+          text-align: end;
+        }
+      }
+
+      @include b.modifier('divided') {
+        .#{s.$prefix}data-list__item {
+          border-bottom: var(--bd1) solid var(--border);
+          padding-bottom: calc(var(--s2) - var(--bd1));
+
+          &:last-child {
+            border-bottom: 0;
+            padding-bottom: var(--s2);
+          }
+        }
+      }
+
+      @include b.modifier('striped') {
+        .#{s.$prefix}data-list__item:nth-child(even) {
+          background-color: var(--surface-sunken);
+          padding-inline: var(--s2);
+          border-radius: var(--r-sm);
+        }
+      }
+
+      @include b.modifier('compact') {
+        .#{s.$prefix}data-list__item {
+          padding-block: var(--s1);
+        }
+      }
+
+      @include b.modifier('cols-2') {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 var(--s4);
+      }
+    }
+  }
+}

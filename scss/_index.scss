@@ -1,0 +1,12 @@
+// @use rules must be first in Sass, then @forward, then CSS rules.
+@use 'sass:map';
+@use 'settings' as s;
+
+// _layers.scss emits the @layer order declaration first in the CSS output.
+@forward 'layers';
+@forward 'tokens';
+@forward 'base';
+@forward 'layout';
+@forward 'blocks';
+@forward 'helpers';
+@forward 'utilities';

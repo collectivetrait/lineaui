@@ -1,0 +1,88 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'accordion') {
+  @layer blocks {
+    @include b.block('accordion') {
+
+      @include b.element('item') {
+        border-bottom: var(--bd1) solid var(--border);
+
+        &:first-child {
+          border-top: var(--bd1) solid var(--border);
+        }
+      }
+
+      @include b.element('summary') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        padding-top: r.step(1);
+        padding-bottom: calc(#{r.step(1)} - var(--bd1));
+        min-height: calc(#{r.lines(2)} - var(--bd1));
+        cursor: pointer;
+        font-weight: 600;
+
+        .#{s.$prefix}accordion__item:first-child & {
+          padding-top: calc(#{r.step(1)} - var(--bd1));
+          min-height: calc(#{r.lines(2)} - var(--bd1) - var(--bd1));
+        }
+      }
+
+      @include b.element('title') {
+        flex: 1;
+      }
+
+      @include b.element('icon') {
+        font-size: 1em;
+        flex-shrink: 0;
+        transition: transform var(--dur-base) var(--e-standard);
+
+        [open] > .#{s.$prefix}accordion__summary & {
+          transform: rotate(180deg);
+        }
+      }
+
+      @include b.element('content') {
+        padding-bottom: var(--s3);
+      }
+
+      @include b.modifier('flush') {
+        .#{s.$prefix}accordion__item {
+          border-bottom: 0;
+
+          &:first-child {
+            border-top: 0;
+          }
+        }
+
+        .#{s.$prefix}accordion__summary {
+          padding: r.step(1) 0;
+          min-height: r.lines(2);
+        }
+
+        .#{s.$prefix}accordion__item:first-child .#{s.$prefix}accordion__summary {
+          padding-top: r.step(1);
+          min-height: r.lines(2);
+        }
+      }
+
+      @include b.modifier('sm') {
+        .#{s.$prefix}accordion__summary {
+          font-size: var(--t-body-sm-s);
+          line-height: var(--t-body-sm-lh);
+          padding: var(--s-h) 0;
+          min-height: r.lines(1);
+        }
+
+        .#{s.$prefix}accordion__content {
+          font-size: var(--t-body-sm-s);
+          line-height: var(--t-body-sm-lh);
+          padding-bottom: var(--s2);
+        }
+      }
+    }
+  }
+}

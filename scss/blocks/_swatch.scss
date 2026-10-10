@@ -1,0 +1,117 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'swatch') {
+  @layer blocks {
+    @include b.block('swatch') {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      height: 1.5rem;
+      border: 0;
+      padding: 0;
+      margin: 0;
+
+      @include b.element('option') {
+        position: relative;
+        display: inline-grid;
+      }
+
+      @include b.element('input') {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+        margin: 0;
+        cursor: pointer;
+
+        &:checked + .#{s.$prefix}swatch__color {
+          outline: 2px solid var(--text);
+          outline-offset: 2px;
+        }
+
+        &:focus-visible + .#{s.$prefix}swatch__color {
+          outline: 2px solid var(--focus);
+          outline-offset: 4px;
+        }
+
+        &:disabled + .#{s.$prefix}swatch__color {
+          opacity: 0.35;
+          background: linear-gradient(135deg, transparent 45%, var(--c-muted) 45% 55%, transparent 55%), var(--c);
+        }
+      }
+
+      @include b.element('color') {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        background: var(--c);
+        border: var(--bd1) solid var(--c-subtle);
+      }
+
+      // Text swatch variant
+      @include b.modifier('text') {
+        .#{s.$prefix}swatch__color {
+          width: auto;
+          height: auto;
+          border-radius: var(--r-xs);
+          padding: calc(var(--s1) - var(--bd1)) var(--s2);
+          font: 500 0.875rem/1.25rem var(--f-ui);
+          border: var(--bd1) solid var(--border);
+          background: none;
+        }
+
+        .#{s.$prefix}swatch__input:checked + .#{s.$prefix}swatch__color {
+          border: var(--bd2) solid var(--c, var(--primary));
+          padding: calc(var(--s1) - var(--bd2)) calc(var(--s2) - var(--bd2) + var(--bd1));
+          background-color: color-mix(in srgb, var(--c, var(--primary)) 10%, transparent);
+          color: var(--c, var(--primary-text));
+          outline: none;
+        }
+
+        .#{s.$prefix}swatch__input:disabled + .#{s.$prefix}swatch__color {
+          opacity: 0.4;
+          cursor: not-allowed;
+          background: none;
+        }
+      }
+
+      // Image swatch variant
+      @include b.modifier('image') {
+        .#{s.$prefix}swatch__color {
+          width: 3rem;
+          height: 3rem;
+          overflow: hidden;
+          border: var(--bd1) solid var(--border);
+          background: none;
+
+          > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .#{s.$prefix}swatch__input:checked + .#{s.$prefix}swatch__color {
+          outline: 2px solid var(--text);
+          outline-offset: 2px;
+        }
+      }
+
+      // Size modifiers
+      @include b.modifier('sm') {
+        .#{s.$prefix}swatch__color {
+          width: 1rem;
+          height: 1rem;
+        }
+      }
+
+      @include b.modifier('lg') {
+        .#{s.$prefix}swatch__color {
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+}

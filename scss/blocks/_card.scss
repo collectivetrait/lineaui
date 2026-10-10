@@ -1,0 +1,146 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'card') {
+  @layer blocks {
+    @include b.block('card') {
+      --_bg: var(--surface);
+      --_border-color: var(--border);
+      --_pad: var(--s3);
+
+      display: flex;
+      flex-direction: column;
+      padding: var(--_pad);
+      background-color: var(--_bg);
+      overflow: hidden;
+      position: relative;
+      outline: var(--bd1) solid var(--_border-color);
+      outline-offset: calc(-1 * var(--bd1));
+
+      @include b.element('media') {
+        margin: calc(-1 * var(--_pad));
+        margin-bottom: 0;
+      }
+
+      @include b.element('media-object') {
+        align-content: center;
+      }
+
+      @include b.element('header') {
+        margin-bottom: 1.5rem;
+      }
+
+      @include b.element('eyebrow') {
+        font: var(--t-meta-s)/var(--t-meta-lh) var(--f-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+        color: var(--c-muted);
+        margin-bottom: var(--s-h);
+      }
+
+      @include b.element('title') {
+        font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+        margin: 0;
+      }
+
+      @include b.element('subtitle') {
+        font-size: var(--t-body-sm-s);
+        line-height: var(--t-body-sm-lh);
+        color: var(--c-muted);
+      }
+
+      @include b.element('body') {
+        flex: 1;
+        margin-bottom: 1.5rem;
+      }
+
+      @include b.element('footer') {
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+      }
+
+      @include b.element('actions') {
+        display: flex;
+        gap: var(--s1);
+      }
+
+      @include b.element('link') {
+        text-decoration: none;
+        color: inherit;
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
+      }
+
+      // Variant modifiers
+      @include b.modifier('flat') {
+        outline: 0;
+      }
+
+      @include b.modifier('shadow-1') { box-shadow: var(--sh1); }
+      @include b.modifier('shadow-2') { box-shadow: var(--sh2); }
+      @include b.modifier('shadow-3') { box-shadow: var(--sh3); }
+      @include b.modifier('shadow-4') { box-shadow: var(--sh4); }
+
+      @include b.modifier('interactive') {
+        cursor: pointer;
+        overflow: visible;
+        box-shadow: var(--sh1);
+        transition: box-shadow var(--dur-fast) var(--e-standard),
+                    transform var(--dur-fast) var(--e-standard);
+
+        &:hover {
+          box-shadow: var(--sh3);
+          transform: translateY(-2px);
+        }
+      }
+
+      // Layout modifiers
+      @include b.modifier('horizontal') {
+        flex-direction: row;
+
+        .#{s.$prefix}card__media {
+          width: 40%;
+          max-width: 200px;
+          flex-shrink: 0;
+          margin: calc(-1 * var(--_pad));
+          margin-right: 1.5rem;
+        }
+
+        .#{s.$prefix}card__media-object {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      @include b.modifier('pad-sm') { --_pad: var(--s2); }
+      @include b.modifier('pad-md') { --_pad: var(--s3); }
+      @include b.modifier('pad-lg') { --_pad: var(--s4); }
+
+      // Role modifiers
+      @include role.role-modifiers;
+
+      @include b.modifier('subtle') {
+        --_bg: var(--_subtle, var(--surface-sunken));
+      }
+
+      // Selected state
+      &[aria-selected="true"],
+      &:has(:checked) {
+        --_border-color: var(--primary);
+        outline: var(--bd2) solid var(--_border-color);
+        outline-offset: calc(-1 * var(--bd2));
+      }
+    }
+  }
+}

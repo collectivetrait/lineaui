@@ -1,0 +1,110 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'pagination') {
+  @layer blocks {
+    @include b.block('pagination') {
+
+      @include b.element('list') {
+        display: flex;
+        gap: 0.25rem;
+        list-style: none;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+      }
+
+      @include b.element('link') {
+        display: inline-grid;
+        place-items: center;
+        min-width: 2.5rem;
+        height: 2.5rem;
+        padding-inline: 0.5rem;
+        border-radius: var(--r-md);
+        font: 500 0.875rem/1.25rem var(--f-mono);
+        color: var(--c-muted);
+        text-decoration: none;
+
+        &:hover {
+          background: var(--surface-raised);
+          color: var(--text);
+        }
+
+        &[aria-current="page"] {
+          background: var(--primary-subtle);
+          color: var(--primary-text);
+          border: var(--bd1) solid var(--primary-text);
+        }
+
+        &[aria-disabled="true"] {
+          color: var(--c-subtle);
+          pointer-events: none;
+        }
+      }
+
+      @include b.element('ellipsis') {
+        color: var(--c-subtle);
+        padding-inline: 0.5rem;
+      }
+
+      @include b.element('summary') {
+        font: 400 0.875rem/1.25rem var(--f-ui);
+        color: var(--c-muted);
+        padding-inline: 0.5rem;
+      }
+
+      @include b.modifier('sm') {
+        .#{s.$prefix}pagination__link {
+          min-width: 2rem;
+          height: 2rem;
+        }
+      }
+
+      @include b.modifier('simple') {
+        .#{s.$prefix}pagination__list {
+          justify-content: space-between;
+        }
+
+        .#{s.$prefix}pagination__link {
+          border-radius: 0;
+
+          &:hover {
+            background: none;
+          }
+        }
+      }
+
+      @include b.modifier('compact') {
+        .#{s.$prefix}pagination__link {
+          border-radius: 0;
+
+          &:hover {
+            background: none;
+          }
+        }
+      }
+
+      @include b.modifier('text') {
+        .#{s.$prefix}pagination__link {
+          border-radius: 0;
+          color: var(--link);
+
+          &:hover {
+            background: none;
+            color: var(--link-hover);
+            text-decoration: underline;
+          }
+
+          &[aria-current="page"] {
+            background: none;
+            border: 0;
+            color: var(--text);
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}

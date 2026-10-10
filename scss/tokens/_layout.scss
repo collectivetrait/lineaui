@@ -1,0 +1,17 @@
+@use 'sass:map';
+@use '../settings' as s;
+
+@layer tokens {
+  :root {
+    --container: #{s.$container};
+    --container-wide: #{s.$container-wide};
+    --measure: #{s.$measure};
+    --gutter: #{s.$gutter};
+  }
+
+  @media (min-width: #{map.get(s.$breakpoints, md)}) {
+    :root {
+      --gutter: #{s.$gutter-lg};
+    }
+  }
+}

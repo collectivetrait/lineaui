@@ -1,0 +1,73 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'quantity') {
+  @layer blocks {
+    @include b.block('quantity') {
+      display: inline-flex;
+      align-items: center;
+      height: 2rem;
+      border-radius: var(--r-xs);
+      border: var(--bd1) solid var(--border-control);
+      background: var(--surface);
+      overflow: hidden;
+
+      @include b.element('button') {
+        width: 2rem;
+        height: 100%;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
+        font: 500 1rem/1.5rem var(--f-ui);
+
+        &:hover {
+          background: var(--surface-raised);
+        }
+
+        &:disabled {
+          color: var(--c-disabled);
+          cursor: not-allowed;
+          background: transparent;
+        }
+      }
+
+      @include b.element('decrement') { @extend .#{s.$prefix}quantity__button; }
+      @include b.element('increment') { @extend .#{s.$prefix}quantity__button; }
+
+      @include b.element('input') {
+        width: 2.5rem;
+        height: 2rem;
+        border: 0;
+        background: transparent;
+        text-align: center;
+        color: var(--text);
+        font: 500 0.875rem/1.25rem var(--f-mono);
+
+        -moz-appearance: textfield;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+
+      @include b.modifier('compact') {
+        height: 1.5rem;
+
+        .#{s.$prefix}quantity__button {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+
+        .#{s.$prefix}quantity__input {
+          width: 2rem;
+          height: 1.5rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@layer tokens {
+  :root {
+    --dur-fast: 120ms;
+    --dur-base: 200ms;
+    --dur-slow: 320ms;
+
+    --e-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --e-enter:    cubic-bezier(0, 0, 0.2, 1);
+    --e-exit:     cubic-bezier(0.4, 0, 1, 1);
+
+    @media (prefers-reduced-motion: reduce) {
+      --dur-fast: 1ms;
+      --dur-base: 1ms;
+      --dur-slow: 1ms;
+    }
+  }
+}

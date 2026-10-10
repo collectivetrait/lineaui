@@ -1,0 +1,92 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'order-summary') {
+  @layer blocks {
+    @include b.block('order-summary') {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      @include b.element('header') {
+        font: 600 1.125rem/1.5rem var(--f-ui);
+        color: var(--text);
+      }
+
+      @include b.element('items') {
+        display: flex;
+        flex-direction: column;
+      }
+
+      @include b.element('row') {
+        display: flex;
+        justify-content: space-between;
+        font: 400 1rem/1.5rem var(--f-ui);
+        color: var(--c-muted);
+        font-variant-numeric: tabular-nums;
+
+        > :last-child {
+          color: var(--text);
+        }
+      }
+
+      @include b.element('label') {
+        color: var(--c-muted);
+      }
+
+      @include b.element('value') {
+        color: var(--text);
+        font-variant-numeric: tabular-nums;
+      }
+
+      @include b.element('discount') {
+        > :last-child {
+          color: var(--success-text);
+        }
+      }
+
+      @include b.element('coupon') {
+        display: flex;
+        gap: var(--s2);
+        align-items: center;
+      }
+
+      @include b.element('total') {
+        display: flex;
+        justify-content: space-between;
+        padding-top: calc(1.5rem - var(--bd1));
+        border-top: var(--bd1) solid var(--border);
+        font: 600 1.25rem/1.5rem var(--f-ui);
+        font-variant-numeric: tabular-nums;
+        margin-bottom: 1.5rem;
+      }
+
+      @include b.element('note') {
+        font: 400 0.875rem/1.5rem var(--f-ui);
+        color: var(--c-subtle);
+      }
+
+      @include b.element('actions') {
+        display: flex;
+        flex-direction: column;
+        gap: var(--s2);
+      }
+
+      @include b.modifier('sticky') {
+        position: sticky;
+        top: var(--s3);
+      }
+
+      @include b.modifier('sunken') {
+        background-color: var(--surface-sunken);
+        padding: var(--s4);
+        border-radius: var(--r-md);
+      }
+
+      @include b.modifier('compact') {
+        gap: 0.25rem;
+      }
+    }
+  }
+}

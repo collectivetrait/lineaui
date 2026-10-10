@@ -1,0 +1,2 @@
+// Cascade layer order — must appear before any @layer blocks in the CSS output.
+@layer external, reset, tokens, base, layout, blocks, helpers, utilities;

@@ -1,0 +1,87 @@
+@use '../tools/bem' as b;
+@use '../settings' as s;
+@use 'sass:map';
+
+@layer layout {
+  @include b.block('shell') {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "sidebar main";
+    grid-template-rows: 48px 1fr; // 2 rhythm lines = 48px
+    grid-template-columns: 240px 1fr;
+    min-block-size: 100svh;
+    background-color: var(--canvas);
+
+    @include b.element('header') {
+      grid-area: header;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-inline: var(--s3);
+      background-color: var(--surface);
+      border-block-end: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    @include b.element('sidebar') {
+      grid-area: sidebar;
+      overflow-y: auto;
+      border-inline-end: 1px solid var(--border);
+      background-color: var(--surface);
+      padding-block: var(--s3);
+      position: sticky;
+      top: 48px;
+      block-size: calc(100svh - 48px);
+    }
+
+    @include b.element('main') {
+      grid-area: main;
+      padding: var(--s4);
+      min-inline-size: 0; // prevent grid blowout
+    }
+
+    // Below lg: sidebar hidden, single column
+    @media (max-width: map.get(s.$breakpoints, lg)) {
+      grid-template-areas:
+        "header"
+        "main";
+      grid-template-columns: 1fr;
+
+      @include b.element('sidebar') {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 240px;
+        z-index: 200;
+        transform: translateX(-100%);
+        visibility: hidden;
+        transition: transform var(--dur-base) var(--e-exit),
+                    visibility var(--dur-base) var(--e-exit);
+      }
+
+      &[data-sidebar="open"] &__sidebar {
+        transform: translateX(0);
+        visibility: visible;
+        box-shadow: var(--sh4);
+        transition: transform var(--dur-base) var(--e-enter),
+                    visibility var(--dur-base) var(--e-enter),
+                    box-shadow var(--dur-base) var(--e-enter);
+      }
+
+      &[data-sidebar="open"]::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--overlay);
+        z-index: 199;
+      }
+    }
+  }
+}

@@ -1,0 +1,227 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+@use '../tools/role-engine' as role;
+
+$navbar-collapse-bp: md !default;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'navbar') {
+  @layer blocks {
+    @include b.block('navbar') {
+      --_height: var(--s4);
+      --_bg: var(--surface);
+      --_text: var(--text);
+      --_border-color: var(--border);
+      --_fill: var(--primary);
+
+      position: relative;
+      background-color: var(--_bg);
+      color: var(--_text);
+      z-index: 100;
+
+      @include b.element('inner') {
+        display: flex;
+        align-items: center;
+        gap: var(--s3);
+        max-width: var(--container-wide);
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+        min-height: var(--_height);
+      }
+
+      @include b.element('brand') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        font: 700 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+        text-decoration: none;
+        color: inherit;
+        flex-shrink: 0;
+      }
+
+      @include b.element('nav') {
+        display: flex;
+        align-items: center;
+        gap: var(--s-h);
+        flex: 1;
+      }
+
+      @include b.element('item') {
+        list-style: none;
+      }
+
+      @include b.element('link') {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--s1);
+        padding: var(--s1) var(--s2);
+        min-height: r.lines(2);
+        font: 500 var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+        color: var(--c-muted);
+        text-decoration: none;
+        transition: color var(--dur-fast) var(--e-standard);
+
+        &:hover {
+          color: var(--_text);
+        }
+
+        &[aria-current="page"] {
+          color: var(--primary-text);
+        }
+      }
+
+      @include b.element('actions') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        margin-left: auto;
+      }
+
+      @include b.element('toggle') {
+        display: none;
+        appearance: none;
+        background: none;
+        border: none;
+        padding: var(--s1);
+        cursor: pointer;
+        color: inherit;
+        border-radius: var(--r-md);
+
+        &:hover {
+          background-color: var(--surface-raised);
+        }
+      }
+
+      @include b.element('panel') {
+        display: none;
+      }
+
+      @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
+        &__toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: auto;
+        }
+
+        &__nav {
+          display: none;
+        }
+
+        &__actions {
+          display: none;
+        }
+
+        &__panel {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          background: var(--_bg);
+          padding: var(--s2) var(--gutter);
+          box-shadow: var(--sh3);
+          z-index: 99;
+          display: none;
+          opacity: 0;
+          transform: translateY(-8px);
+          transition: opacity var(--dur-base) var(--e-exit),
+                      transform var(--dur-base) var(--e-exit),
+                      display var(--dur-base) var(--e-exit) allow-discrete;
+
+          &[aria-hidden="false"] {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity var(--dur-base) var(--e-enter),
+                        transform var(--dur-base) var(--e-enter),
+                        display var(--dur-base) var(--e-enter) allow-discrete;
+
+            @starting-style {
+              opacity: 0;
+              transform: translateY(-8px);
+            }
+          }
+        }
+
+        &__panel .#{s.$prefix}navbar__link {
+          display: flex;
+          width: 100%;
+          padding: var(--s2) var(--s3);
+          border-radius: var(--r-md);
+
+          &:hover {
+            background-color: var(--surface-raised);
+          }
+        }
+
+        // Backdrop overlay
+        &:has(.#{s.$prefix}navbar__panel[aria-hidden="false"])::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: var(--overlay);
+          z-index: 98;
+        }
+      }
+
+      @include b.modifier('actions-visible') {
+        @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
+          .#{s.$prefix}navbar__actions {
+            display: flex;
+          }
+        }
+      }
+
+      @include b.modifier('sticky') {
+        position: sticky;
+        top: 0;
+      }
+
+      @include b.modifier('transparent') {
+        --_bg: transparent;
+        border-bottom: 0;
+
+        &.is-stuck {
+          --_bg: var(--surface);
+          border-bottom: var(--bd1) solid var(--_border-color);
+          transition: background-color var(--dur-base) var(--e-standard);
+        }
+      }
+
+      @include b.modifier('bordered') {
+        border-bottom: var(--bd1) solid var(--_border-color);
+
+        .#{s.$prefix}navbar__inner {
+          min-height: calc(var(--_height) - var(--bd1));
+        }
+      }
+
+      @include b.modifier('center') {
+        .#{s.$prefix}navbar__nav {
+          justify-content: center;
+        }
+      }
+
+      @include b.modifier('compact') {
+        --_height: var(--s4);
+
+        .#{s.$prefix}navbar__link {
+          min-height: r.lines(1);
+        }
+      }
+
+      @include role.role-modifiers;
+    }
+
+    @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
+      html.#{s.$prefix}navbar-open {
+        overflow: hidden;
+      }
+    }
+  }
+}

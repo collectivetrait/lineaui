@@ -1,0 +1,33 @@
+{
+  "name": "ln",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/bundle.js",
+  "style": "dist/styles.css",
+  "exports": {
+    ".": "./dist/bundle.js",
+    "./dist/styles.css": "./dist/styles.css",
+    "./dist/core.css": "./dist/core.css",
+    "./dist/blocks.css": "./dist/blocks.css",
+    "./dist/utilities.css": "./dist/utilities.css",
+    "./scss": "./scss/_index.scss"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --watch",
+    "lint": "eslint && stylelint \"scss/**/*.scss\"",
+    "lint:js": "eslint",
+    "lint:scss": "stylelint \"scss/**/*.scss\""
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "cssnano": "^7.0.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^10.12.0",
+    "postcss": "^8.4.0",
+    "sass": "^1.69.5",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard-scss": "^17.0.0"
+  }
+}

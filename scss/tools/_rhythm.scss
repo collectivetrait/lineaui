@@ -1,0 +1,26 @@
+@use '../settings' as s;
+
+@function step($n) {
+  @return $n * s.$g;
+}
+
+@function lines($n) {
+  @return $n * s.$r;
+}
+
+// Returns the smallest whole multiple of $r that is >= $size * 1.1
+@function line-height($size) {
+  $min: $size * 1.1;
+  $lh: s.$r;
+  @while $lh < $min {
+    $lh: $lh + s.$r;
+  }
+  @return $lh;
+}
+
+
+@mixin assert($value) {
+  @if $value % s.$g != 0 {
+    @warn "#{$value} is not a multiple of the base grid (#{s.$g}).";
+  }
+}

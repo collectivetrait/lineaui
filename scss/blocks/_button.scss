@@ -1,0 +1,212 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'button') {
+  @layer blocks {
+    @include b.block('button') {
+      --_fill: var(--primary);
+      --_on: var(--on-primary);
+      --_text: var(--primary-text);
+      --_subtle: var(--primary-subtle);
+      --_h: 2.5rem;
+      --_px: 1rem;
+      --_fs: 0.9375rem;
+      --_lh: 1.5rem;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      height: var(--_h);
+      padding-inline: var(--_px);
+      border: 0;
+      font: 500 var(--_fs) / var(--_lh) var(--f-ui);
+      white-space: nowrap;
+      cursor: pointer;
+      background: var(--_fill);
+      color: var(--_on);
+      text-decoration: none;
+      transition: background-color .12s, box-shadow .12s, color .12s;
+      text-box: trim-both cap alphabetic;
+
+      &:hover {
+        background: color-mix(in srgb, var(--_fill) 88%, var(--text));
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 2px;
+      }
+
+      &:disabled,
+      &[aria-disabled="true"] {
+        background: var(--surface-raised);
+        color: var(--c-subtle);
+        border: var(--bd1) solid var(--border);
+        cursor: not-allowed;
+      }
+
+      &[aria-busy="true"] {
+        cursor: progress;
+
+        .#{s.$prefix}button__spinner {
+          display: inline-flex;
+        }
+      }
+
+      // Elements
+      @include b.element('label') {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      @include b.element('icon') {
+        font-size: 1rem;
+        flex: none;
+      }
+
+      @include b.element('spinner') {
+        display: none;
+        align-items: center;
+      }
+
+      @include b.element('badge') {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      // Variant modifiers
+      @include b.modifier('neutral') {
+        --_fill: var(--surface-raised);
+        --_on: var(--text);
+        --_text: var(--text);
+        --_subtle: var(--surface-sunken);
+        border: var(--bd1) solid var(--border-control);
+      }
+
+      @include b.modifier('subtle') {
+        background: var(--_subtle);
+        color: var(--_text);
+        border: 0;
+
+        &:hover {
+          background: color-mix(in srgb, var(--_subtle) 80%, var(--_text));
+        }
+      }
+
+      @include b.modifier('outline') {
+        background: transparent;
+        color: var(--_text);
+        border: var(--bd1) solid var(--_text);
+
+        &:hover {
+          background: transparent;
+        }
+      }
+
+      @include b.modifier('ghost') {
+        background: transparent;
+        color: var(--_text);
+        border: 0;
+
+        &:hover {
+          background: var(--_subtle);
+        }
+      }
+
+      @include b.modifier('link') {
+        background: transparent;
+        color: var(--_text);
+        padding-inline: 0;
+        text-decoration: underline;
+        text-underline-offset: .2em;
+        border: 0;
+
+        &:hover {
+          background: transparent;
+          text-decoration-thickness: 2px;
+        }
+      }
+
+      // Size modifiers
+      @include b.modifier('sm') {
+        --_h: 2rem;
+        --_px: 0.75rem;
+        --_fs: 0.875rem;
+        --_lh: 1.25rem;
+      }
+
+      @include b.modifier('lg') {
+        --_h: 3rem;
+        --_px: 1.5rem;
+        --_fs: 1rem;
+        --_lh: 1.5rem;
+      }
+
+      // Layout modifiers
+      @include b.modifier('block') {
+        width: 100%;
+      }
+
+      // Responsive size modifiers
+      @each $bp, $val in s.$breakpoints {
+        @media (min-width: #{$val}) {
+          &--sm\@#{$bp} {
+            --_h: 2rem;
+            --_px: 0.75rem;
+            --_fs: 0.875rem;
+            --_lh: 1.25rem;
+          }
+
+          &--lg\@#{$bp} {
+            --_h: 3rem;
+            --_px: 1.5rem;
+            --_fs: 1rem;
+            --_lh: 1.5rem;
+          }
+
+          &--block\@#{$bp} {
+            width: 100%;
+          }
+        }
+      }
+
+      @include b.modifier('icon') {
+        padding-inline: 0;
+        width: var(--_h);
+      }
+
+      @include b.modifier('pill') {
+        border-radius: var(--r-pill);
+      }
+
+      @include b.modifier('square') {
+        border-radius: 0;
+      }
+
+      @include b.modifier('rounded-sm') {
+        border-radius: var(--r-sm);
+      }
+
+      @include b.modifier('rounded-md') {
+        border-radius: var(--r-md);
+      }
+
+      @include b.modifier('rounded-lg') {
+        border-radius: var(--r-lg);
+      }
+
+      @include b.modifier('rounded-xl') {
+        border-radius: var(--r-xl);
+      }
+
+      // Role modifiers
+      @include role.role-modifiers;
+    }
+
+
+  }
+}

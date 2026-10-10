@@ -1,0 +1,138 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'product-card') {
+  @layer blocks {
+    @include b.block('product-card') {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--surface);
+      overflow: hidden;
+      position: relative;
+      outline: var(--bd1) solid var(--border);
+      outline-offset: calc(-1 * var(--bd1));
+
+      @include b.element('media') {
+        position: relative;
+        background: var(--surface-sunken);
+      }
+
+      @include b.element('img') {
+        aspect-ratio: var(--ratio, 4 / 5);
+        background: var(--surface-sunken);
+        display: grid;
+        place-items: center;
+        color: var(--c-subtle);
+
+        > img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      @include b.element('badges') {
+        position: absolute;
+        top: 0.75rem;
+        left: 0.75rem;
+        display: flex;
+        gap: 0.25rem;
+        z-index: 1;
+      }
+
+      @include b.element('wishlist') {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 2;
+      }
+
+      @include b.element('body') {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 1rem;
+      }
+
+      @include b.element('vendor') {
+        font: 500 0.75rem/1rem var(--f-mono);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--c-subtle);
+      }
+
+      @include b.element('title') {
+        font: 500 1rem/1.5rem var(--f-ui);
+        margin: 0;
+        overflow: hidden;
+
+        a {
+          color: var(--text);
+          text-decoration: none;
+
+          &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+          }
+        }
+      }
+
+      @include b.element('swatches') {
+        position: relative;
+        z-index: 1;
+      }
+
+      @include b.element('actions') {
+        position: relative;
+        z-index: 1;
+      }
+
+      // Aspect ratio modifiers
+      @include b.modifier('ratio-1x1') { --ratio: 1 / 1; }
+      @include b.modifier('ratio-4x5') { --ratio: 4 / 5; }
+      @include b.modifier('ratio-3x4') { --ratio: 3 / 4; }
+
+      @include b.modifier('horizontal') {
+        flex-direction: row;
+
+        .#{s.$prefix}product-card__media {
+          width: 40%;
+          max-width: 200px;
+          flex-shrink: 0;
+          aspect-ratio: auto;
+        }
+      }
+
+      @include b.modifier('compact') {
+        .#{s.$prefix}product-card__body {
+          padding: var(--s2);
+        }
+
+        .#{s.$prefix}product-card__actions {
+          padding: var(--s2);
+          padding-top: 0;
+        }
+      }
+
+      @include b.modifier('center') {
+        text-align: center;
+
+        .#{s.$prefix}product-card__actions {
+          justify-content: center;
+        }
+      }
+
+      @include b.modifier('flat') {
+        outline: 0;
+      }
+
+      &.is-sold-out {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    }
+  }
+}

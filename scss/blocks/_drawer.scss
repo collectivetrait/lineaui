@@ -1,0 +1,160 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'drawer') {
+  @layer blocks {
+    @include b.block('drawer') {
+      --_width: 400px;
+
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(var(--_width), 100vw);
+      max-width: 100vw;
+      max-height: 100vh;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: var(--surface-raised);
+      color: var(--text);
+      border: none;
+      border-radius: var(--r-xs);
+      box-shadow: var(--sh4);
+      display: flex;
+      flex-direction: column;
+
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform var(--dur-base) var(--e-exit),
+                  opacity var(--dur-base) var(--e-exit),
+                  overlay var(--dur-base) var(--e-exit) allow-discrete,
+                  display var(--dur-base) var(--e-exit) allow-discrete;
+
+      @starting-style {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      &:not([open]) {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+
+      &::backdrop {
+        background-color: var(--overlay);
+        opacity: 1;
+        transition: opacity var(--dur-base) var(--e-exit),
+                    overlay var(--dur-base) var(--e-exit) allow-discrete,
+                    display var(--dur-base) var(--e-exit) allow-discrete;
+
+        @starting-style {
+          opacity: 0;
+        }
+      }
+
+      &:not([open])::backdrop {
+        opacity: 0;
+      }
+
+      @include b.element('close') {
+        position: absolute;
+        top: var(--s2);
+        right: var(--s2);
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: none;
+        background: none;
+        color: var(--c-muted);
+        cursor: pointer;
+        border-radius: var(--r-md);
+        flex-shrink: 0;
+
+        &:hover {
+          color: var(--text);
+          background-color: var(--surface-raised);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--focus);
+          outline-offset: -2px;
+        }
+      }
+
+      @include b.element('header') {
+        display: flex;
+        align-items: center;
+        gap: var(--s2);
+        padding: var(--s4) calc(var(--s4) + 32px) calc(var(--s4) - var(--bd1)) var(--s4);
+        flex-shrink: 0;
+        border-bottom: var(--bd1) solid var(--border);
+      }
+
+      @include b.element('title') {
+        font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+      }
+
+      @include b.element('body') {
+        padding: 0 var(--s4);
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      @include b.element('footer') {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: var(--s2);
+        padding: var(--s4);
+        padding-top: calc(var(--s4) - var(--bd1));
+        flex-shrink: 0;
+        border-top: var(--bd1) solid var(--border);
+      }
+
+      @include b.modifier('start') {
+        right: auto;
+        left: 0;
+
+        @starting-style {
+          transform: translateX(-100%);
+        }
+
+        &:not([open]) {
+          transform: translateX(-100%);
+        }
+      }
+
+      @include b.modifier('bottom') {
+        top: auto;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        border-radius: var(--r-xs) var(--r-xs) 0 0;
+
+        @starting-style {
+          transform: translateY(100%);
+        }
+
+        &:not([open]) {
+          transform: translateY(100%);
+        }
+      }
+
+      @include b.modifier('sm') { --_width: 320px; }
+      @include b.modifier('md') { --_width: 400px; }
+      @include b.modifier('lg') { --_width: 560px; }
+    }
+  }
+}

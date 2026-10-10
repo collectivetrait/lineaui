@@ -1,0 +1,25 @@
+@layer base {
+  details > summary {
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+
+  dialog {
+    background-color: var(--surface-raised);
+    color: var(--text);
+    border: none;
+    border-radius: var(--r-lg);
+    padding: var(--s4);
+    max-inline-size: min(90vw, 560px);
+    box-shadow: var(--sh4);
+
+    &::backdrop {
+      background-color: var(--overlay);
+    }
+  }
+}

@@ -1,0 +1,88 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/rhythm' as r;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'page-header') {
+  @layer blocks {
+    @include b.block('page-header') {
+      margin-bottom: r.lines(2);
+
+      @include b.element('breadcrumb') {
+        margin-bottom: var(--s2);
+      }
+
+      @include b.element('eyebrow') {
+        font: var(--t-meta-s)/var(--t-meta-lh) var(--f-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 500;
+        color: var(--c-muted);
+        margin-bottom: var(--s1);
+      }
+
+      @include b.element('title') {
+        font: 400 var(--t-h1-s)/var(--t-h1-lh) var(--f-prose);
+        letter-spacing: -0.01em;
+        text-wrap: balance;
+        margin-top: 0;
+      }
+
+      @include b.element('lead') {
+        font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
+        color: var(--c-muted);
+        margin-top: var(--s2);
+        max-width: 44rem;
+      }
+
+      @include b.element('meta') {
+        margin-top: var(--s2);
+      }
+
+      @include b.element('actions') {
+        display: flex;
+        gap: var(--s2);
+        margin-top: var(--s3);
+      }
+
+      @include b.element('tabs') {
+        margin-top: var(--s3);
+        border-bottom: var(--bd1) solid var(--border);
+      }
+
+      @include b.modifier('hero') {
+        margin-bottom: r.lines(3);
+
+        .#{s.$prefix}page-header__title {
+          font-size: var(--t-display-2-s);
+          line-height: var(--t-display-2-lh);
+        }
+      }
+
+      @include b.modifier('compact') {
+        margin-bottom: r.lines(1);
+
+        .#{s.$prefix}page-header__title {
+          font: 600 var(--t-h3-s)/var(--t-h3-lh) var(--f-ui);
+        }
+      }
+
+      @include b.modifier('center') {
+        text-align: center;
+
+        .#{s.$prefix}page-header__lead {
+          margin-inline: auto;
+        }
+
+        .#{s.$prefix}page-header__actions {
+          justify-content: center;
+        }
+      }
+
+      @include b.modifier('bordered') {
+        padding-bottom: calc(#{r.lines(1)} - var(--bd1));
+        border-bottom: var(--bd1) solid var(--border);
+      }
+    }
+  }
+}

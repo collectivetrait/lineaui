@@ -1,0 +1,6 @@
+$g: 8px !default;   // base grid step
+$r: 24px !default;  // line grid step (= 3 × g)
+
+// rem equivalents for rem-based rules
+$g-rem: 0.5rem;
+$r-rem: 1.5rem;

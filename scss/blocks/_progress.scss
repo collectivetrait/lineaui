@@ -1,0 +1,68 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+@use '../tools/role-engine' as role;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'progress') {
+  @layer blocks {
+    @include b.block('progress') {
+      --_fill: var(--primary);
+      --_track-height: 8px;
+
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+
+      @include b.element('header') {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+
+      @include b.element('label') {
+        font: 500 var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+        color: var(--text);
+      }
+
+      @include b.element('value') {
+        font: var(--t-meta-s)/var(--t-meta-lh) var(--f-mono);
+        color: var(--c-muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      @include b.element('track') {
+        width: 100%;
+        height: var(--_track-height);
+        background-color: var(--surface-sunken);
+        border-radius: var(--r-pill);
+        overflow: hidden;
+      }
+
+      @include b.element('bar') {
+        height: 100%;
+        width: var(--progress, 0%);
+        background-color: var(--_fill);
+        border-radius: var(--r-pill);
+        transition: width var(--dur-slow) var(--e-standard);
+      }
+
+      @include b.modifier('xs') { --_track-height: 4px; }
+      @include b.modifier('sm') { --_track-height: 8px; }
+      @include b.modifier('md') { --_track-height: 16px; }
+
+      @include b.modifier('indeterminate') {
+        .#{s.$prefix}progress__bar {
+          width: 40%;
+          animation: #{s.$prefix}progress-indeterminate 1.8s var(--e-standard) infinite;
+        }
+      }
+
+      @include role.role-modifiers;
+    }
+
+    @keyframes #{s.$prefix}progress-indeterminate {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+  }
+}

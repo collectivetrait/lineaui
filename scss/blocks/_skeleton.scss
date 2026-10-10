@@ -1,0 +1,63 @@
+@use 'sass:list';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'skeleton') {
+  @layer blocks {
+    @include b.block('skeleton') {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+
+      @include b.element('line') {
+        height: 24px;
+        background-color: var(--surface-raised);
+        border-radius: var(--r-sm);
+        animation: #{s.$prefix}pulse 1.5s ease-in-out infinite alternate;
+      }
+
+      @include b.element('block') {
+        background-color: var(--surface-raised);
+        border-radius: var(--r-md);
+        animation: #{s.$prefix}pulse 1.5s ease-in-out infinite alternate;
+      }
+
+      @include b.element('circle') {
+        border-radius: var(--r-circle);
+        background-color: var(--surface-raised);
+        animation: #{s.$prefix}pulse 1.5s ease-in-out infinite alternate;
+        aspect-ratio: 1;
+      }
+
+      // Text rhythm variants
+      @include b.modifier('text-body') {
+        .#{s.$prefix}skeleton__line {
+          height: 24px;
+        }
+      }
+
+      @include b.modifier('text-sm') {
+        .#{s.$prefix}skeleton__line {
+          height: 20px;
+        }
+      }
+
+      @include b.modifier('text-h2') {
+        .#{s.$prefix}skeleton__line {
+          height: 48px;
+        }
+      }
+
+      @include b.modifier('text-h3') {
+        .#{s.$prefix}skeleton__line {
+          height: 32px;
+        }
+      }
+    }
+
+    @keyframes #{s.$prefix}pulse {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+  }
+}

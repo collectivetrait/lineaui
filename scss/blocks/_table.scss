@@ -1,0 +1,242 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '../settings' as s;
+@use '../tools/bem' as b;
+
+@if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'table') {
+  @layer blocks {
+    @include b.block('table') {
+      overflow-x: auto;
+      border-radius: var(--radius);
+      background: var(--surface);
+
+      @include b.element('grid') {
+        width: 100%;
+        border-collapse: collapse;
+        font: 400 0.875rem/1.5rem var(--f-ui);
+      }
+
+      @include b.element('header') {
+        text-align: left;
+        vertical-align: middle;
+        padding: 0.75rem 1rem;
+        font: 500 0.75rem/1rem var(--f-ui);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--c-muted);
+        border-bottom: var(--bd1) solid var(--border);
+        box-shadow: none;
+        white-space: nowrap;
+
+        @include b.modifier('numeric') {
+          text-align: right;
+          font-variant-numeric: tabular-nums;
+        }
+      }
+
+      @include b.element('cell') {
+        padding: calc(0.5rem - var(--bd1)) 1rem 0.5rem;
+        border-top: var(--bd1) solid var(--border);
+        box-shadow: none;
+        white-space: nowrap;
+        vertical-align: middle;
+
+        @include b.modifier('numeric') {
+          text-align: right;
+          font-variant-numeric: tabular-nums;
+        }
+
+        @include b.modifier('mono') {
+          font: 500 0.8125rem/1.5rem var(--f-mono);
+        }
+
+        @include b.modifier('truncate') {
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        @include b.modifier('nowrap') {
+          white-space: nowrap;
+        }
+      }
+
+      @include b.element('row') {
+        &:hover .#{s.$prefix}table__cell {
+          background: color-mix(in srgb, var(--surface-raised) 60%, transparent);
+        }
+
+        &[aria-selected="true"] .#{s.$prefix}table__cell {
+          background: var(--primary-subtle);
+        }
+
+        @include b.modifier('danger') {
+          .#{s.$prefix}table__cell {
+            background-color: var(--danger-subtle);
+          }
+        }
+
+        @include b.modifier('warning') {
+          .#{s.$prefix}table__cell {
+            background-color: var(--warning-subtle);
+          }
+        }
+
+        @include b.modifier('success') {
+          .#{s.$prefix}table__cell {
+            background-color: var(--success-subtle);
+          }
+        }
+      }
+
+      tfoot td {
+        padding: 0;
+        border-top: 0;
+        box-shadow: none;
+      }
+
+      @include b.element('foot') {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: calc(0.5rem - var(--bd1)) 1rem 0.5rem;
+        border-top: var(--bd1) solid var(--border);
+        font: 400 0.875rem/1.5rem var(--f-ui);
+        color: var(--c-muted);
+      }
+
+      @include b.element('caption') {
+        padding: 0.75rem 1rem;
+        font: 400 0.875rem/1.25rem var(--f-ui);
+        color: var(--c-muted);
+        text-align: start;
+      }
+
+      @include b.element('actions') {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+
+      @include b.element('sort') {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--s-h);
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        font-weight: 500;
+        text-transform: inherit;
+        letter-spacing: inherit;
+        color: inherit;
+        cursor: pointer;
+
+        &:hover {
+          color: var(--primary);
+        }
+
+        &[aria-sort="ascending"]::after { content: '\2191'; }
+        &[aria-sort="descending"]::after { content: '\2193'; }
+      }
+
+      @include b.element('select') {
+        width: 3rem;
+        padding-right: 0;
+
+        .#{s.$prefix}choice__input {
+          margin: 0.125rem 0;
+        }
+      }
+
+      @include b.element('empty') {
+        text-align: center;
+        padding: var(--s4);
+        color: var(--c-muted);
+      }
+
+      // Style modifiers
+      @include b.modifier('divided') {
+        .#{s.$prefix}table__cell {
+          border-top: var(--bd1) solid var(--border);
+        }
+      }
+
+      @include b.modifier('striped') {
+        .#{s.$prefix}table__row:nth-child(even) .#{s.$prefix}table__cell {
+          background-color: var(--surface-sunken);
+        }
+      }
+
+      @include b.modifier('bordered') {
+        border: var(--bd1) solid var(--border);
+
+        .#{s.$prefix}table__header,
+        .#{s.$prefix}table__cell {
+          border: 0.5px solid var(--border);
+        }
+      }
+
+      // Size modifiers
+      @include b.modifier('compact') {
+        .#{s.$prefix}table__cell { padding: 0.25rem 1rem; }
+        .#{s.$prefix}table__header { padding: 0.5rem 1rem; }
+      }
+
+      @include b.modifier('spacious') {
+        .#{s.$prefix}table__cell { padding: 0.75rem 1rem; }
+      }
+
+      // Sticky modifiers
+      @include b.modifier('sticky-header') {
+        .#{s.$prefix}table__header {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+        }
+      }
+
+      @include b.modifier('sticky-first') {
+        .#{s.$prefix}table__header:first-child,
+        .#{s.$prefix}table__cell:first-child {
+          position: sticky;
+          left: 0;
+          z-index: 5;
+          background-color: var(--surface);
+        }
+      }
+
+      // Responsive stacking
+      @include b.modifier('stack') {
+        @media (max-width: #{map.get(s.$breakpoints, md)}) {
+          thead { display: none; }
+
+          .#{s.$prefix}table__row {
+            display: block;
+            padding: var(--s3);
+            padding-bottom: calc(var(--s3) - var(--bd1));
+            border-bottom: var(--bd1) solid var(--border);
+          }
+
+          .#{s.$prefix}table__cell {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--s1) 0;
+            border-top: 0;
+
+            &::before {
+              content: attr(data-label);
+              font-weight: 600;
+              color: var(--c-muted);
+              margin-right: var(--s2);
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
