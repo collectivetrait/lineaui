@@ -1,5 +1,11 @@
 #!/bin/sh
 
+npm run build
+if [ $? -ne 0 ]; then
+  echo "pre-commit: build failed"
+  exit 1
+fi
+
 JS_FILES=$(git diff --cached --name-only --diff-filter=ACM -- '*.js' '*.mjs')
 SCSS_FILES=$(git diff --cached --name-only --diff-filter=ACM -- '*.scss')
 
