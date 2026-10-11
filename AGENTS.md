@@ -42,3 +42,8 @@ guards every observer tick would duplicate event listeners.
 ## Prefix from config
 The class prefix lives in `config.json` and is consumed as `s.$prefix` in SCSS
 and `prefix` in JS (via `config.js`). Never hardcode the string `ln-`.
+
+## Run all skills before committing
+Before creating a git commit, run every applicable skill (e.g. `check-bem`,
+`check-a11y-compat`) and fix any issues they surface. Do not commit until all
+skills pass cleanly.
