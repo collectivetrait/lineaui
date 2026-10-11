@@ -36,7 +36,7 @@ To prevent a flash of unstyled content on themed pages, add the theme-init scrip
 
 ### CSS
 
-Four CSS files, each self-contained:
+Five CSS files, each self-contained:
 
 | File | Contents |
 |------|----------|
@@ -44,6 +44,7 @@ Four CSS files, each self-contained:
 | `dist/core.css` | Foundation only: tokens, reset, base, layout, helpers |
 | `dist/blocks.css` | Component styles (requires layer order declaration) |
 | `dist/utilities.css` | Utility classes (requires layer order declaration) |
+| `dist/icons.css` | Icon classes (see Icons below) |
 
 All styles are scoped to cascade layers in this order:
 
@@ -57,20 +58,18 @@ reset → tokens → base → layout → blocks → helpers → utilities
 
 ### Icons
 
-The library includes its own SVG icon set (35 icons). Each icon is a 24 × 24 filled SVG embedded via CSS masks, so icons inherit `currentColor` and scale with `font-size`.
+The library includes its own SVG icon set (35 icons). Each icon is a 24 × 24 filled SVG embedded via CSS masks, so icons inherit `currentColor` and scale with `font-size`. Include `dist/icons.css` alongside your main stylesheet:
+
+```html
+<link rel="stylesheet" href="path/to/linea-ui/dist/icons.css">
+```
 
 ```html
 <i class="ln-i-chevron-down"></i>
 <i class="ln-i-search"></i>
 ```
 
-Build the icon stylesheet and manifest:
-
-```bash
-node build-icons.mjs
-```
-
-This produces `dist/icons.css` (the stylesheet) and `dist/icons-manifest.json` (metadata for tooling). See the [icons guide](https://lineaui.com/foundation/icons) for the full set.
+`dist/icons-manifest.json` lists every available icon with its class name and SVG source. See the [icons guide](https://lineaui.com/foundation/icons) for the full set.
 
 ### SCSS source
 
