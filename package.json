@@ -1,16 +1,55 @@
 {
-  "name": "linea-ui",
+  "name": "lineaui",
   "version": "0.1.0",
+  "description": "A lightweight SCSS and JavaScript component library built on BEM naming, an 8px vertical rhythm, and cascade layers.",
+  "keywords": [
+    "SCSS library",
+    "BEM",
+    "component library",
+    "vertical rhythm",
+    "SCSS framework",
+    "UI components",
+    "accessible CSS",
+    "lightweight CSS",
+    "cascade layers",
+    "SCSS"
+  ],
+  "author": "Andrés Villarreal",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/collectivetrait/lineaui.git"
+  },
+  "homepage": "https://lineaui.com",
+  "bugs": {
+    "url": "https://github.com/collectivetrait/lineaui/issues"
+  },
   "type": "module",
   "main": "dist/bundle.js",
   "style": "dist/styles.css",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "files": [
+    "dist",
+    "scss",
+    "js",
+    "config.json",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md",
+    "humans.txt"
+  ],
   "exports": {
     ".": "./dist/bundle.js",
     "./dist/styles.css": "./dist/styles.css",
     "./dist/core.css": "./dist/core.css",
     "./dist/blocks.css": "./dist/blocks.css",
     "./dist/utilities.css": "./dist/utilities.css",
+    "./dist/icons.css": "./dist/icons.css",
+    "./dist/icons-manifest.json": "./dist/icons-manifest.json",
+    "./dist/theme-init.js": "./dist/theme-init.js",
     "./scss": "./scss/_index.scss"
   },
   "scripts": {
@@ -18,7 +57,8 @@
     "dev": "node build.mjs --watch",
     "lint": "eslint && stylelint \"scss/**/*.scss\"",
     "lint:js": "eslint",
-    "lint:scss": "stylelint \"scss/**/*.scss\""
+    "lint:scss": "stylelint \"scss/**/*.scss\"",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

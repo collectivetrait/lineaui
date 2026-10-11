@@ -1,3 +1,3 @@
 // Empty list = emit all blocks.
-// To restrict output: @use 'linea-ui' with ($blocks: (button, card, table));
+// To restrict output: @use 'lineaui' with ($blocks: (button, card, table));
 $blocks: () !default;

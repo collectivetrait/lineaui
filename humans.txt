@@ -1,0 +1,8 @@
+/* TEAM */
+Developer: Andrés Villarreal @ Collective Trait
+Site: https://lineaui.com
+GitHub: https://github.com/collectivetrait/lineaui
+
+/* SITE */
+Standards: BEM, CSS Cascade Layers
+Software: SCSS, JavaScript, Node.js
