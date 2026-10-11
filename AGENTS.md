@@ -54,3 +54,6 @@ ESLint, Stylelint, and `npm run build` run as pre-commit hooks
 fix every reported issue, re-stage the files, and reattempt the commit. If the
 build fails, stop and ask the user for input instead of trying to fix it.
 Never skip hooks with `--no-verify`.
+
+## Never push automatically
+Never push to a remote repository unless the user explicitly asks for it.
