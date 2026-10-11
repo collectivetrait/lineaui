@@ -1,0 +1,22 @@
+#!/bin/sh
+
+JS_FILES=$(git diff --cached --name-only --diff-filter=ACM -- '*.js' '*.mjs')
+SCSS_FILES=$(git diff --cached --name-only --diff-filter=ACM -- '*.scss')
+
+exit_code=0
+
+if [ -n "$JS_FILES" ]; then
+  npx eslint $JS_FILES
+  if [ $? -ne 0 ]; then
+    exit_code=1
+  fi
+fi
+
+if [ -n "$SCSS_FILES" ]; then
+  npx stylelint $SCSS_FILES
+  if [ $? -ne 0 ]; then
+    exit_code=1
+  fi
+fi
+
+exit $exit_code

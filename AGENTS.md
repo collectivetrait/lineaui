@@ -43,7 +43,12 @@ guards every observer tick would duplicate event listeners.
 The class prefix lives in `config.json` and is consumed as `s.$prefix` in SCSS
 and `prefix` in JS (via `config.js`). Never hardcode the string `ln-`.
 
-## Run all skills before committing
+## Run skills on changed code before committing
 Before creating a git commit, run every applicable skill (e.g. `check-bem`,
-`check-a11y-compat`) and fix any issues they surface. Do not commit until all
-skills pass cleanly.
+`check-a11y-compat`) against only the new or changed code and fix any issues
+they surface. Do not commit until all skills pass cleanly.
+
+## Fix linter errors on commit failure
+ESLint and Stylelint run as pre-commit hooks (`.githooks/pre-commit`). If a
+commit fails because a linter reports errors, fix every reported issue, re-stage
+the files, and reattempt the commit. Never skip hooks with `--no-verify`.
