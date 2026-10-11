@@ -15,21 +15,21 @@ Full documentation, live demos, and usage guides are available at **[lineaui.com
 Include the stylesheet and script:
 
 ```html
-<link rel="stylesheet" href="path/to/ln/dist/styles.css">
-<script type="module" src="path/to/ln/dist/bundle.js"></script>
+<link rel="stylesheet" href="path/to/linea-ui/dist/styles.css">
+<script type="module" src="path/to/linea-ui/dist/bundle.js"></script>
 ```
 
 Or import in a bundler:
 
 ```js
-import 'ln/dist/styles.css';
-import 'ln';
+import 'linea-ui/dist/styles.css';
+import 'linea-ui';
 ```
 
 To prevent a flash of unstyled content on themed pages, add the theme-init script to `<head>` before any stylesheet:
 
 ```html
-<script src="path/to/ln/dist/theme-init.js"></script>
+<script src="path/to/linea-ui/dist/theme-init.js"></script>
 ```
 
 ## What's included
@@ -77,15 +77,15 @@ This produces `dist/icons.css` (the stylesheet) and `dist/icons-manifest.json` (
 Import the SCSS source directly for custom builds:
 
 ```scss
-@use 'ln/scss' as *;
+@use 'linea-ui/scss' as *;
 ```
 
 Or import individual layers:
 
 ```scss
-@use 'ln/scss/tokens';
-@use 'ln/scss/base';
-@use 'ln/scss/blocks';
+@use 'linea-ui/scss/tokens';
+@use 'linea-ui/scss/base';
+@use 'linea-ui/scss/blocks';
 ```
 
 ## Cascade layers
@@ -103,7 +103,7 @@ Or import individual layers:
 ## Development
 
 ```bash
-cd ln
+cd linea-ui
 npm install
 npm run build      # one-time build
 npm run dev        # watch mode

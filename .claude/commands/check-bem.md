@@ -1,10 +1,10 @@
 ---
-description: Check ln/ block SCSS files for BEM violations. Optionally pass a block name (e.g. "card") to check one file.
+description: Check Linea UI block SCSS files for BEM violations. Optionally pass a block name (e.g. "card") to check one file.
 ---
 
 # Check BEM violations
 
-Static analysis of SCSS source files under `ln/scss/blocks/` for BEM methodology violations.
+Static analysis of SCSS source files under `scss/blocks/` for BEM methodology violations.
 
 ## Input
 

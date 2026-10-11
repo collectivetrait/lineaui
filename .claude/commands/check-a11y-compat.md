@@ -1,5 +1,5 @@
 ---
-description: Check ln/ compiled CSS for cross-browser compatibility issues. Optionally pass a path to a CSS file (defaults to dist/styles.css).
+description: Check Linea UI compiled CSS for cross-browser compatibility issues. Optionally pass a path to a CSS file (defaults to dist/styles.css).
 ---
 
 # CSS cross-browser compatibility check
