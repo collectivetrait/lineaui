@@ -103,7 +103,7 @@ Or import individual layers:
 ## Development
 
 ```bash
-cd linea-ui
+cd lineaui
 npm install
 npm run build      # one-time build
 npm run dev        # watch mode
