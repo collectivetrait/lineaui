@@ -1,5 +1,5 @@
 {
-  "name": "lineaui",
+  "name": "@collectivetrait/lineaui",
   "version": "1.0.0",
   "description": "A lightweight SCSS and JavaScript component library built on BEM naming, an 8px vertical rhythm, and cascade layers.",
   "keywords": [
