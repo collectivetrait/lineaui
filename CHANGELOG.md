@@ -2,6 +2,16 @@
 
 All notable changes to Linea UI will be documented in this file.
 
+## [1.0.1] — 2026-10-14
+
+### Changed
+- **Navbar** — mobile panel is now inline instead of modal; toggle uses CSS icon
+  swap instead of JavaScript; removed `--bordered` modifier; simplified inner
+  element (removed default padding, min-height and margins); mobile border only
+  appears when panel is open.
+- **Input group** — added explicit `2.5rem` height to `__control` element to
+  match the addon.
+
 ## [1.0.0] — 2026-10-08
 
 Initial public release of Linea UI.
