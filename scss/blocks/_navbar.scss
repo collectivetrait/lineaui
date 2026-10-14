@@ -58,7 +58,6 @@ $navbar-collapse-bp: md !default;
         align-items: center;
         gap: var(--s1);
         padding: var(--s1) var(--s2);
-        min-height: r.lines(2);
         font: 500 var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
         color: var(--c-muted);
         text-decoration: none;
@@ -181,10 +180,6 @@ $navbar-collapse-bp: md !default;
 
       @include b.modifier('compact') {
         --_height: var(--s4);
-
-        .#{s.$prefix}navbar__link {
-          min-height: r.lines(1);
-        }
       }
 
       @include role.role-modifiers;

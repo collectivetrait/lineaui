@@ -3511,7 +3511,6 @@
     align-items: center;
     gap: var(--s1);
     padding: var(--s1) var(--s2);
-    min-height: 48px;
     font: 500 var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
     color: var(--c-muted);
     text-decoration: none;
@@ -3606,9 +3605,6 @@
   }
   .ln-navbar--compact {
     --_height: var(--s4);
-  }
-  .ln-navbar--compact .ln-navbar__link {
-    min-height: 24px;
   }
   .ln-navbar--primary {
     --_fill: var(--primary);
