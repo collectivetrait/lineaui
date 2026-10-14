@@ -22,13 +22,14 @@ $navbar-collapse-bp: md !default;
       z-index: 100;
 
       @include b.element('inner') {
-        display: flex;
         align-items: center;
         gap: var(--s3);
         max-width: var(--container-wide);
-        margin-inline: auto;
-        padding-inline: var(--gutter);
+        padding: var(--gutter);
         min-height: var(--_height);
+        margin-inline: auto;
+        display: flex;
+        margin-bottom: -1px;
       }
 
       @include b.element('brand') {
@@ -109,6 +110,10 @@ $navbar-collapse-bp: md !default;
       }
 
       @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
+        &__inner {
+          border-bottom: 1px solid var(--border);
+        }
+
         &__toggle {
           display: flex;
           align-items: center;
