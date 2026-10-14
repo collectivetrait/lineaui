@@ -115,33 +115,12 @@ $navbar-collapse-bp: md !default;
         }
 
         &__panel {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          background: var(--_bg);
-          padding: var(--s2) var(--gutter);
-          box-shadow: var(--sh3);
-          z-index: 99;
           display: none;
-          opacity: 0;
-          transform: translateY(-8px);
-          transition: opacity var(--dur-base) var(--e-exit),
-                      transform var(--dur-base) var(--e-exit),
-                      display var(--dur-base) var(--e-exit) allow-discrete;
+          padding: var(--s2) var(--gutter);
+          border-top: var(--bd1) solid var(--_border-color);
 
           &[aria-hidden="false"] {
             display: block;
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity var(--dur-base) var(--e-enter),
-                        transform var(--dur-base) var(--e-enter),
-                        display var(--dur-base) var(--e-enter) allow-discrete;
-
-            @starting-style {
-              opacity: 0;
-              transform: translateY(-8px);
-            }
           }
         }
 
@@ -154,18 +133,6 @@ $navbar-collapse-bp: md !default;
           &:hover {
             background-color: var(--surface-raised);
           }
-        }
-
-        // Backdrop overlay
-        &:has(.#{s.$prefix}navbar__panel[aria-hidden="false"])::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: var(--overlay);
-          z-index: 98;
         }
       }
 
@@ -218,10 +185,5 @@ $navbar-collapse-bp: md !default;
       @include role.role-modifiers;
     }
 
-    @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
-      html.#{s.$prefix}navbar-open {
-        overflow: hidden;
-      }
-    }
   }
 }
