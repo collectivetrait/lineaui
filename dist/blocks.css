@@ -1897,10 +1897,7 @@
     align-items: center;
     gap: var(--s3);
     max-width: var(--container-wide);
-    min-height: var(--_height);
-    margin-inline: auto;
     display: flex;
-    margin-bottom: -1px;
   }
   .ln-navbar__brand {
     display: flex;

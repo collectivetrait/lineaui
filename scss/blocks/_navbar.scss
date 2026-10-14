@@ -25,10 +25,7 @@ $navbar-collapse-bp: md !default;
         align-items: center;
         gap: var(--s3);
         max-width: var(--container-wide);
-        min-height: var(--_height);
-        margin-inline: auto;
         display: flex;
-        margin-bottom: -1px;
       }
 
       @include b.element('brand') {
