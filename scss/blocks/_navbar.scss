@@ -94,6 +94,20 @@ $navbar-collapse-bp: md !default;
         }
       }
 
+      .#{s.$prefix}navbar__toggle-close {
+        display: none;
+      }
+
+      .#{s.$prefix}navbar__toggle[aria-expanded="true"] {
+        .#{s.$prefix}navbar__toggle-open {
+          display: none;
+        }
+
+        .#{s.$prefix}navbar__toggle-close {
+          display: inline;
+        }
+      }
+
       @include b.element('panel') {
         display: none;
       }

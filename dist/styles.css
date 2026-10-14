@@ -3541,6 +3541,15 @@
   .ln-navbar__toggle:hover {
     background-color: var(--surface-raised);
   }
+  .ln-navbar .ln-navbar__toggle-close {
+    display: none;
+  }
+  .ln-navbar .ln-navbar__toggle[aria-expanded=true] .ln-navbar__toggle-open {
+    display: none;
+  }
+  .ln-navbar .ln-navbar__toggle[aria-expanded=true] .ln-navbar__toggle-close {
+    display: inline;
+  }
   .ln-navbar__panel {
     display: none;
   }
