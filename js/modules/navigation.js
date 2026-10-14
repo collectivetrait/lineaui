@@ -54,7 +54,6 @@ export function initNavigation() {
     const panel = navbar.querySelector(`.${navbarPrefix}__panel`);
     if (toggle) toggle.setAttribute('aria-expanded', 'false');
     if (panel) panel.setAttribute('aria-hidden', 'true');
-    document.documentElement.classList.remove(`${prefix}navbar-open`);
   }
 
   function openNavbarPanel(navbar) {
@@ -62,7 +61,6 @@ export function initNavigation() {
     const panel = navbar.querySelector(`.${navbarPrefix}__panel`);
     if (toggle) toggle.setAttribute('aria-expanded', 'true');
     if (panel) panel.setAttribute('aria-hidden', 'false');
-    document.documentElement.classList.add(`${prefix}navbar-open`);
   }
 
   document.querySelectorAll(`[data-${prefix}navbar-toggle]`).forEach((btn) => {
@@ -82,16 +80,6 @@ export function initNavigation() {
 
   if (documentListenersAdded) return;
   documentListenersAdded = true;
-
-  // Close navbar panel on outside click
-  document.addEventListener('click', (e) => {
-    document.querySelectorAll(`.${navbarPrefix}__panel[aria-hidden="false"]`).forEach((panel) => {
-      const navbar = panel.closest(`.${navbarPrefix}`);
-      if (navbar && !navbar.contains(e.target)) {
-        closeNavbarPanel(navbar);
-      }
-    });
-  });
 
   // Close navbar panel on Escape key
   document.addEventListener('keydown', (e) => {
