@@ -2013,12 +2013,6 @@
     border-bottom: var(--bd1) solid var(--_border-color);
     transition: background-color var(--dur-base) var(--e-standard);
   }
-  .ln-navbar--bordered {
-    border-bottom: var(--bd1) solid var(--_border-color);
-  }
-  .ln-navbar--bordered .ln-navbar__inner {
-    min-height: calc(var(--_height) - var(--bd1));
-  }
   .ln-navbar--center .ln-navbar__nav {
     justify-content: center;
   }

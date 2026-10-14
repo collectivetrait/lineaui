@@ -169,14 +169,6 @@ $navbar-collapse-bp: md !default;
         }
       }
 
-      @include b.modifier('bordered') {
-        border-bottom: var(--bd1) solid var(--_border-color);
-
-        .#{s.$prefix}navbar__inner {
-          min-height: calc(var(--_height) - var(--bd1));
-        }
-      }
-
       @include b.modifier('center') {
         .#{s.$prefix}navbar__nav {
           justify-content: center;
