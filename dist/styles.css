@@ -3547,9 +3547,6 @@
     display: none;
   }
   @media (max-width: 768px) {
-    .ln-navbar:has(.ln-navbar__panel[aria-hidden=false]) .ln-navbar__inner {
-      border-bottom: 1px solid var(--border);
-    }
     .ln-navbar__toggle {
       display: flex;
       align-items: center;
