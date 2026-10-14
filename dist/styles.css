@@ -3566,7 +3566,6 @@
     .ln-navbar__panel {
       display: none;
       padding: var(--s2) var(--gutter);
-      border-top: var(--bd1) solid var(--_border-color);
     }
     .ln-navbar__panel[aria-hidden=false] {
       display: block;
