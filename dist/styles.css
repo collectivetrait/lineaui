@@ -3482,7 +3482,6 @@
     align-items: center;
     gap: var(--s3);
     max-width: var(--container-wide);
-    padding: var(--gutter);
     min-height: var(--_height);
     margin-inline: auto;
     display: flex;
