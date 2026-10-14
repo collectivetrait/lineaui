@@ -122,7 +122,6 @@ $navbar-collapse-bp: md !default;
 
         &__panel {
           display: none;
-          padding: var(--s2) var(--gutter);
 
           &[aria-hidden="false"] {
             display: block;

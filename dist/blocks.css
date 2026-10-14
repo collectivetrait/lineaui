@@ -1976,7 +1976,6 @@
     }
     .ln-navbar__panel {
       display: none;
-      padding: var(--s2) var(--gutter);
     }
     .ln-navbar__panel[aria-hidden=false] {
       display: block;
