@@ -3538,9 +3538,6 @@
     color: inherit;
     border-radius: var(--r-md);
   }
-  .ln-navbar__toggle:hover {
-    background-color: var(--surface-raised);
-  }
   .ln-navbar .ln-navbar__toggle-close {
     display: none;
   }

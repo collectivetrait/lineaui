@@ -88,10 +88,6 @@ $navbar-collapse-bp: md !default;
         cursor: pointer;
         color: inherit;
         border-radius: var(--r-md);
-
-        &:hover {
-          background-color: var(--surface-raised);
-        }
       }
 
       .#{s.$prefix}navbar__toggle-close {
