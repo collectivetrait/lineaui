@@ -134,14 +134,9 @@ $navbar-collapse-bp: md !default;
         }
 
         &__panel .#{s.$prefix}navbar__link {
-          display: flex;
           width: 100%;
-          padding: var(--s2) var(--s3);
-          border-radius: var(--r-md);
-
-          &:hover {
-            background-color: var(--surface-raised);
-          }
+          padding: var(--s1) var(--s2);
+          display: flex;
         }
       }
 
