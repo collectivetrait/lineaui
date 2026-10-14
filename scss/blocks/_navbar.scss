@@ -110,7 +110,7 @@ $navbar-collapse-bp: md !default;
       }
 
       @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
-        &__inner {
+        &:has(.#{s.$prefix}navbar__panel[aria-hidden="false"]) .#{s.$prefix}navbar__inner {
           border-bottom: 1px solid var(--border);
         }
 
