@@ -3575,6 +3575,9 @@
       padding: var(--s1) var(--s2);
       display: flex;
     }
+    .ln-navbar__panel .ln-navbar__link:hover {
+      background-color: var(--surface-raised);
+    }
   }
   @media (max-width: 768px) {
     .ln-navbar--actions-visible .ln-navbar__actions {
