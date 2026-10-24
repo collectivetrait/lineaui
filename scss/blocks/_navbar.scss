@@ -10,7 +10,6 @@ $navbar-collapse-bp: md !default;
 @if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'navbar') {
   @layer blocks {
     @include b.block('navbar') {
-      --_height: var(--s4);
       --_bg: var(--surface);
       --_text: var(--text);
       --_border-color: var(--border);
@@ -96,7 +95,7 @@ $navbar-collapse-bp: md !default;
         }
 
         .#{s.$prefix}navbar__toggle-close {
-          display: inline;
+          display: inline-block;
         }
       }
 
@@ -104,7 +103,7 @@ $navbar-collapse-bp: md !default;
         display: none;
       }
 
-      @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
+      @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp) - 0.02px}) {
         &__toggle {
           display: flex;
           align-items: center;
@@ -140,7 +139,7 @@ $navbar-collapse-bp: md !default;
       }
 
       @include b.modifier('actions-visible') {
-        @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp)}) {
+        @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp) - 0.02px}) {
           .#{s.$prefix}navbar__actions {
             display: flex;
           }
@@ -167,10 +166,6 @@ $navbar-collapse-bp: md !default;
         .#{s.$prefix}navbar__nav {
           justify-content: center;
         }
-      }
-
-      @include b.modifier('compact') {
-        --_height: var(--s4);
       }
 
       @include role.role-modifiers;
