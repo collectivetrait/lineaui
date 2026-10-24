@@ -7433,6 +7433,9 @@
   .bg-surface-inverse {
     background-color: var(--surface-inverse);
   }
+  .bg-transparent {
+    background-color: transparent;
+  }
   .border-default {
     outline: var(--bd1) solid var(--neutral-border);
     outline-offset: calc(-1 * var(--bd1));
