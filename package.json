@@ -47,9 +47,7 @@
     "./dist/core.css": "./dist/core.css",
     "./dist/blocks.css": "./dist/blocks.css",
     "./dist/utilities.css": "./dist/utilities.css",
-    "./dist/icons.css": "./dist/icons.css",
-    "./dist/icons-manifest.json": "./dist/icons-manifest.json",
-    "./dist/theme-init.js": "./dist/theme-init.js",
+"./dist/theme-init.js": "./dist/theme-init.js",
     "./scss": "./scss/_index.scss"
   },
   "scripts": {
