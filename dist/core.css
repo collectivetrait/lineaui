@@ -36,7 +36,7 @@
     --success-border: color-mix(in srgb, var(--success) 40%, var(--canvas));
     --warning: light-dark(#D97706, #FBBF24);
     --warning-text: light-dark(#92400E, #FBBF24);
-    --on-warning: #FFFFFF;
+    --on-warning: #1C1917;
     --warning-subtle: color-mix(in srgb, var(--warning) 12%, var(--canvas));
     --warning-hover: color-mix(in srgb, var(--warning) 88%, var(--canvas));
     --warning-border: color-mix(in srgb, var(--warning) 40%, var(--canvas));
@@ -222,7 +222,7 @@
   picture,
   video,
   canvas,
-  svg {
+  svg:not([class]) {
     display: block;
     max-inline-size: 100%;
     block-size: auto;
