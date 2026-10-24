@@ -657,6 +657,23 @@
     font-size: var(--t-display-2-s);
     line-height: var(--t-display-2-lh);
   }
+  .text-body-lg {
+    font-size: var(--t-body-lg-s);
+    line-height: var(--t-body-lg-lh);
+  }
+  .text-body-sm {
+    font-size: var(--t-body-sm-s);
+    line-height: var(--t-body-sm-lh);
+  }
+  .text-body-xs {
+    font-size: var(--t-body-xs-s);
+    line-height: var(--t-body-xs-lh);
+  }
+  .text-meta {
+    font-family: var(--f-mono);
+    font-size: var(--t-meta-s);
+    line-height: var(--t-meta-lh);
+  }
   .fw-normal {
     font-weight: 400;
   }
@@ -890,6 +907,17 @@
   }
   .overflow-y-scroll {
     overflow-y: scroll;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
   }
   .pointer-none {
     pointer-events: none;
@@ -1461,6 +1489,23 @@
       font-family: var(--f-prose);
       font-size: var(--t-display-2-s);
       line-height: var(--t-display-2-lh);
+    }
+    .text-body-lg\@sm {
+      font-size: var(--t-body-lg-s);
+      line-height: var(--t-body-lg-lh);
+    }
+    .text-body-sm\@sm {
+      font-size: var(--t-body-sm-s);
+      line-height: var(--t-body-sm-lh);
+    }
+    .text-body-xs\@sm {
+      font-size: var(--t-body-xs-s);
+      line-height: var(--t-body-xs-lh);
+    }
+    .text-meta\@sm {
+      font-family: var(--f-mono);
+      font-size: var(--t-meta-s);
+      line-height: var(--t-meta-lh);
     }
     .fw-normal\@sm {
       font-weight: 400;
@@ -2055,6 +2100,23 @@
       font-size: var(--t-display-2-s);
       line-height: var(--t-display-2-lh);
     }
+    .text-body-lg\@md {
+      font-size: var(--t-body-lg-s);
+      line-height: var(--t-body-lg-lh);
+    }
+    .text-body-sm\@md {
+      font-size: var(--t-body-sm-s);
+      line-height: var(--t-body-sm-lh);
+    }
+    .text-body-xs\@md {
+      font-size: var(--t-body-xs-s);
+      line-height: var(--t-body-xs-lh);
+    }
+    .text-meta\@md {
+      font-family: var(--f-mono);
+      font-size: var(--t-meta-s);
+      line-height: var(--t-meta-lh);
+    }
     .fw-normal\@md {
       font-weight: 400;
     }
@@ -2647,6 +2709,23 @@
       font-family: var(--f-prose);
       font-size: var(--t-display-2-s);
       line-height: var(--t-display-2-lh);
+    }
+    .text-body-lg\@lg {
+      font-size: var(--t-body-lg-s);
+      line-height: var(--t-body-lg-lh);
+    }
+    .text-body-sm\@lg {
+      font-size: var(--t-body-sm-s);
+      line-height: var(--t-body-sm-lh);
+    }
+    .text-body-xs\@lg {
+      font-size: var(--t-body-xs-s);
+      line-height: var(--t-body-xs-lh);
+    }
+    .text-meta\@lg {
+      font-family: var(--f-mono);
+      font-size: var(--t-meta-s);
+      line-height: var(--t-meta-lh);
     }
     .fw-normal\@lg {
       font-weight: 400;
@@ -3241,6 +3320,23 @@
       font-size: var(--t-display-2-s);
       line-height: var(--t-display-2-lh);
     }
+    .text-body-lg\@xl {
+      font-size: var(--t-body-lg-s);
+      line-height: var(--t-body-lg-lh);
+    }
+    .text-body-sm\@xl {
+      font-size: var(--t-body-sm-s);
+      line-height: var(--t-body-sm-lh);
+    }
+    .text-body-xs\@xl {
+      font-size: var(--t-body-xs-s);
+      line-height: var(--t-body-xs-lh);
+    }
+    .text-meta\@xl {
+      font-family: var(--f-mono);
+      font-size: var(--t-meta-s);
+      line-height: var(--t-meta-lh);
+    }
     .fw-normal\@xl {
       font-weight: 400;
     }
@@ -3833,6 +3929,23 @@
       font-family: var(--f-prose);
       font-size: var(--t-display-2-s);
       line-height: var(--t-display-2-lh);
+    }
+    .text-body-lg\@2xl {
+      font-size: var(--t-body-lg-s);
+      line-height: var(--t-body-lg-lh);
+    }
+    .text-body-sm\@2xl {
+      font-size: var(--t-body-sm-s);
+      line-height: var(--t-body-sm-lh);
+    }
+    .text-body-xs\@2xl {
+      font-size: var(--t-body-xs-s);
+      line-height: var(--t-body-xs-lh);
+    }
+    .text-meta\@2xl {
+      font-family: var(--f-mono);
+      font-size: var(--t-meta-s);
+      line-height: var(--t-meta-lh);
     }
     .fw-normal\@2xl {
       font-weight: 400;

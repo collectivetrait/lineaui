@@ -204,6 +204,18 @@ $utilities: (
   'text-display-2': (class: 'text-display-2', responsive: true, declarations: (
     '': (font-family: var(--f-prose), font-size: var(--t-display-2-s), line-height: var(--t-display-2-lh)),
   )),
+  'text-body-lg': (class: 'text-body-lg', responsive: true, declarations: (
+    '': (font-size: var(--t-body-lg-s), line-height: var(--t-body-lg-lh)),
+  )),
+  'text-body-sm': (class: 'text-body-sm', responsive: true, declarations: (
+    '': (font-size: var(--t-body-sm-s), line-height: var(--t-body-sm-lh)),
+  )),
+  'text-body-xs': (class: 'text-body-xs', responsive: true, declarations: (
+    '': (font-size: var(--t-body-xs-s), line-height: var(--t-body-xs-lh)),
+  )),
+  'text-meta': (class: 'text-meta', responsive: true, declarations: (
+    '': (font-family: var(--f-mono), font-size: var(--t-meta-s), line-height: var(--t-meta-lh)),
+  )),
   'fw': (class: 'fw', property: font-weight, responsive: true, values: (
     'normal': 400,
     'medium': 500,
@@ -311,6 +323,11 @@ $utilities: (
     'hidden': hidden,
     'visible': visible,
     'scroll': scroll,
+  )),
+
+  // --- Accessibility ---
+  'sr-only': (class: 'sr-only', responsive: false, declarations: (
+    '': (position: absolute, width: 1px, height: 1px, padding: 0, margin: -1px, overflow: hidden, clip: rect(0 0 0 0), white-space: nowrap, border: 0),
   )),
 
   // --- Pointer events ---

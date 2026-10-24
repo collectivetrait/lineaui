@@ -477,6 +477,10 @@
     flex: none;
     color: var(--c-subtle);
   }
+  .ln-code__filename {
+    font: 500 0.75rem/1rem var(--f-mono);
+    color: var(--text);
+  }
   .ln-code__lang {
     margin-left: auto;
     font: 400 0.6875rem/1rem var(--f-mono);
@@ -1253,6 +1257,10 @@
     gap: var(--s4) var(--s4);
     margin-bottom: 48px;
   }
+  .ln-site-footer__column {
+    display: flex;
+    flex-direction: column;
+  }
   .ln-site-footer__heading {
     font-weight: 600;
     font-size: var(--t-body-s);
@@ -1883,7 +1891,6 @@
 }
 @layer blocks {
   .ln-navbar {
-    --_height: var(--s4);
     --_bg: var(--surface);
     --_text: var(--text);
     --_border-color: var(--border);
@@ -1956,12 +1963,12 @@
     display: none;
   }
   .ln-navbar .ln-navbar__toggle[aria-expanded=true] .ln-navbar__toggle-close {
-    display: inline;
+    display: inline-block;
   }
   .ln-navbar__panel {
     display: none;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767.98px) {
     .ln-navbar__toggle {
       display: flex;
       align-items: center;
@@ -1989,7 +1996,7 @@
       background-color: var(--surface-raised);
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: 767.98px) {
     .ln-navbar--actions-visible .ln-navbar__actions {
       display: flex;
     }
@@ -2009,9 +2016,6 @@
   }
   .ln-navbar--center .ln-navbar__nav {
     justify-content: center;
-  }
-  .ln-navbar--compact {
-    --_height: var(--s4);
   }
   .ln-navbar--primary {
     --_fill: var(--primary);
@@ -2123,6 +2127,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+  .ln-button--solid {
+    background: var(--_fill);
+    color: var(--_on);
   }
   .ln-button--neutral {
     --_fill: var(--surface-raised);
@@ -2722,6 +2730,9 @@
   .ln-form__header {
     font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
   }
+  .ln-form__heading {
+    font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+  }
   .ln-form__title {
     font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
   }
@@ -3001,6 +3012,10 @@
   .ln-tag__remove:hover {
     background: color-mix(in srgb, currentColor 12%, transparent);
     color: var(--text);
+  }
+  .ln-tag--outline {
+    background: transparent;
+    border: var(--bd1) solid var(--border);
   }
   .ln-tag--selectable {
     padding-inline: 0.75rem;

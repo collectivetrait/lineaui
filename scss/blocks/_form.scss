@@ -24,6 +24,10 @@
         font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
       }
 
+      @include b.element('heading') {
+        font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+      }
+
       @include b.element('title') {
         font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
       }
