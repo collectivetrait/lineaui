@@ -894,6 +894,8 @@
 }
 @layer blocks {
   .ln-page-header {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 3rem;
   }
   .ln-page-header__breadcrumb {
@@ -916,7 +918,6 @@
   .ln-page-header__lead {
     font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
     color: var(--c-muted);
-    margin-top: var(--s2);
     max-width: 44rem;
   }
   .ln-page-header__meta {

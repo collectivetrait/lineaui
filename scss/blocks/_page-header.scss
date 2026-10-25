@@ -6,6 +6,8 @@
 @if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'page-header') {
   @layer blocks {
     @include b.block('page-header') {
+      display: flex;
+      flex-direction: column;
       margin-bottom: r.lines(2);
 
       @include b.element('breadcrumb') {
@@ -31,7 +33,6 @@
       @include b.element('lead') {
         font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
         color: var(--c-muted);
-        margin-top: var(--s2);
         max-width: 44rem;
       }
 
