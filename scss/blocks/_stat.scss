@@ -70,11 +70,6 @@
         color: var(--c-subtle);
       }
 
-      @include b.element('chart') {
-        height: 2.5rem;
-        margin-top: var(--s1);
-      }
-
       @include b.modifier('sm') {
         .#{s.$prefix}stat__value {
           font-size: var(--t-h4-s);

@@ -30,7 +30,7 @@
         border-radius: var(--r-md);
         border: var(--bd1) solid var(--_border-color);
         box-shadow: var(--sh3);
-        margin-top: var(--s-h);
+        margin-top: var(--s-h); // allowed exception
 
         &[popover] {
           padding: calc(var(--s-h) - var(--bd1)) 0;
@@ -157,7 +157,7 @@
           inset: unset;
           top: anchor(bottom);
           left: anchor(left);
-          margin-top: var(--s-h);
+          margin-top: var(--s-h); // allowed exception
         }
       }
 

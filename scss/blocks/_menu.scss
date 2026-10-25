@@ -11,6 +11,8 @@
       --_text: var(--text);
       --_border-color: var(--border);
 
+      display: grid;
+      gap: var(--s2);
       font: var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
       list-style: none;
       padding: 0;
@@ -24,7 +26,6 @@
 
       @include b.element('group') {
         &:not(:first-child) {
-          margin-top: var(--s2);
           padding-top: calc(var(--s2) - var(--bd1));
           border-top: var(--bd1) solid var(--_border-color);
         }

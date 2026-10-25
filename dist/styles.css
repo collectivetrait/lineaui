@@ -1952,9 +1952,9 @@
     font-size: var(--t-body-lg-s);
     line-height: var(--t-body-lg-lh);
     font-style: italic;
+    margin-bottom: var(--s1);
   }
   .ln-quote__footer {
-    margin-top: var(--s1);
     display: flex;
     align-items: center;
     gap: var(--s2);
@@ -2506,17 +2506,16 @@
     font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
     color: var(--c-muted);
     max-width: 44rem;
+    margin-bottom: var(--s2);
   }
   .ln-page-header__meta {
-    margin-top: var(--s2);
+    margin-bottom: var(--s2);
   }
   .ln-page-header__actions {
     display: flex;
     gap: var(--s2);
-    margin-top: var(--s3);
   }
   .ln-page-header__tabs {
-    margin-top: var(--s3);
     border-bottom: var(--bd1) solid var(--border);
   }
   .ln-page-header--hero {
@@ -2940,6 +2939,8 @@
     --_fill: var(--primary);
     --_text: var(--text);
     --_border-color: var(--border);
+    display: grid;
+    gap: var(--s2);
     font: var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
     list-style: none;
     padding: 0;
@@ -2951,7 +2952,6 @@
     margin: 0;
   }
   .ln-menu__group:not(:first-child) {
-    margin-top: var(--s2);
     padding-top: calc(var(--s2) - var(--bd1));
     border-top: var(--bd1) solid var(--_border-color);
   }
@@ -5060,6 +5060,8 @@
     color: var(--_fill);
   }
   .ln-toast__content {
+    display: grid;
+    gap: var(--s2);
     flex: 1;
     min-width: 0;
   }
@@ -5071,10 +5073,6 @@
     font-size: var(--t-body-sm-s);
     line-height: var(--t-body-sm-lh);
     color: var(--c-muted);
-    margin-top: 0;
-  }
-  .ln-toast__action {
-    margin-top: var(--s2);
   }
   .ln-toast__close {
     display: inline-flex;
@@ -6381,10 +6379,6 @@
     line-height: var(--t-meta-lh);
     color: var(--c-subtle);
   }
-  .ln-stat__chart {
-    height: 2.5rem;
-    margin-top: var(--s1);
-  }
   .ln-stat--sm .ln-stat__value {
     font-size: var(--t-h4-s);
     line-height: var(--t-h4-lh);
@@ -6590,12 +6584,12 @@
   .ln-timeline__time {
     font: 400 0.75rem/1rem var(--f-mono);
     color: var(--c-subtle);
+    margin-bottom: var(--s1);
   }
   .ln-timeline__body {
     font-size: var(--t-body-sm-s);
     line-height: var(--t-body-sm-lh);
     color: var(--c-muted);
-    margin-top: var(--s1);
   }
   .ln-timeline--compact .ln-timeline__item {
     padding-bottom: 0.5rem;

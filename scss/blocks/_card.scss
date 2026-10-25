@@ -61,7 +61,7 @@
       @include b.element('footer') {
         display: flex;
         flex-direction: column;
-        margin-top: auto;
+        margin-top: auto; // allowed exception
       }
 
       @include b.element('actions') {

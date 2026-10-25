@@ -46,7 +46,7 @@
       @include b.element('actions') {
         display: flex;
         gap: var(--s1);
-        margin-top: var(--s2);
+        margin-top: var(--s2); // allowed exception
       }
 
       @include b.element('dismiss') {

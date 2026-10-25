@@ -65,13 +65,13 @@
       @include b.element('time') {
         font: 400 0.75rem/1rem var(--f-mono);
         color: var(--c-subtle);
+        margin-bottom: var(--s1);
       }
 
       @include b.element('body') {
         font-size: var(--t-body-sm-s);
         line-height: var(--t-body-sm-lh);
         color: var(--c-muted);
-        margin-top: var(--s1);
       }
 
       @include b.modifier('compact') {
