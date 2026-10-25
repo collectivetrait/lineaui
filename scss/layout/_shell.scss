@@ -8,7 +8,7 @@
     grid-template-areas:
       "header header"
       "sidebar main";
-    grid-template-rows: 48px 1fr; // 2 rhythm lines = 48px
+    grid-template-rows: 3rem 1fr;
     grid-template-columns: 240px 1fr;
     min-block-size: 100svh;
     background-color: var(--canvas);
@@ -33,8 +33,8 @@
       background-color: var(--surface);
       padding-block: var(--s3);
       position: sticky;
-      top: 48px;
-      block-size: calc(100svh - 48px);
+      top: 3rem;
+      block-size: calc(100svh - 3rem);
     }
 
     @include b.element('main') {

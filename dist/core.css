@@ -259,31 +259,31 @@
   h1 {
     font: 400 var(--t-h1-s)/var(--t-h1-lh) var(--f-prose);
     letter-spacing: -0.01em;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   h2 {
     font: 400 var(--t-h2-s)/var(--t-h2-lh) var(--f-prose);
     letter-spacing: -0.005em;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   h3 {
     font: 400 var(--t-h3-s)/var(--t-h3-lh) var(--f-prose);
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   h4 {
     font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   h5 {
     font: 600 var(--t-h5-s)/var(--t-h5-lh) var(--f-ui);
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
   h6 {
     font: 500 var(--t-h6-s)/var(--t-h6-lh) var(--f-mono);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--c-muted);
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
   }
   :is(h1, h2, h3, h4, h5, h6, p, blockquote, dl, ul, ol):last-child {
     margin-bottom: 0;
@@ -296,7 +296,7 @@
   }
   p {
     line-height: 1.5rem;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   .lead {
     font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
@@ -364,7 +364,7 @@
     font-family: var(--f-prose);
     border-inline-start: var(--bd3) solid var(--primary);
     padding-inline-start: calc(var(--s3) - var(--bd3));
-    margin: 24px 0;
+    margin: 1.5rem 0;
     color: var(--c-muted);
   }
   hr {
@@ -375,7 +375,7 @@
   ul,
   ol {
     padding-inline-start: var(--s4);
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   li {
     line-height: 1.5rem;
@@ -384,7 +384,7 @@
     font-variant-numeric: tabular-nums;
   }
   dl {
-    margin: 0 0 24px;
+    margin: 0 0 1.5rem;
   }
   dt {
     font-weight: 600;
@@ -419,7 +419,7 @@
     border-radius: var(--r-xs);
     overflow-x: auto;
     tab-size: 2;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   pre code {
     display: block;
@@ -439,7 +439,7 @@
     block-size: auto;
   }
   figure {
-    margin: 0 0 24px;
+    margin: 0 0 1.5rem;
   }
   figure > img,
   figure > video,
@@ -458,7 +458,7 @@
   table {
     border-collapse: collapse;
     inline-size: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
   }
   table:last-child {
     margin-bottom: 0;
@@ -611,7 +611,7 @@
   .ln-shell {
     display: grid;
     grid-template-areas: "header header" "sidebar main";
-    grid-template-rows: 48px 1fr;
+    grid-template-rows: 3rem 1fr;
     grid-template-columns: 240px 1fr;
     min-block-size: 100svh;
     background-color: var(--canvas);
@@ -635,8 +635,8 @@
     background-color: var(--surface);
     padding-block: var(--s3);
     position: sticky;
-    top: 48px;
-    block-size: calc(100svh - 48px);
+    top: 3rem;
+    block-size: calc(100svh - 3rem);
   }
   .ln-shell__main {
     grid-area: main;
@@ -1528,26 +1528,26 @@
     max-width: var(--container-wide);
   }
   .ln-section--space-lg {
-    padding-block: 48px;
+    padding-block: 3rem;
   }
   .ln-section--space-xl {
-    padding-block: 72px;
+    padding-block: 4.5rem;
   }
   .ln-section--space-2xl {
-    padding-block: 96px;
+    padding-block: 6rem;
   }
   .ln-section--space-3xl {
-    padding-block: 144px;
+    padding-block: 9rem;
   }
   @media (max-width: 768px) {
     .ln-section--space-xl {
-      padding-block: 48px;
+      padding-block: 3rem;
     }
     .ln-section--space-2xl {
-      padding-block: 48px;
+      padding-block: 3rem;
     }
     .ln-section--space-3xl {
-      padding-block: 72px;
+      padding-block: 4.5rem;
     }
   }
   .ln-section--surface-sunken {
