@@ -7,7 +7,7 @@
   @layer blocks {
     @include b.block('spinner') {
       --_fill: currentColor;
-      --_size: 24px;
+      --_size: 1.5rem;
 
       display: inline-block;
       width: var(--_size);
@@ -30,9 +30,9 @@
         border: 0;
       }
 
-      @include b.modifier('sm') { --_size: 16px; }
-      @include b.modifier('md') { --_size: 24px; }
-      @include b.modifier('lg') { --_size: 32px; }
+      @include b.modifier('sm') { --_size: 1rem; }
+      @include b.modifier('md') { --_size: 1.5rem; }
+      @include b.modifier('lg') { --_size: 2rem; }
 
       @include role.role-modifiers;
     }

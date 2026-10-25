@@ -10,7 +10,7 @@
       gap: var(--s1);
 
       @include b.element('line') {
-        height: 24px;
+        height: 1.5rem;
         background-color: var(--surface-raised);
         border-radius: var(--r-sm);
         animation: #{s.$prefix}pulse 1.5s ease-in-out infinite alternate;
@@ -32,25 +32,25 @@
       // Text rhythm variants
       @include b.modifier('text-body') {
         .#{s.$prefix}skeleton__line {
-          height: 24px;
+          height: 1.5rem;
         }
       }
 
       @include b.modifier('text-sm') {
         .#{s.$prefix}skeleton__line {
-          height: 20px;
+          height: 1.25rem;
         }
       }
 
       @include b.modifier('text-h2') {
         .#{s.$prefix}skeleton__line {
-          height: 48px;
+          height: 3rem;
         }
       }
 
       @include b.modifier('text-h3') {
         .#{s.$prefix}skeleton__line {
-          height: 32px;
+          height: 2rem;
         }
       }
     }

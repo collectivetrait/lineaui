@@ -7,7 +7,7 @@
   @layer blocks {
     @include b.block('progress') {
       --_fill: var(--primary);
-      --_track-height: 8px;
+      --_track-height: 0.5rem;
 
       display: flex;
       flex-direction: column;
@@ -46,9 +46,9 @@
         transition: width var(--dur-slow) var(--e-standard);
       }
 
-      @include b.modifier('xs') { --_track-height: 4px; }
-      @include b.modifier('sm') { --_track-height: 8px; }
-      @include b.modifier('md') { --_track-height: 16px; }
+      @include b.modifier('xs') { --_track-height: 0.25rem; }
+      @include b.modifier('sm') { --_track-height: 0.5rem; }
+      @include b.modifier('md') { --_track-height: 1rem; }
 
       @include b.modifier('indeterminate') {
         .#{s.$prefix}progress__bar {

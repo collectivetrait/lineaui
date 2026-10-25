@@ -61,7 +61,7 @@
 
       @include b.element('badge') {
         font: var(--t-meta-s)/1 var(--f-mono);
-        padding: 2px 6px;
+        padding: 0.125rem 0.375rem;
         border-radius: var(--r-pill);
         background: var(--surface-raised);
         font-weight: 600;
@@ -84,7 +84,7 @@
         .#{s.$prefix}tabs__tab {
           height: auto;
           border-radius: var(--r-pill);
-          min-height: 32px;
+          min-height: 2rem;
           padding: var(--s-h) var(--s2);
 
           &[aria-selected="true"] {
@@ -126,7 +126,7 @@
           flex-direction: column;
           border-bottom: 0;
           border-right: var(--bd1) solid var(--_border-color);
-          min-width: 160px;
+          min-width: 10rem;
           overflow-x: visible;
         }
 
@@ -155,7 +155,7 @@
 
       @include b.modifier('sm') {
         .#{s.$prefix}tabs__tab {
-          min-height: 32px;
+          min-height: 2rem;
           padding: var(--s-h) var(--s2);
           font-size: var(--t-meta-s);
           line-height: var(--t-meta-lh);

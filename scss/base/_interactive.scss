@@ -15,7 +15,7 @@
     border: none;
     border-radius: var(--r-lg);
     padding: var(--s4);
-    max-inline-size: min(90vw, 560px);
+    max-inline-size: min(90vw, 35rem);
     box-shadow: var(--sh4);
 
     &::backdrop {

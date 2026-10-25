@@ -15,8 +15,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         border-radius: var(--r-md);
         background-color: var(--surface-sunken);
         color: var(--c-muted);
@@ -71,7 +71,7 @@
       }
 
       @include b.element('chart') {
-        height: 40px;
+        height: 2.5rem;
         margin-top: var(--s1);
       }
 

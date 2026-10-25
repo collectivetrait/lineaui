@@ -80,7 +80,7 @@
 
         @include b.modifier('highlight') {
           background: color-mix(in srgb, var(--primary) 10%, transparent);
-          border-left: 3px solid var(--primary-text);
+          border-left: 0.1875rem solid var(--primary-text);
         }
       }
 

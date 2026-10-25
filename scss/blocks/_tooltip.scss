@@ -7,7 +7,7 @@
     @include b.block('tooltip') {
       position: absolute;
       z-index: 1000;
-      max-width: 250px;
+      max-width: 15.625rem;
       padding: var(--s1) var(--s2);
       font: 500 var(--t-meta-s)/var(--t-meta-lh) var(--f-ui);
       color: var(--c-inverse);
@@ -20,8 +20,8 @@
 
       @include b.element('arrow') {
         position: absolute;
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
         background-color: var(--surface-inverse);
         transform: rotate(45deg);
       }
@@ -29,33 +29,33 @@
       // Position modifiers
       @include b.modifier('top') {
         .#{s.$prefix}tooltip__arrow {
-          bottom: -4px;
+          bottom: -0.25rem;
           left: 50%;
-          margin-left: -4px;
+          margin-left: -0.25rem;
         }
       }
 
       @include b.modifier('bottom') {
         .#{s.$prefix}tooltip__arrow {
-          top: -4px;
+          top: -0.25rem;
           left: 50%;
-          margin-left: -4px;
+          margin-left: -0.25rem;
         }
       }
 
       @include b.modifier('start') {
         .#{s.$prefix}tooltip__arrow {
-          right: -4px;
+          right: -0.25rem;
           top: 50%;
-          margin-top: -4px;
+          margin-top: -0.25rem;
         }
       }
 
       @include b.modifier('end') {
         .#{s.$prefix}tooltip__arrow {
-          left: -4px;
+          left: -0.25rem;
           top: 50%;
-          margin-top: -4px;
+          margin-top: -0.25rem;
         }
       }
     }

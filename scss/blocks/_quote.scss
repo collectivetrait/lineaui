@@ -49,7 +49,7 @@
         color: var(--text);
         text-wrap: balance;
         padding: 0 0 0 2rem;
-        border-left: 3px solid var(--primary-text);
+        border-left: 0.1875rem solid var(--primary-text);
       }
 
       @include b.modifier('card') {

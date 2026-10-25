@@ -5,7 +5,7 @@
 @if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'avatar') {
   @layer blocks {
     @include b.block('avatar') {
-      --_size: 40px;
+      --_size: 2.5rem;
 
       display: inline-flex;
       align-items: center;
@@ -38,8 +38,8 @@
         right: 0;
         width: 25%;
         height: 25%;
-        min-width: 8px;
-        min-height: 8px;
+        min-width: 0.5rem;
+        min-height: 0.5rem;
         border-radius: var(--r-circle);
         background-color: var(--_status-color, var(--success));
         box-shadow: 0 0 0 2px var(--surface);
@@ -50,11 +50,11 @@
         &--neutral { --_status-color: var(--c-subtle); }
       }
 
-      @include b.modifier('xs') { --_size: 24px; }
-      @include b.modifier('sm') { --_size: 32px; }
-      @include b.modifier('md') { --_size: 40px; }
-      @include b.modifier('lg') { --_size: 48px; }
-      @include b.modifier('xl') { --_size: 64px; }
+      @include b.modifier('xs') { --_size: 1.5rem; }
+      @include b.modifier('sm') { --_size: 2rem; }
+      @include b.modifier('md') { --_size: 2.5rem; }
+      @include b.modifier('lg') { --_size: 3rem; }
+      @include b.modifier('xl') { --_size: 4rem; }
 
       @include b.modifier('square') {
         border-radius: var(--r-md);
@@ -67,7 +67,7 @@
 
       > .#{s.$prefix}avatar {
         box-shadow: 0 0 0 2px var(--surface);
-        margin-left: -8px;
+        margin-left: -0.5rem;
 
         &:first-child {
           margin-left: 0;
@@ -75,7 +75,7 @@
       }
 
       @include b.element('more') {
-        --_size: 40px;
+        --_size: 2.5rem;
 
         display: inline-flex;
         align-items: center;
@@ -87,7 +87,7 @@
         color: var(--c-muted);
         font: 500 var(--t-body-sm-s)/1 var(--f-mono);
         box-shadow: 0 0 0 2px var(--surface);
-        margin-left: -8px;
+        margin-left: -0.5rem;
       }
 
       @include b.modifier('spread') {
