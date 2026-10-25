@@ -277,22 +277,25 @@ $utilities: (
     '2': (outline: var(--bd2) solid var(--border), outline-offset: calc(-1 * var(--bd2))),
     '3': (outline: var(--bd3) solid var(--border), outline-offset: calc(-1 * var(--bd3))),
   )),
-  'border-native-t': (class: 'border-native-t', responsive: true, declarations: (
+  'border-n': (class: 'border-n', responsive: true, declarations: (
+    '': (border: var(--border-size) solid var(--border-color)),
+  )),
+  'border-n-t': (class: 'border-n-t', responsive: true, declarations: (
     '': (border-top: var(--border-size) solid var(--border-color)),
   )),
-  'border-native-b': (class: 'border-native-b', responsive: true, declarations: (
+  'border-n-b': (class: 'border-n-b', responsive: true, declarations: (
     '': (border-bottom: var(--border-size) solid var(--border-color)),
   )),
-  'border-native-s': (class: 'border-native-s', responsive: true, declarations: (
+  'border-n-s': (class: 'border-n-s', responsive: true, declarations: (
     '': (border-left: var(--border-size) solid var(--border-color)),
   )),
-  'border-native-e': (class: 'border-native-e', responsive: true, declarations: (
+  'border-n-e': (class: 'border-n-e', responsive: true, declarations: (
     '': (border-right: var(--border-size) solid var(--border-color)),
   )),
-  'border-native-x': (class: 'border-native-x', responsive: true, declarations: (
+  'border-n-x': (class: 'border-n-x', responsive: true, declarations: (
     '': (border-inline: var(--border-size) solid var(--border-color)),
   )),
-  'border-native-y': (class: 'border-native-y', responsive: true, declarations: (
+  'border-n-y': (class: 'border-n-y', responsive: true, declarations: (
     '': (border-block: var(--border-size) solid var(--border-color)),
   )),
   'rounded': (class: 'rounded', property: border-radius, responsive: false, values: (
