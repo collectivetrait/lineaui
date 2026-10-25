@@ -1085,6 +1085,24 @@
     outline: var(--bd3) solid var(--border);
     outline-offset: calc(-1 * var(--bd3));
   }
+  .border-native-t {
+    border-top: var(--border-size) solid var(--border-color);
+  }
+  .border-native-b {
+    border-bottom: var(--border-size) solid var(--border-color);
+  }
+  .border-native-s {
+    border-left: var(--border-size) solid var(--border-color);
+  }
+  .border-native-e {
+    border-right: var(--border-size) solid var(--border-color);
+  }
+  .border-native-x {
+    border-inline: var(--border-size) solid var(--border-color);
+  }
+  .border-native-y {
+    border-block: var(--border-size) solid var(--border-color);
+  }
   .rounded-none {
     border-radius: var(--r-none);
   }
@@ -1813,6 +1831,24 @@
     .font-mono\@sm {
       font-family: var(--f-mono);
     }
+    .border-native-t\@sm {
+      border-top: var(--border-size) solid var(--border-color);
+    }
+    .border-native-b\@sm {
+      border-bottom: var(--border-size) solid var(--border-color);
+    }
+    .border-native-s\@sm {
+      border-left: var(--border-size) solid var(--border-color);
+    }
+    .border-native-e\@sm {
+      border-right: var(--border-size) solid var(--border-color);
+    }
+    .border-native-x\@sm {
+      border-inline: var(--border-size) solid var(--border-color);
+    }
+    .border-native-y\@sm {
+      border-block: var(--border-size) solid var(--border-color);
+    }
   }
   @media (min-width: 768px) {
     .m-0\@md {
@@ -2422,6 +2458,24 @@
     }
     .font-mono\@md {
       font-family: var(--f-mono);
+    }
+    .border-native-t\@md {
+      border-top: var(--border-size) solid var(--border-color);
+    }
+    .border-native-b\@md {
+      border-bottom: var(--border-size) solid var(--border-color);
+    }
+    .border-native-s\@md {
+      border-left: var(--border-size) solid var(--border-color);
+    }
+    .border-native-e\@md {
+      border-right: var(--border-size) solid var(--border-color);
+    }
+    .border-native-x\@md {
+      border-inline: var(--border-size) solid var(--border-color);
+    }
+    .border-native-y\@md {
+      border-block: var(--border-size) solid var(--border-color);
     }
   }
   @media (min-width: 1024px) {
@@ -3033,6 +3087,24 @@
     .font-mono\@lg {
       font-family: var(--f-mono);
     }
+    .border-native-t\@lg {
+      border-top: var(--border-size) solid var(--border-color);
+    }
+    .border-native-b\@lg {
+      border-bottom: var(--border-size) solid var(--border-color);
+    }
+    .border-native-s\@lg {
+      border-left: var(--border-size) solid var(--border-color);
+    }
+    .border-native-e\@lg {
+      border-right: var(--border-size) solid var(--border-color);
+    }
+    .border-native-x\@lg {
+      border-inline: var(--border-size) solid var(--border-color);
+    }
+    .border-native-y\@lg {
+      border-block: var(--border-size) solid var(--border-color);
+    }
   }
   @media (min-width: 1280px) {
     .m-0\@xl {
@@ -3643,6 +3715,24 @@
     .font-mono\@xl {
       font-family: var(--f-mono);
     }
+    .border-native-t\@xl {
+      border-top: var(--border-size) solid var(--border-color);
+    }
+    .border-native-b\@xl {
+      border-bottom: var(--border-size) solid var(--border-color);
+    }
+    .border-native-s\@xl {
+      border-left: var(--border-size) solid var(--border-color);
+    }
+    .border-native-e\@xl {
+      border-right: var(--border-size) solid var(--border-color);
+    }
+    .border-native-x\@xl {
+      border-inline: var(--border-size) solid var(--border-color);
+    }
+    .border-native-y\@xl {
+      border-block: var(--border-size) solid var(--border-color);
+    }
   }
   @media (min-width: 1536px) {
     .m-0\@2xl {
@@ -4252,6 +4342,24 @@
     }
     .font-mono\@2xl {
       font-family: var(--f-mono);
+    }
+    .border-native-t\@2xl {
+      border-top: var(--border-size) solid var(--border-color);
+    }
+    .border-native-b\@2xl {
+      border-bottom: var(--border-size) solid var(--border-color);
+    }
+    .border-native-s\@2xl {
+      border-left: var(--border-size) solid var(--border-color);
+    }
+    .border-native-e\@2xl {
+      border-right: var(--border-size) solid var(--border-color);
+    }
+    .border-native-x\@2xl {
+      border-inline: var(--border-size) solid var(--border-color);
+    }
+    .border-native-y\@2xl {
+      border-block: var(--border-size) solid var(--border-color);
     }
   }
 }
