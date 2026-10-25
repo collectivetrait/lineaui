@@ -6656,6 +6656,282 @@
 }
 @layer helpers {}
 @layer utilities {
+  .border-t,
+  .border-b,
+  .border-s,
+  .border-e,
+  .border-x,
+  .border-y {
+    --_border-t: 0 0 0 0 transparent;
+    --_border-b: 0 0 0 0 transparent;
+    --_border-s: 0 0 0 0 transparent;
+    --_border-e: 0 0 0 0 transparent;
+    box-shadow: var(--_border-t), var(--_border-b), var(--_border-s), var(--_border-e);
+  }
+  .border-t {
+    --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+  }
+  .border-b {
+    --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+  }
+  .border-s {
+    --_border-s: inset var(--border-size) 0 0 var(--border-color);
+  }
+  .border-e {
+    --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+  }
+  .border-x {
+    --_border-s: inset var(--border-size) 0 0 var(--border-color);
+    --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+  }
+  .border-y {
+    --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+    --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+  }
+  .border-t-0 {
+    --_border-t: 0 0 0 0 transparent;
+  }
+  .border-b-0 {
+    --_border-b: 0 0 0 0 transparent;
+  }
+  .border-s-0 {
+    --_border-s: 0 0 0 0 transparent;
+  }
+  .border-e-0 {
+    --_border-e: 0 0 0 0 transparent;
+  }
+  @media (min-width: 576px) {
+    .border-t\@sm,
+    .border-b\@sm,
+    .border-s\@sm,
+    .border-e\@sm,
+    .border-x\@sm,
+    .border-y\@sm {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+      box-shadow: var(--_border-t), var(--_border-b), var(--_border-s), var(--_border-e);
+    }
+    .border-t\@sm {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+    }
+    .border-b\@sm {
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-s\@sm {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+    }
+    .border-e\@sm {
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-x\@sm {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-y\@sm {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-t-0\@sm {
+      --_border-t: 0 0 0 0 transparent;
+    }
+    .border-b-0\@sm {
+      --_border-b: 0 0 0 0 transparent;
+    }
+    .border-s-0\@sm {
+      --_border-s: 0 0 0 0 transparent;
+    }
+    .border-e-0\@sm {
+      --_border-e: 0 0 0 0 transparent;
+    }
+  }
+  @media (min-width: 768px) {
+    .border-t\@md,
+    .border-b\@md,
+    .border-s\@md,
+    .border-e\@md,
+    .border-x\@md,
+    .border-y\@md {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+      box-shadow: var(--_border-t), var(--_border-b), var(--_border-s), var(--_border-e);
+    }
+    .border-t\@md {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+    }
+    .border-b\@md {
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-s\@md {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+    }
+    .border-e\@md {
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-x\@md {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-y\@md {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-t-0\@md {
+      --_border-t: 0 0 0 0 transparent;
+    }
+    .border-b-0\@md {
+      --_border-b: 0 0 0 0 transparent;
+    }
+    .border-s-0\@md {
+      --_border-s: 0 0 0 0 transparent;
+    }
+    .border-e-0\@md {
+      --_border-e: 0 0 0 0 transparent;
+    }
+  }
+  @media (min-width: 1024px) {
+    .border-t\@lg,
+    .border-b\@lg,
+    .border-s\@lg,
+    .border-e\@lg,
+    .border-x\@lg,
+    .border-y\@lg {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+      box-shadow: var(--_border-t), var(--_border-b), var(--_border-s), var(--_border-e);
+    }
+    .border-t\@lg {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+    }
+    .border-b\@lg {
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-s\@lg {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+    }
+    .border-e\@lg {
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-x\@lg {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-y\@lg {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-t-0\@lg {
+      --_border-t: 0 0 0 0 transparent;
+    }
+    .border-b-0\@lg {
+      --_border-b: 0 0 0 0 transparent;
+    }
+    .border-s-0\@lg {
+      --_border-s: 0 0 0 0 transparent;
+    }
+    .border-e-0\@lg {
+      --_border-e: 0 0 0 0 transparent;
+    }
+  }
+  @media (min-width: 1280px) {
+    .border-t\@xl,
+    .border-b\@xl,
+    .border-s\@xl,
+    .border-e\@xl,
+    .border-x\@xl,
+    .border-y\@xl {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+      box-shadow: var(--_border-t), var(--_border-b), var(--_border-s), var(--_border-e);
+    }
+    .border-t\@xl {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+    }
+    .border-b\@xl {
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-s\@xl {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+    }
+    .border-e\@xl {
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-x\@xl {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-y\@xl {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-t-0\@xl {
+      --_border-t: 0 0 0 0 transparent;
+    }
+    .border-b-0\@xl {
+      --_border-b: 0 0 0 0 transparent;
+    }
+    .border-s-0\@xl {
+      --_border-s: 0 0 0 0 transparent;
+    }
+    .border-e-0\@xl {
+      --_border-e: 0 0 0 0 transparent;
+    }
+  }
+  @media (min-width: 1536px) {
+    .border-t\@2xl,
+    .border-b\@2xl,
+    .border-s\@2xl,
+    .border-e\@2xl,
+    .border-x\@2xl,
+    .border-y\@2xl {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+      box-shadow: var(--_border-t), var(--_border-b), var(--_border-s), var(--_border-e);
+    }
+    .border-t\@2xl {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+    }
+    .border-b\@2xl {
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-s\@2xl {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+    }
+    .border-e\@2xl {
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-x\@2xl {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+    .border-y\@2xl {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+    .border-t-0\@2xl {
+      --_border-t: 0 0 0 0 transparent;
+    }
+    .border-b-0\@2xl {
+      --_border-b: 0 0 0 0 transparent;
+    }
+    .border-s-0\@2xl {
+      --_border-s: 0 0 0 0 transparent;
+    }
+    .border-e-0\@2xl {
+      --_border-e: 0 0 0 0 transparent;
+    }
+  }
+}
+@layer utilities {
   .m-0 {
     margin: 0;
   }
