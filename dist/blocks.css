@@ -929,6 +929,7 @@
     gap: var(--s2);
   }
   .ln-page-header__tabs {
+    padding-bottom: calc(var(--s3) - var(--bd1));
     border-bottom: var(--bd1) solid var(--border);
   }
   .ln-page-header--hero {
