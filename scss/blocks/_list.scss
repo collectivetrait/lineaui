@@ -99,7 +99,7 @@
 
       @include b.modifier('compact') {
         .#{s.$prefix}list__item {
-          min-height: 32px;
+          min-height: 2rem;
           padding-top: var(--s-h);
           padding-bottom: var(--s-h);
         }
@@ -107,7 +107,7 @@
 
       @include b.modifier('spacious') {
         .#{s.$prefix}list__item {
-          min-height: 64px;
+          min-height: 4rem;
           padding-top: r.step(2);
           padding-bottom: r.step(2);
         }

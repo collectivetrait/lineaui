@@ -30,7 +30,7 @@
       }
 
       @include b.element('search') {
-        max-width: 240px;
+        max-width: 15rem;
       }
 
       @include b.element('count') {
@@ -41,7 +41,7 @@
 
       @include b.element('divider') {
         width: 0;
-        height: 24px;
+        height: 1.5rem;
         border-left: var(--bd1) solid var(--border);
         margin-inline: var(--s1);
       }

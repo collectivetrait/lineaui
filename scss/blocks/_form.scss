@@ -24,6 +24,10 @@
         font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
       }
 
+      @include b.element('heading') {
+        font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
+      }
+
       @include b.element('title') {
         font: 600 var(--t-h4-s)/var(--t-h4-lh) var(--f-ui);
       }
@@ -36,7 +40,7 @@
 
       @include b.element('row') {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
         gap: var(--s3);
       }
 

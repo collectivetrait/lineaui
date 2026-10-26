@@ -61,7 +61,7 @@
       @include b.element('footer') {
         display: flex;
         flex-direction: column;
-        margin-top: auto;
+        margin-top: auto; // allowed exception
       }
 
       @include b.element('actions') {
@@ -100,7 +100,7 @@
 
         &:hover {
           box-shadow: var(--sh3);
-          transform: translateY(-2px);
+          transform: translateY(-0.125rem);
         }
       }
 
@@ -110,7 +110,7 @@
 
         .#{s.$prefix}card__media {
           width: 40%;
-          max-width: 200px;
+          max-width: 12.5rem;
           flex-shrink: 0;
           margin: calc(-1 * var(--_pad));
           margin-right: 1.5rem;

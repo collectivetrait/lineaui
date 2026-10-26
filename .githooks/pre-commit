@@ -25,4 +25,14 @@ if [ -n "$SCSS_FILES" ]; then
   fi
 fi
 
+MARGIN_TOP=$(grep -rn 'margin-top' scss/ --include='*.scss' | grep -v '// allowed exception' | grep -v 'margin-top: 0' | grep -v 'margin-top: -' | grep -v '_map.scss' | grep -v '//.*margin-top')
+if [ -n "$MARGIN_TOP" ]; then
+  echo ""
+  echo "pre-commit: margin-top declarations found without '// allowed exception':"
+  echo "$MARGIN_TOP"
+  echo ""
+  echo "Use margin-bottom on the preceding element, gap on the parent, or add '// allowed exception' if justified."
+  exit_code=1
+fi
+
 exit $exit_code

@@ -19,7 +19,7 @@
   body {
     line-height: 1rem;
     min-block-size: 100svh;
-    min-width: 320px;
+    min-width: 20rem;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -28,7 +28,7 @@
   picture,
   video,
   canvas,
-  svg {
+  svg:not([class]) {
     display: block;
     max-inline-size: 100%;
     block-size: auto;

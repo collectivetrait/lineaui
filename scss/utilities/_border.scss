@@ -1,0 +1,118 @@
+@use 'sass:map';
+@use '../settings' as s;
+
+@layer utilities {
+
+// Base: initialize shadow layers and compose them.
+.border-sh,
+.border-sh-t,
+.border-sh-b,
+.border-sh-s,
+.border-sh-e,
+.border-sh-x,
+.border-sh-y {
+  --_border-t: 0 0 0 0 transparent;
+  --_border-b: 0 0 0 0 transparent;
+  --_border-s: 0 0 0 0 transparent;
+  --_border-e: 0 0 0 0 transparent;
+  box-shadow:
+    var(--_border-t),
+    var(--_border-b),
+    var(--_border-s),
+    var(--_border-e);
+}
+
+// All sides
+.border-sh {
+  --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+  --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+  --_border-s: inset var(--border-size) 0 0 var(--border-color);
+  --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+}
+
+// Per-side
+.border-sh-t { --_border-t: inset 0 var(--border-size) 0 var(--border-color); }
+.border-sh-b { --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color); }
+.border-sh-s { --_border-s: inset var(--border-size) 0 0 var(--border-color); }
+.border-sh-e { --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color); }
+
+// Axes
+.border-sh-x {
+  --_border-s: inset var(--border-size) 0 0 var(--border-color);
+  --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+}
+
+.border-sh-y {
+  --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+  --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+}
+
+// Resets
+.border-sh-0 {
+  --_border-t: 0 0 0 0 transparent;
+  --_border-b: 0 0 0 0 transparent;
+  --_border-s: 0 0 0 0 transparent;
+  --_border-e: 0 0 0 0 transparent;
+}
+.border-sh-t-0 { --_border-t: 0 0 0 0 transparent; }
+.border-sh-b-0 { --_border-b: 0 0 0 0 transparent; }
+.border-sh-s-0 { --_border-s: 0 0 0 0 transparent; }
+.border-sh-e-0 { --_border-e: 0 0 0 0 transparent; }
+
+// Responsive
+@each $bp, $val in s.$breakpoints {
+  @media (min-width: #{$val}) {
+    .border-sh\@#{$bp},
+    .border-sh-t\@#{$bp},
+    .border-sh-b\@#{$bp},
+    .border-sh-s\@#{$bp},
+    .border-sh-e\@#{$bp},
+    .border-sh-x\@#{$bp},
+    .border-sh-y\@#{$bp} {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+      box-shadow:
+        var(--_border-t),
+        var(--_border-b),
+        var(--_border-s),
+        var(--_border-e);
+    }
+
+    .border-sh\@#{$bp} {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+
+    .border-sh-t\@#{$bp} { --_border-t: inset 0 var(--border-size) 0 var(--border-color); }
+    .border-sh-b\@#{$bp} { --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color); }
+    .border-sh-s\@#{$bp} { --_border-s: inset var(--border-size) 0 0 var(--border-color); }
+    .border-sh-e\@#{$bp} { --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color); }
+
+    .border-sh-x\@#{$bp} {
+      --_border-s: inset var(--border-size) 0 0 var(--border-color);
+      --_border-e: inset calc(-1 * var(--border-size)) 0 0 var(--border-color);
+    }
+
+    .border-sh-y\@#{$bp} {
+      --_border-t: inset 0 var(--border-size) 0 var(--border-color);
+      --_border-b: inset 0 calc(-1 * var(--border-size)) 0 var(--border-color);
+    }
+
+    .border-sh-0\@#{$bp} {
+      --_border-t: 0 0 0 0 transparent;
+      --_border-b: 0 0 0 0 transparent;
+      --_border-s: 0 0 0 0 transparent;
+      --_border-e: 0 0 0 0 transparent;
+    }
+    .border-sh-t-0\@#{$bp} { --_border-t: 0 0 0 0 transparent; }
+    .border-sh-b-0\@#{$bp} { --_border-b: 0 0 0 0 transparent; }
+    .border-sh-s-0\@#{$bp} { --_border-s: 0 0 0 0 transparent; }
+    .border-sh-e-0\@#{$bp} { --_border-e: 0 0 0 0 transparent; }
+  }
+}
+
+} // @layer utilities

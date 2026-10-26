@@ -53,6 +53,11 @@
         }
       }
 
+      @include b.modifier('outline') {
+        background: transparent;
+        border: var(--bd1) solid var(--border);
+      }
+
       @include b.modifier('selectable') {
         padding-inline: 0.75rem;
         cursor: pointer;

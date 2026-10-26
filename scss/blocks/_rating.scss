@@ -19,7 +19,7 @@
         width: 5rem;
         height: 1rem;
         background: linear-gradient(90deg, var(--star-color, var(--primary)) calc(var(--rating) / 5 * 100%), var(--border) 0);
-        mask: var(--star-mask) repeat-x 0 0 / 16px 16px;
+        mask: var(--star-mask) repeat-x 0 0 / 1rem 1rem;
       }
 
       @include b.element('value') {

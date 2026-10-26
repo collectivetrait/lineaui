@@ -1,6 +1,6 @@
 {
   "name": "@collectivetrait/lineaui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A lightweight SCSS and JavaScript component library built on BEM naming, an 8px vertical rhythm, and cascade layers.",
   "keywords": [
     "SCSS library",
@@ -47,9 +47,7 @@
     "./dist/core.css": "./dist/core.css",
     "./dist/blocks.css": "./dist/blocks.css",
     "./dist/utilities.css": "./dist/utilities.css",
-    "./dist/icons.css": "./dist/icons.css",
-    "./dist/icons-manifest.json": "./dist/icons-manifest.json",
-    "./dist/theme-init.js": "./dist/theme-init.js",
+"./dist/theme-init.js": "./dist/theme-init.js",
     "./scss": "./scss/_index.scss"
   },
   "scripts": {

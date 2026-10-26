@@ -5,7 +5,7 @@
 @if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'drawer') {
   @layer blocks {
     @include b.block('drawer') {
-      --_width: 400px;
+      --_width: 25rem;
 
       position: fixed;
       top: 0;
@@ -66,8 +66,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
         padding: 0;
         border: none;
         background: none;
@@ -82,8 +82,8 @@
         }
 
         &:focus-visible {
-          outline: 2px solid var(--focus);
-          outline-offset: -2px;
+          outline: 0.125rem solid var(--focus);
+          outline-offset: -0.125rem;
         }
       }
 
@@ -91,7 +91,7 @@
         display: flex;
         align-items: center;
         gap: var(--s2);
-        padding: var(--s4) calc(var(--s4) + 32px) calc(var(--s4) - var(--bd1)) var(--s4);
+        padding: var(--s4) calc(var(--s4) + 2rem) calc(var(--s4) - var(--bd1)) var(--s4);
         flex-shrink: 0;
         border-bottom: var(--bd1) solid var(--border);
       }
@@ -152,9 +152,9 @@
         }
       }
 
-      @include b.modifier('sm') { --_width: 320px; }
-      @include b.modifier('md') { --_width: 400px; }
-      @include b.modifier('lg') { --_width: 560px; }
+      @include b.modifier('sm') { --_width: 20rem; }
+      @include b.modifier('md') { --_width: 25rem; }
+      @include b.modifier('lg') { --_width: 35rem; }
     }
   }
 }

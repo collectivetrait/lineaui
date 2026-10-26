@@ -1,6 +1,7 @@
 @use '../settings' as s;
 @use '../tools/utility-generator' as gen;
 @use 'map' as u;
+@use 'border';
 @forward 'map';
 
 @layer utilities {

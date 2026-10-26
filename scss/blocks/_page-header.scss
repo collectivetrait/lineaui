@@ -6,6 +6,8 @@
 @if list.length(s.$blocks) == 0 or list.index(s.$blocks, 'page-header') {
   @layer blocks {
     @include b.block('page-header') {
+      display: flex;
+      flex-direction: column;
       margin-bottom: r.lines(2);
 
       @include b.element('breadcrumb') {
@@ -31,22 +33,21 @@
       @include b.element('lead') {
         font: var(--t-lead-s)/var(--t-lead-lh) var(--f-prose);
         color: var(--c-muted);
-        margin-top: var(--s2);
         max-width: 44rem;
+        margin-bottom: var(--s2);
       }
 
       @include b.element('meta') {
-        margin-top: var(--s2);
+        margin-bottom: var(--s2);
       }
 
       @include b.element('actions') {
         display: flex;
         gap: var(--s2);
-        margin-top: var(--s3);
       }
 
       @include b.element('tabs') {
-        margin-top: var(--s3);
+        padding-bottom: calc(var(--s3) - var(--bd1));
         border-bottom: var(--bd1) solid var(--border);
       }
 

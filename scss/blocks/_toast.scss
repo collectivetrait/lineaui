@@ -14,8 +14,8 @@
       display: flex;
       align-items: flex-start;
       gap: var(--s2);
-      min-width: 300px;
-      max-width: 420px;
+      min-width: 18.75rem;
+      max-width: 26.25rem;
       padding: var(--s2);
       background-color: var(--surface);
       border-radius: var(--r-xs);
@@ -38,6 +38,8 @@
       }
 
       @include b.element('content') {
+        display: grid;
+        gap: var(--s2);
         flex: 1;
         min-width: 0;
       }
@@ -51,19 +53,14 @@
         font-size: var(--t-body-sm-s);
         line-height: var(--t-body-sm-lh);
         color: var(--c-muted);
-        margin-top: 0;
-      }
-
-      @include b.element('action') {
-        margin-top: var(--s2);
       }
 
       @include b.element('close') {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 24px;
-        height: 24px;
+        width: 1.5rem;
+        height: 1.5rem;
         padding: 0;
         border: none;
         background: none;
@@ -87,7 +84,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
-        height: 3px;
+        height: 0.1875rem;
         background-color: var(--_fill);
         transition: width linear;
       }

@@ -79,6 +79,11 @@
       }
 
       // Variant modifiers
+      @include b.modifier('solid') {
+        background: var(--_fill);
+        color: var(--_on);
+      }
+
       @include b.modifier('neutral') {
         --_fill: var(--surface-raised);
         --_on: var(--text);

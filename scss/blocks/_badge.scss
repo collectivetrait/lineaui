@@ -33,8 +33,8 @@
 
       @include b.modifier('sm') {
         padding: 0 var(--s-h);
-        font-size: 10px;
-        line-height: 16px;
+        font-size: 0.625rem;
+        line-height: 1rem;
       }
 
       @include b.modifier('pill') {
@@ -55,7 +55,7 @@
         border-radius: 50%;
         background: currentColor;
         vertical-align: middle;
-        margin-top: -2px;
+        margin-top: -0.125rem;
         margin-right: 0.25rem;
       }
 

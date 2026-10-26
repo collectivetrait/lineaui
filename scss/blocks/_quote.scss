@@ -20,10 +20,10 @@
         font-size: var(--t-body-lg-s);
         line-height: var(--t-body-lg-lh);
         font-style: italic;
+        margin-bottom: var(--s1);
       }
 
       @include b.element('footer') {
-        margin-top: var(--s1);
         display: flex;
         align-items: center;
         gap: var(--s2);
@@ -49,7 +49,7 @@
         color: var(--text);
         text-wrap: balance;
         padding: 0 0 0 2rem;
-        border-left: 3px solid var(--primary-text);
+        border-left: 0.1875rem solid var(--primary-text);
       }
 
       @include b.modifier('card') {
