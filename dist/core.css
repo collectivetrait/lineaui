@@ -115,6 +115,10 @@
     --s2: 1rem;
     --s3: 1.5rem;
     --s4: 2rem;
+    --s5: 2.5rem;
+    --s6: 3rem;
+    --s7: 3.5rem;
+    --s8: 4rem;
   }
 }
 @layer tokens {
