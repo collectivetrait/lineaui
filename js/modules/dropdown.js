@@ -4,6 +4,9 @@ const TOGGLE = `${prefix}dropdown__toggle`;
 const MENU = `${prefix}dropdown__menu`;
 const ITEM = `${prefix}dropdown__item`;
 
+let outsideClickBound = false;
+const openNonPopoverDropdowns = new Set();
+
 export function initDropdown() {
   document.querySelectorAll(`[data-${prefix}dropdown]`).forEach((root) => {
     if (root._lnDropdown) return;
@@ -11,6 +14,17 @@ export function initDropdown() {
     const dd = new Dropdown(root);
     dd.init();
   });
+
+  if (!outsideClickBound) {
+    outsideClickBound = true;
+    document.addEventListener('click', (e) => {
+      openNonPopoverDropdowns.forEach((dd) => {
+        if (!dd.root.contains(e.target)) {
+          dd.close();
+        }
+      });
+    });
+  }
 }
 
 export class Dropdown {
@@ -20,11 +34,13 @@ export class Dropdown {
     this.menu = root.querySelector(`.${MENU}`);
     this.items = [];
     this.activeIndex = -1;
+    this.isPopover = false;
   }
 
   init() {
     if (!this.toggle || !this.menu) return;
     this.items = [...this.menu.querySelectorAll(`.${ITEM}:not([disabled])`)];
+    this.isPopover = this.menu.hasAttribute('popover');
 
     this.toggle.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
@@ -36,21 +52,44 @@ export class Dropdown {
 
     this.menu.addEventListener('keydown', (e) => this.onMenuKeydown(e));
 
-    this.menu.addEventListener('toggle', (e) => {
-      if (e.newState === 'closed') {
-        this.activeIndex = -1;
-        this.clearActive();
-      }
-    });
+    if (this.isPopover) {
+      this.menu.addEventListener('toggle', (e) => {
+        if (e.newState === 'closed') {
+          this.activeIndex = -1;
+          this.clearActive();
+        }
+      });
+    } else {
+      this.toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (this.toggle.getAttribute('aria-expanded') === 'true') {
+          this.close();
+        } else {
+          this.open();
+        }
+      });
+    }
   }
 
   open() {
-    if (this.menu.matches?.(':popover-open')) return;
-    this.menu.showPopover?.();
+    if (this.isPopover) {
+      if (this.menu.matches?.(':popover-open')) return;
+      this.menu.showPopover?.();
+    } else {
+      this.toggle.setAttribute('aria-expanded', 'true');
+      openNonPopoverDropdowns.add(this);
+    }
   }
 
   close() {
-    this.menu.hidePopover?.();
+    if (this.isPopover) {
+      this.menu.hidePopover?.();
+    } else {
+      this.toggle.setAttribute('aria-expanded', 'false');
+      openNonPopoverDropdowns.delete(this);
+    }
+    this.activeIndex = -1;
+    this.clearActive();
     this.toggle.focus();
   }
 
