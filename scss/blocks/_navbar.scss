@@ -84,6 +84,12 @@ $navbar-collapse-bp: md !default;
         padding: var(--s1);
         cursor: pointer;
         color: inherit;
+
+        &[data-#{s.$prefix}navbar-panel] {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
         border-radius: var(--r-md);
       }
 
@@ -114,6 +120,9 @@ $navbar-collapse-bp: md !default;
           padding: var(--s1) var(--s2);
           display: flex;
           text-align: start;
+          justify-content: start;
+          border: 0;
+          background: none;
 
           &:hover {
             background-color: var(--surface-raised);
@@ -177,36 +186,49 @@ $navbar-collapse-bp: md !default;
       }
 
       // Submenus: dropdown context inside navbar
-      .#{s.$prefix}dropdown {
+      .#{s.$prefix}navbar__nav .#{s.$prefix}dropdown {
         position: relative;
       }
 
-      // Submenu inline rendering inside panels
+      // Submenu inline rendering inside panels (cross-block context rule)
       .#{s.$prefix}navbar__panel .#{s.$prefix}dropdown {
         position: static;
         width: 100%;
-      }
 
-      .#{s.$prefix}navbar__panel .#{s.$prefix}dropdown__menu:not([popover]) {
-        position: static;
-        box-shadow: none;
-        border: 0;
-        border-radius: 0;
-        outline: 0;
-        min-width: 0;
-        padding-left: var(--s3);
+        .#{s.$prefix}dropdown__toggle {
+          background: none;
+        }
+
+        .#{s.$prefix}dropdown__menu:not([popover]) {
+          position: static;
+          box-shadow: none;
+          border: 0;
+          border-radius: 0;
+          min-width: 0;
+          margin-top: 0; // allowed exception
+          padding: 0;
+          background: none;
+        }
 
         .#{s.$prefix}dropdown__item {
           justify-content: start;
         }
       }
 
-      // Megamenu
+      // Megamenu wrapper
+      @include b.element('mega') {
+        position: static;
+      }
+
+      // Megamenu panel
       @include b.element('megamenu') {
         display: none;
-        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
         background: var(--surface);
-        border-top: var(--bd1) solid var(--_border-color);
         box-shadow: var(--sh3);
 
         &[aria-hidden="false"] {
@@ -218,6 +240,40 @@ $navbar-collapse-bp: md !default;
         max-width: var(--container-wide);
         margin-inline: auto;
         padding: var(--s3) var(--gutter);
+      }
+
+      @include b.element('megamenu-link') {
+        display: block;
+        padding: var(--s1) 0;
+        font: 500 var(--t-body-sm-s)/var(--t-body-sm-lh) var(--f-ui);
+        color: var(--c-muted);
+        text-decoration: none;
+        transition: color var(--dur-fast) var(--e-standard);
+
+        &:hover {
+          color: var(--_text);
+        }
+      }
+
+      // Megamenu inside panel (mobile): inline, no shadow
+      .#{s.$prefix}navbar__panel .#{s.$prefix}navbar__megamenu {
+        position: static;
+        box-shadow: none;
+        background: none;
+      }
+
+      .#{s.$prefix}navbar__panel .#{s.$prefix}navbar__megamenu-inner {
+        padding: var(--s2);
+        max-width: none;
+      }
+
+      @include b.element('mega-toggle') {
+        background: none;
+        border: 0;
+
+        &:hover {
+          background: none;
+        }
       }
 
       // Collapse mode
