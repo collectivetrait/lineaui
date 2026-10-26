@@ -192,8 +192,13 @@ $navbar-collapse-bp: md !default;
         box-shadow: none;
         border: 0;
         border-radius: 0;
+        outline: 0;
         min-width: 0;
         padding-left: var(--s3);
+
+        .#{s.$prefix}dropdown__item {
+          justify-content: start;
+        }
       }
 
       // Megamenu

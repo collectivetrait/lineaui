@@ -2037,8 +2037,12 @@
     box-shadow: none;
     border: 0;
     border-radius: 0;
+    outline: 0;
     min-width: 0;
     padding-left: var(--s3);
+  }
+  .ln-navbar .ln-navbar__panel .ln-dropdown__menu:not([popover]) .ln-dropdown__item {
+    justify-content: start;
   }
   .ln-navbar__megamenu {
     display: none;
