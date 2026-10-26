@@ -21,9 +21,11 @@ $navbar-collapse-bp: md !default;
       z-index: 100;
 
       @include b.element('inner') {
+        --_px: 0px;
         align-items: center;
         gap: var(--s3);
         max-width: var(--container-wide);
+        padding-inline: var(--_px);
         display: flex;
       }
 
@@ -101,6 +103,21 @@ $navbar-collapse-bp: md !default;
 
       @include b.element('panel') {
         display: none;
+        margin-inline: calc(-1 * var(--_px, 0px));
+
+        &[aria-hidden="false"] {
+          display: block;
+        }
+
+        .#{s.$prefix}navbar__link {
+          width: 100%;
+          padding: var(--s1) var(--s2);
+          display: flex;
+
+          &:hover {
+            background-color: var(--surface-raised);
+          }
+        }
       }
 
       @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp) - 0.02px}) {
@@ -119,23 +136,6 @@ $navbar-collapse-bp: md !default;
           display: none;
         }
 
-        &__panel {
-          display: none;
-
-          &[aria-hidden="false"] {
-            display: block;
-          }
-        }
-
-        &__panel .#{s.$prefix}navbar__link {
-          width: 100%;
-          padding: var(--s1) var(--s2);
-          display: flex;
-
-          &:hover {
-            background-color: var(--surface-raised);
-          }
-        }
       }
 
       @include b.modifier('actions-visible') {
