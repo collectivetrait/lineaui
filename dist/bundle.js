@@ -24,10 +24,12 @@ function initRhythm() {
 
 // js/modules/navigation.js
 var STORAGE_KEY = `${prefix}sidebar`;
+var navbarPrefix = `${prefix}navbar`;
+var panelClass = `${navbarPrefix}__panel`;
+var collapseClass = `${navbarPrefix}--collapse`;
 var documentListenersAdded = false;
 function initNavigation() {
   const shellClass = `${prefix}shell`;
-  const navbarPrefix = `${prefix}navbar`;
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored === "open") {
     document.querySelectorAll(`.${shellClass}`).forEach((shell) => {
@@ -61,17 +63,30 @@ function initNavigation() {
     }, { threshold: 0 });
     observer2.observe(sentinel);
   });
-  function closeNavbarPanel(navbar) {
-    const toggle = navbar.querySelector(`[data-${prefix}navbar-toggle]`);
-    const panel = navbar.querySelector(`.${navbarPrefix}__panel`);
-    if (toggle) toggle.setAttribute("aria-expanded", "false");
-    if (panel) panel.setAttribute("aria-hidden", "true");
+  function closeTarget(target, trigger) {
+    if (trigger) trigger.setAttribute("aria-expanded", "false");
+    if (target) target.setAttribute("aria-hidden", "true");
   }
-  function openNavbarPanel(navbar) {
-    const toggle = navbar.querySelector(`[data-${prefix}navbar-toggle]`);
-    const panel = navbar.querySelector(`.${navbarPrefix}__panel`);
-    if (toggle) toggle.setAttribute("aria-expanded", "true");
-    if (panel) panel.setAttribute("aria-hidden", "false");
+  function openTarget(target, trigger) {
+    if (trigger) trigger.setAttribute("aria-expanded", "true");
+    if (target) target.setAttribute("aria-hidden", "false");
+  }
+  function getToggleTarget(navbar) {
+    const explicitPanel = navbar.querySelector(`.${panelClass}:not([id])`);
+    if (explicitPanel) return explicitPanel;
+    if (navbar.classList.contains(collapseClass)) {
+      return navbar.querySelector(`.${navbarPrefix}__nav`);
+    }
+    return null;
+  }
+  function closeNamedPanels(navbar, except) {
+    const selector = `.${panelClass}[id][aria-hidden="false"], .${navbarPrefix}__megamenu[aria-hidden="false"]`;
+    navbar.querySelectorAll(selector).forEach((el) => {
+      if (el === except) return;
+      const id = el.getAttribute("id");
+      const trigger = id ? navbar.querySelector(`[data-${prefix}navbar-panel="${id}"]`) : null;
+      closeTarget(el, trigger);
+    });
   }
   document.querySelectorAll(`[data-${prefix}navbar-toggle]`).forEach((btn) => {
     if (btn._lnNav) return;
@@ -79,21 +94,88 @@ function initNavigation() {
     btn.addEventListener("click", () => {
       const navbar = btn.closest(`.${navbarPrefix}`);
       if (!navbar) return;
+      const target = getToggleTarget(navbar);
+      if (!target) return;
       const expanded = btn.getAttribute("aria-expanded") === "true";
       if (expanded) {
-        closeNavbarPanel(navbar);
+        closeTarget(target, btn);
       } else {
-        openNavbarPanel(navbar);
+        openTarget(target, btn);
       }
     });
+  });
+  document.querySelectorAll(`[data-${prefix}navbar-panel]`).forEach((btn) => {
+    if (btn._lnNav) return;
+    btn._lnNav = true;
+    btn.addEventListener("click", () => {
+      const navbar = btn.closest(`.${navbarPrefix}`);
+      if (!navbar) return;
+      const targetId = btn.getAttribute(`data-${prefix}navbar-panel`);
+      const target = navbar.querySelector(`#${targetId}`);
+      if (!target) return;
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      if (expanded) {
+        closeTarget(target, btn);
+      } else {
+        closeNamedPanels(navbar, target);
+        openTarget(target, btn);
+      }
+    });
+  });
+  document.querySelectorAll(`.${collapseClass}`).forEach((navbar) => {
+    if (navbar._lnCollapse) return;
+    navbar._lnCollapse = true;
+    const hasExplicitPanel = !!navbar.querySelector(`.${panelClass}:not([id])`);
+    if (hasExplicitPanel) return;
+    const nav = navbar.querySelector(`.${navbarPrefix}__nav`);
+    if (!nav) return;
+    const bp = getComputedStyle(document.documentElement).getPropertyValue("--ln-collapse-bp") || "768px";
+    const mq = window.matchMedia(`(max-width: ${parseFloat(bp) - 0.02}px)`);
+    function apply(mobile) {
+      if (mobile) {
+        nav.classList.add(panelClass);
+        if (!nav.hasAttribute("aria-hidden")) {
+          nav.setAttribute("aria-hidden", "true");
+        }
+      } else {
+        nav.classList.remove(panelClass);
+        nav.removeAttribute("aria-hidden");
+      }
+    }
+    apply(mq.matches);
+    mq.addEventListener("change", (e) => apply(e.matches));
   });
   if (documentListenersAdded) return;
   documentListenersAdded = true;
   document.addEventListener("keydown", (e) => {
     if (e.key !== "Escape") return;
-    document.querySelectorAll(`.${navbarPrefix}__panel[aria-hidden="false"]`).forEach((panel) => {
+    const namedSelector = `.${panelClass}[id][aria-hidden="false"], .${navbarPrefix}__megamenu[aria-hidden="false"]`;
+    document.querySelectorAll(namedSelector).forEach((el) => {
+      const navbar = el.closest(`.${navbarPrefix}`);
+      if (!navbar) return;
+      const id = el.getAttribute("id");
+      const trigger = id ? navbar.querySelector(`[data-${prefix}navbar-panel="${id}"]`) : null;
+      closeTarget(el, trigger);
+      if (trigger) trigger.focus();
+    });
+    document.querySelectorAll(`.${panelClass}:not([id])[aria-hidden="false"]`).forEach((panel) => {
       const navbar = panel.closest(`.${navbarPrefix}`);
-      if (navbar) closeNavbarPanel(navbar);
+      if (!navbar) return;
+      const toggle = navbar.querySelector(`[data-${prefix}navbar-toggle]`);
+      closeTarget(panel, toggle);
+      if (toggle) toggle.focus();
+    });
+  });
+  document.addEventListener("click", (e) => {
+    const namedSelector = `.${panelClass}[id][aria-hidden="false"], .${navbarPrefix}__megamenu[aria-hidden="false"]`;
+    document.querySelectorAll(namedSelector).forEach((el) => {
+      const navbar = el.closest(`.${navbarPrefix}`);
+      if (!navbar) return;
+      const id = el.getAttribute("id");
+      const trigger = id ? navbar.querySelector(`[data-${prefix}navbar-panel="${id}"]`) : null;
+      if (el.contains(e.target)) return;
+      if (trigger && trigger.contains(e.target)) return;
+      closeTarget(el, trigger);
     });
   });
 }

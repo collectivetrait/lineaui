@@ -168,6 +168,74 @@ $navbar-collapse-bp: md !default;
         }
       }
 
+      // Keep group: stays in the bar on mobile
+      @include b.element('keep') {
+        display: flex;
+        align-items: center;
+        gap: var(--s-h);
+      }
+
+      // Submenus: dropdown context inside navbar
+      .#{s.$prefix}dropdown {
+        position: relative;
+      }
+
+      // Submenu inline rendering inside panels
+      .#{s.$prefix}navbar__panel .#{s.$prefix}dropdown {
+        position: static;
+        width: 100%;
+      }
+
+      .#{s.$prefix}navbar__panel .#{s.$prefix}dropdown__menu:not([popover]) {
+        position: static;
+        box-shadow: none;
+        border: 0;
+        border-radius: 0;
+        min-width: 0;
+        padding-left: var(--s3);
+      }
+
+      // Megamenu
+      @include b.element('megamenu') {
+        display: none;
+        width: 100%;
+        background: var(--surface);
+        border-top: var(--bd1) solid var(--_border-color);
+        box-shadow: var(--sh3);
+
+        &[aria-hidden="false"] {
+          display: block;
+        }
+      }
+
+      @include b.element('megamenu-inner') {
+        max-width: var(--container-wide);
+        margin-inline: auto;
+        padding: var(--s3) var(--gutter);
+      }
+
+      // Collapse mode
+      @include b.modifier('collapse') {
+        @media (max-width: #{map.get(s.$breakpoints, $navbar-collapse-bp) - 0.02px}) {
+          .#{s.$prefix}navbar__inner {
+            flex-wrap: wrap;
+            row-gap: 0;
+          }
+
+          .#{s.$prefix}navbar__toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+          }
+
+          .#{s.$prefix}navbar__nav.#{s.$prefix}navbar__panel {
+            flex-basis: 100%;
+            order: 99;
+          }
+        }
+      }
+
       @include role.role-modifiers;
     }
 
